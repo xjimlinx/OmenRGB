@@ -87,6 +87,30 @@ fn dispatch(backend: &mut Backend, req: Request) -> Result<serde_json::Value, St
             Ok(v) => Ok(serde_json::json!({"kbam": v})),
             Err(e) => Err(e),
         },
+        // 诊断：直接写 EC 亮度寄存器（LBRT，0x05），用于实测三档亮度取值
+        "lbrt" => {
+            let value = args
+                .first()
+                .ok_or("缺少 LBRT 参数")?
+                .parse::<u8>()
+                .map_err(|_| "LBRT 必须是 0-255")?;
+            omenrgb_core::wmi::wmaa(
+                omenrgb_core::CMD_BACKLIGHT,
+                omenrgb_core::CMDT_SET_BRIGHTNESS,
+                &[value],
+                1,
+            )?;
+            let rb = omenrgb_core::wmi::wmaa(
+                omenrgb_core::CMD_BACKLIGHT,
+                omenrgb_core::CMDT_GET_BRIGHTNESS,
+                &[],
+                4,
+            )?;
+            Ok(serde_json::json!({
+                "lbrt": value,
+                "readback": rb.first().copied().unwrap_or(0),
+            }))
+        }
         other => Err(format!("未知命令: {other}")),
     }
 }

@@ -16,7 +16,8 @@ fn usage() -> ! {
   omenrgb set-zone N RRGGBB          设置单个区域 (0-3)\n\
   omenrgb brightness 0-100           亮度\n\
   omenrgb animate NAME               动画 (colorcycle/starlight/breathing/wave/\n\
-                                      raindrop/audiopulse/confetti/sun/swipe)\n\
+                                     raindrop/audiopulse/confetti/sun/swipe)\n\
+  omenrgb lbrt 0-255                 诊断：直接写 EC 亮度寄存器（十六进制如 0xE4）\n\
   omenrgb kbam                       读取键盘模式寄存器\n\
   omenrgb zones                      显示分区名\n"
     );
@@ -70,6 +71,26 @@ fn main() -> ExitCode {
             let name = rest.first().unwrap_or_else(|| usage());
             client.call("animate", &[name]).map(|v| {
                 println!("已发送动画: {}", v["animation"].as_str().unwrap_or(""));
+            })
+        }
+        "lbrt" => {
+            let raw = rest.first().unwrap_or_else(|| usage());
+            let value = if let Some(hex) = raw.strip_prefix("0x").or_else(|| raw.strip_prefix("0X")) {
+                u8::from_str_radix(hex, 16).unwrap_or_else(|_| {
+                    eprintln!("错误: 无法解析: {raw}");
+                    std::process::exit(2)
+                })
+            } else {
+                raw.parse::<u8>().unwrap_or_else(|_| {
+                    eprintln!("错误: 无法解析: {raw}");
+                    std::process::exit(2)
+                })
+            };
+            client.call("lbrt", &[&value.to_string()]).map(|v| {
+                println!(
+                    "LBRT 已写入 0x{value:02X}，回读 0x{:02X}",
+                    v["readback"].as_u64().unwrap_or(0)
+                );
             })
         }
         "kbam" => client.call("kbam", &[]).map(|v| {
