@@ -10,7 +10,9 @@ path = "src/main.rs"
 
 [dependencies]
 omenrgb-core = { path = "../omenrgb-core" }
-eframe = "0.31"
+# Wayland 协议不支持真正隐藏窗口（winit 限制，GTK/Slint/iced 同理）。
+# 强制 x11 后端（XWayland），让"隐藏到托盘"真正生效。
+eframe = { version = "0.31", default-features = false, features = ["accesskit", "default_fonts", "glow", "x11", "web_screen_reader"] }
 egui = "0.31"
 image = { version = "0.25", default-features = false, features = ["png", "gif"] }
 gif = "0.13"

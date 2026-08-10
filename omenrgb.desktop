@@ -13,3 +13,4 @@ Terminal=false
 Categories=Utility;
 Keywords=RGB;Keyboard;OMEN;HP;Lighting;
 StartupNotify=false
+StartupWMClass=omenrgb-gui

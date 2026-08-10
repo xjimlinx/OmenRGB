@@ -703,7 +703,6 @@ impl eframe::App for App {
             match msg {
                 TrayMsg::Show => {
                     self.tray_hidden = false;
-                    ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(false));
                     ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
                 }
                 TrayMsg::Quit => {
@@ -716,10 +715,9 @@ impl eframe::App for App {
         if ctx.input(|i| i.viewport().close_requested()) && !self.quitting {
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
             self.tray_hidden = true;
-            ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(true));
+            ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
         }
-        // Wayland 不支持真正隐藏窗口，用最小化代替；
-        // 最小化期间保持定时重绘，确保托盘菜单消息仍能被轮询到
+        // 隐藏期间保持定时重绘，确保托盘菜单消息仍能被轮询到
         if self.tray_hidden {
             ctx.request_repaint_after(std::time::Duration::from_millis(500));
         }
@@ -763,7 +761,7 @@ impl eframe::App for App {
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                     if ui.button(RichText::new("▁ 隐藏到托盘").color(Color32::WHITE)).clicked() {
                         self.tray_hidden = true;
-                        ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(true));
+                        ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
                     }
                     if ui.button(RichText::new("↻ 刷新").color(Color32::WHITE)).clicked() {
                         self.refresh();
