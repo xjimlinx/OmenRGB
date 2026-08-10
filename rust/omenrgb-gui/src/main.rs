@@ -583,21 +583,30 @@ impl eframe::App for App {
 
                 ui.add_space(10.0);
                 section(ui, "亮度", |ui| {
-                    let mut level = self.brightness as f32;
-                    ui.add(egui::Slider::new(&mut level, 0.0..=100.0).show_value(true));
-                    self.brightness = level as u8;
-                    if ui.button("应用亮度").clicked() {
-                        match self.client.call("brightness", &[&self.brightness.to_string()]) {
-                            Ok(_) => {
-                                self.status = format!("亮度已设为 {}%", self.brightness);
-                                self.status_color = OK;
-                            }
-                            Err(e) => {
-                                self.status = format!("设置失败: {e}");
-                                self.status_color = ERR;
+                    // 硬件只支持三段：0=关、50=低、100=高（逆向自 OGH 的 KbBacklitBrightness）
+                    ui.horizontal(|ui| {
+                        for (label, level) in [("关", 0u8), ("低", 50u8), ("高", 100u8)] {
+                            let selected = self.brightness == level;
+                            let text = if selected {
+                                RichText::new(label).size(13.0).strong().color(Color32::BLACK)
+                            } else {
+                                RichText::new(label).size(13.0)
+                            };
+                            if ui.selectable_label(selected, text).clicked() {
+                                self.brightness = level;
+                                match self.client.call("brightness", &[&level.to_string()]) {
+                                    Ok(_) => {
+                                        self.status = format!("亮度已设为 {label}（{level}%）");
+                                        self.status_color = OK;
+                                    }
+                                    Err(e) => {
+                                        self.status = format!("设置失败: {e}");
+                                        self.status_color = ERR;
+                                    }
+                                }
                             }
                         }
-                    }
+                    });
                 });
 
                 ui.add_space(10.0);
