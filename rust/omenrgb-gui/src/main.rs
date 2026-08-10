@@ -687,6 +687,11 @@ impl App {
 impl App {
     /// 主窗口 UI（作为子视口渲染；关闭=销毁=Wayland 真隐藏，显示=重建）
     pub fn update_main_ui(&mut self, ctx: &egui::Context) {
+        // 点窗口关闭键（X）→ 隐藏到托盘。egui 对非根视口只置 close_requested，
+        // 需要应用自己在下帧停止渲染它（复用"隐藏到托盘"按钮的路径）。
+        if ctx.input(|i| i.viewport().close_requested()) {
+            self.hide_requested = true;
+        }
         // 视口重建（隐藏→显示）后 Context 会变：重建纹理与字体
         if self.last_vid != Some(ctx.viewport_id()) {
             self.last_vid = Some(ctx.viewport_id());
@@ -1119,6 +1124,106 @@ fn main_vid() -> egui::ViewportId {
     egui::ViewportId::from_hash_of("omenrgb-main")
 }
 
+// KWin 脚本：把 1×1 根视口永久标记为 skipTaskbar/skipSwitcher/skipPager。
+// Wayland 下没有 XDG 协议能从任务栏移除窗口，KDE 唯一正统做法就是 KWin 脚本。
+// 这样隐藏主窗口（销毁 surface）后，任务栏不会残留根窗口的图标。
+const KWIN_SKIP_JS: &str = r#"
+function skipRoot(w) {
+    if (w.resourceClass === "omenrgb" && w.frameGeometry.width < 20 && w.frameGeometry.height < 20) {
+        w.skipTaskbar = true;
+        w.skipSwitcher = true;
+        w.skipPager = true;
+    }
+}
+workspace.windowList().forEach(skipRoot);
+workspace.windowAdded.connect(skipRoot);
+"#;
+
+/// 已加载的 KWin 脚本句柄（退出时卸载）
+struct KwinSkip {
+    plugin_name: String,
+    _script_id: i32,
+}
+
+/// 向 KWin 注册根窗口跳过任务栏的脚本。仅 KDE/KWin 会话生效；其它环境静默失败。
+fn install_kwin_skip() -> Option<KwinSkip> {
+    // 完全没有显示环境时不尝试
+    if std::env::var_os("WAYLAND_DISPLAY").is_none() && std::env::var_os("DISPLAY").is_none() {
+        return None;
+    }
+    let plugin_name = format!("omenrgb-kwin-skip-{}", std::process::id());
+    let script_path = std::env::temp_dir().join(format!("{plugin_name}.js"));
+    if std::fs::write(&script_path, KWIN_SKIP_JS).is_err() {
+        eprintln!("[omenrgb-gui] 无法写入 KWin 脚本文件，任务栏残留处理已跳过");
+        return None;
+    }
+    let conn = match zbus::blocking::Connection::session() {
+        Ok(c) => c,
+        Err(e) => {
+            eprintln!("[omenrgb-gui] 无法连接 session bus，任务栏残留处理已跳过: {e}");
+            return None;
+        }
+    };
+    // 同进程残留脚本（异常退出时）先卸载，避免堆积
+    let _ = conn.call_method(
+        Some("org.kde.KWin"),
+        "/Scripting",
+        Some("org.kde.kwin.Scripting"),
+        "unloadScript",
+        &plugin_name,
+    );
+    let path_str = script_path.to_str()?.to_string();
+    let reply = match conn.call_method(
+        Some("org.kde.KWin"),
+        "/Scripting",
+        Some("org.kde.kwin.Scripting"),
+        "loadScript",
+        &(path_str, plugin_name.clone()),
+    ) {
+        Ok(r) => r,
+        Err(e) => {
+            // 非 KDE 会话（GNOME 等）没有 org.kde.KWin，属正常
+            eprintln!("[omenrgb-gui] KWin 脚本加载失败（非 KDE 时属正常）: {e}");
+            return None;
+        }
+    };
+    let script_id: i32 = match reply.body().deserialize() {
+        Ok(id) => id,
+        Err(e) => {
+            eprintln!("[omenrgb-gui] KWin 脚本返回异常: {e}");
+            return None;
+        }
+    };
+    let run_path = format!("/Scripting/Script{script_id}");
+    if let Err(e) = conn.call_method(
+        Some("org.kde.KWin"),
+        run_path.as_str(),
+        Some("org.kde.kwin.Script"),
+        "run",
+        &(),
+    ) {
+        eprintln!("[omenrgb-gui] KWin 脚本运行失败: {e}");
+        return None;
+    }
+    eprintln!("[omenrgb-gui] 已加载 KWin 脚本 → 根窗口不再出现在任务栏");
+    Some(KwinSkip {
+        plugin_name,
+        _script_id: script_id,
+    })
+}
+
+fn uninstall_kwin_skip(skip: &KwinSkip) {
+    if let Ok(conn) = zbus::blocking::Connection::session() {
+        let _ = conn.call_method(
+            Some("org.kde.KWin"),
+            "/Scripting",
+            Some("org.kde.kwin.Scripting"),
+            "unloadScript",
+            &skip.plugin_name,
+        );
+    }
+}
+
 /// eframe 应用：根视口不可见（仅事件循环载体），主界面是子视口
 struct GuiApp {
     state: Arc<Mutex<App>>,
@@ -1126,6 +1231,7 @@ struct GuiApp {
     main_open: bool,
     main_alive: bool,
     hiding: bool,
+    kwin_skip: Option<KwinSkip>,
 }
 
 impl GuiApp {
@@ -1141,6 +1247,12 @@ impl GuiApp {
 }
 
 impl eframe::App for GuiApp {
+    fn on_exit(&mut self, _gl: Option<&eframe::glow::Context>) {
+        if let Some(skip) = &self.kwin_skip {
+            uninstall_kwin_skip(skip);
+        }
+    }
+
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         // 托盘消息
         while let Ok(msg) = self.tray_rx.try_recv() {
@@ -1192,6 +1304,7 @@ fn main() -> eframe::Result {
         main_open: true, // 启动即显示主窗口
         main_alive: false,
         hiding: false,
+        kwin_skip: install_kwin_skip(),
     };
     let options = eframe::NativeOptions {
         // 根视口仅作事件循环载体：创建时即不可见（Wayland/X11 都支持初始隐藏）
