@@ -7,7 +7,7 @@ use omenrgb_core::ZONE_NAMES;
 use ksni::TrayMethods;
 use std::io::{BufReader, Cursor};
 use std::sync::mpsc;
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 
 // OMEN 风格深色主题：暖黑背景 + 图标同款红粉主色（#FF2C74 → #FF6A3D 渐变系）
 const BG: Color32 = Color32::from_rgb(0x10, 0x11, 0x16);
@@ -193,9 +193,8 @@ struct App {
     profile_name: String,
     pick_hue: f32,
     pick_bright: f32,
-    tray_rx: mpsc::Receiver<TrayMsg>,
-    quitting: bool,
-    tray_hidden: bool,
+    hide_requested: bool,
+    last_vid: Option<egui::ViewportId>,
 }
 
 /// dojo-zones.json 中的分区定义：4 个分区，每个分区若干 [X, Y, Width, Height] 光区
@@ -395,7 +394,6 @@ fn animation_gif(name: &str) -> Option<&'static [u8]> {
 
 impl Default for App {
 fn default() -> Self {
-        let (_tx, tray_rx) = mpsc::channel();
         Self {
             client: Client::new(),
             keyboard: None,
@@ -414,18 +412,8 @@ fn default() -> Self {
             profile_name: String::new(),
             pick_hue: 0.0,
             pick_bright: 50.0,
-            tray_rx,
-            quitting: false,
-            tray_hidden: false,
-        }
-    }
-}
-
-impl App {
-    fn with_tray(tray_rx: mpsc::Receiver<TrayMsg>) -> Self {
-        Self {
-            tray_rx,
-            ..Self::default()
+            hide_requested: false,
+            last_vid: None,
         }
     }
 }
@@ -696,30 +684,15 @@ impl App {
     }
 }
 
-impl eframe::App for App {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        // 托盘消息
-        while let Ok(msg) = self.tray_rx.try_recv() {
-            match msg {
-                TrayMsg::Show => {
-                    self.tray_hidden = false;
-                    ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
-                }
-                TrayMsg::Quit => {
-                    self.quitting = true;
-                    ctx.send_viewport_cmd(egui::ViewportCommand::Close);
-                }
-            }
-        }
-        // 点窗口关闭按钮 → 隐藏到托盘（托盘"退出"才真正退出）
-        if ctx.input(|i| i.viewport().close_requested()) && !self.quitting {
-            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
-            self.tray_hidden = true;
-            ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
-        }
-        // 隐藏期间保持定时重绘，确保托盘菜单消息仍能被轮询到
-        if self.tray_hidden {
-            ctx.request_repaint_after(std::time::Duration::from_millis(500));
+impl App {
+    /// 主窗口 UI（作为子视口渲染；关闭=销毁=Wayland 真隐藏，显示=重建）
+    pub fn update_main_ui(&mut self, ctx: &egui::Context) {
+        // 视口重建（隐藏→显示）后 Context 会变：重建纹理与字体
+        if self.last_vid != Some(ctx.viewport_id()) {
+            self.last_vid = Some(ctx.viewport_id());
+            self.keyboard = None;
+            self.anim = None;
+            setup_fonts(ctx);
         }
         if self.keyboard.is_none() {
             self.load_keyboard(ctx);
@@ -760,8 +733,7 @@ impl eframe::App for App {
                 ui.label(RichText::new("HP OMEN 16 · 四分区键盘灯控").size(11.0).color(MUTED));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                     if ui.button(RichText::new("▁ 隐藏到托盘").color(Color32::WHITE)).clicked() {
-                        self.tray_hidden = true;
-                        ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
+                        self.hide_requested = true;
                     }
                     if ui.button(RichText::new("↻ 刷新").color(Color32::WHITE)).clicked() {
                         self.refresh();
@@ -1142,6 +1114,71 @@ fn window_icon() -> Option<Arc<egui::IconData>> {
     }))
 }
 
+/// 主窗口视口 ID（子视口：可独立销毁/重建，实现 Wayland 原生真隐藏）
+fn main_vid() -> egui::ViewportId {
+    egui::ViewportId::from_hash_of("omenrgb-main")
+}
+
+/// eframe 应用：根视口不可见（仅事件循环载体），主界面是子视口
+struct GuiApp {
+    state: Arc<Mutex<App>>,
+    tray_rx: mpsc::Receiver<TrayMsg>,
+    main_open: bool,
+    main_alive: bool,
+    hiding: bool,
+}
+
+impl GuiApp {
+    fn main_viewport_builder() -> egui::ViewportBuilder {
+        egui::ViewportBuilder::default()
+            .with_inner_size([960.0, 640.0])
+            .with_min_inner_size([820.0, 560.0])
+            .with_title("OMEN RGB 键盘控制器")
+            // 任务栏图标：app_id 匹配 omenrgb.desktop
+            .with_app_id("omenrgb")
+            .with_icon(window_icon().expect("内置图标缺失"))
+    }
+}
+
+impl eframe::App for GuiApp {
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        // 托盘消息
+        while let Ok(msg) = self.tray_rx.try_recv() {
+            match msg {
+                TrayMsg::Show => self.main_open = true,
+                TrayMsg::Quit => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
+            }
+        }
+        // 主窗口里的"隐藏到托盘"按钮
+        if self.state.lock().unwrap().hide_requested {
+            self.state.lock().unwrap().hide_requested = false;
+            self.hiding = true;
+            self.main_open = false;
+        }
+        // 子视口生命周期：
+        // - 显示 = 每帧调用 show_viewport_deferred 创建
+        // - 用户点窗口关闭 = 视口被销毁（Wayland 真隐藏），检测到消失后置 main_open=false
+        let alive = ctx.input(|i| i.raw.viewports.contains_key(&main_vid()));
+        if self.main_alive && !alive && !self.hiding {
+            self.main_open = false; // 用户关闭主窗口 → 隐藏到托盘
+        }
+        self.hiding = false;
+        self.main_alive = alive;
+        if self.main_open {
+            let state = Arc::clone(&self.state);
+            ctx.show_viewport_deferred(
+                main_vid(),
+                Self::main_viewport_builder(),
+                move |ctx, _class| {
+                    state.lock().unwrap().update_main_ui(ctx);
+                },
+            );
+        }
+        // 保持轮询托盘消息（窗口隐藏时应用仍在运行）
+        ctx.request_repaint_after(std::time::Duration::from_millis(500));
+    }
+}
+
 fn main() -> eframe::Result {
     // 系统托盘（KDE/SNI）：启动失败不致命，窗口仍可正常使用
     let (tray_tx, tray_rx) = mpsc::channel::<TrayMsg>();
@@ -1149,13 +1186,19 @@ fn main() -> eframe::Result {
     if let Err(e) = async_io::block_on(tray.spawn()) {
         eprintln!("[omenrgb-gui] 托盘启动失败: {e}");
     }
+    let app = GuiApp {
+        state: Arc::new(Mutex::new(App::default())),
+        tray_rx,
+        main_open: true, // 启动即显示主窗口
+        main_alive: false,
+        hiding: false,
+    };
     let options = eframe::NativeOptions {
+        // 根视口仅作事件循环载体：创建时即不可见（Wayland/X11 都支持初始隐藏）
         viewport: egui::ViewportBuilder::default()
-            .with_inner_size([960.0, 640.0])
-            .with_min_inner_size([820.0, 560.0])
-            .with_title("OMEN RGB 键盘控制器")
-            // Wayland: KDE 用 app_id 匹配 .desktop 文件名来决定任务栏/启动器图标，
-            // 必须与 omenrgb.desktop 的文件名一致，窗口自绘图标只影响标题栏。
+            .with_inner_size([1.0, 1.0])
+            .with_visible(false)
+            .with_decorations(false)
             .with_app_id("omenrgb")
             .with_icon(window_icon().expect("内置图标缺失")),
         ..Default::default()
@@ -1165,7 +1208,7 @@ fn main() -> eframe::Result {
         options,
         Box::new(|cc| {
             setup_fonts(&cc.egui_ctx);
-            Ok(Box::new(App::with_tray(tray_rx)))
+            Ok(Box::new(app))
         }),
     )
 }
