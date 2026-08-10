@@ -40,6 +40,75 @@ fn hex_to_color(s: &str) -> Color32 {
     Color32::from_rgb(r, g, b)
 }
 
+/// HSL → RGB（S/L 取 0..1）。OGH 高级配色即 HSL(hue, 100%, bright/100)。
+fn hsl_to_rgb(h: f32, s: f32, l: f32) -> [u8; 3] {
+    let c = (1.0 - (2.0 * l - 1.0).abs()) * s;
+    let hp = (h.rem_euclid(360.0)) / 60.0;
+    let x = c * (1.0 - (hp % 2.0 - 1.0).abs());
+    let (r1, g1, b1) = match hp as i32 {
+        0 => (c, x, 0.0),
+        1 => (x, c, 0.0),
+        2 => (0.0, c, x),
+        3 => (0.0, x, c),
+        4 => (x, 0.0, c),
+        _ => (c, 0.0, x),
+    };
+    let m = l - c / 2.0;
+    [
+        ((r1 + m) * 255.0).round() as u8,
+        ((g1 + m) * 255.0).round() as u8,
+        ((b1 + m) * 255.0).round() as u8,
+    ]
+}
+
+/// 渐变滑条：自绘渐变底 + 拖拽调值（OGH 双条配色风格）。
+fn gradient_slider(
+    ui: &mut egui::Ui,
+    value: &mut f32,
+    min: f32,
+    max: f32,
+    sample: impl Fn(f32) -> Color32,
+) -> egui::Response {
+    let width = ui.available_width().min(240.0);
+    let (rect, response) =
+        ui.allocate_exact_size(Vec2::new(width, 16.0), egui::Sense::click_and_drag());
+    if ui.is_rect_visible(rect) {
+        let painter = ui.painter();
+        let steps = 96;
+        for i in 0..steps {
+            let t0 = i as f32 / steps as f32;
+            let t1 = (i + 1) as f32 / steps as f32;
+            let r = Rect::from_min_max(
+                Pos2::new(rect.left() + t0 * rect.width(), rect.top()),
+                Pos2::new(rect.left() + t1 * rect.width(), rect.bottom()),
+            );
+            painter.rect_filled(r, 0.0, sample(t0));
+        }
+        painter.rect_stroke(
+            rect,
+            3.0,
+            Stroke::new(1.0, Color32::from_gray(90)),
+            egui::StrokeKind::Outside,
+        );
+        let t = ((*value - min) / (max - min)).clamp(0.0, 1.0);
+        let cx = rect.left() + t * rect.width();
+        let cy = rect.center().y;
+        painter.circle_filled(Pos2::new(cx, cy), 7.0, Color32::WHITE);
+        painter.circle_stroke(
+            Pos2::new(cx, cy),
+            7.0,
+            Stroke::new(1.5, Color32::from_gray(30)),
+        );
+    }
+    if response.dragged() || response.clicked() {
+        if let Some(pos) = response.interact_pointer_pos() {
+            let t = ((pos.x - rect.left()) / rect.width()).clamp(0.0, 1.0);
+            *value = min + t * (max - min);
+        }
+    }
+    response
+}
+
 struct App {
     client: Client,
     keyboard: Option<TextureHandle>,
@@ -57,6 +126,8 @@ struct App {
     initial_refresh: bool,
     profiles: Vec<(String, String, u8, String)>, // (名称, 颜色摘要, 亮度, 动画)
     profile_name: String,
+    pick_hue: f32,
+    pick_bright: f32,
 }
 
 /// dojo-zones.json 中的分区定义：4 个分区，每个分区若干 [X, Y, Width, Height] 光区
@@ -272,6 +343,8 @@ impl Default for App {
             initial_refresh: true,
             profiles: Vec::new(),
             profile_name: String::new(),
+            pick_hue: 0.0,
+            pick_bright: 50.0,
         }
     }
 }
@@ -630,6 +703,42 @@ impl eframe::App for App {
                     {
                         self.apply_selected();
                     }
+                });
+
+                ui.add_space(10.0);
+                section(ui, "高级配色（双条）", |ui| {
+                    ui.label(RichText::new("色相").size(12.0).color(MUTED));
+                    let hue_resp = gradient_slider(ui, &mut self.pick_hue, 0.0, 360.0, |t| {
+                        let [r, g, b] = hsl_to_rgb(t * 360.0, 1.0, 0.5);
+                        Color32::from_rgb(r, g, b)
+                    });
+                    let _ = hue_resp;
+                    ui.add_space(2.0);
+                    ui.label(RichText::new("灰度/亮度").size(12.0).color(MUTED));
+                    let br_resp = gradient_slider(ui, &mut self.pick_bright, 0.0, 100.0, |t| {
+                        let v = (t * 255.0) as u8;
+                        Color32::from_rgb(v, v, v)
+                    });
+                    if hue_resp.dragged() || hue_resp.clicked() || br_resp.dragged() || br_resp.clicked() {
+                        let [r, g, b] = hsl_to_rgb(self.pick_hue, 1.0, self.pick_bright / 100.0);
+                        self.hex = format!("{r:02X}{g:02X}{b:02X}");
+                    }
+                    ui.add_space(4.0);
+                    ui.horizontal(|ui| {
+                        let [r, g, b] = hsl_to_rgb(self.pick_hue, 1.0, self.pick_bright / 100.0);
+                        let (rect, _) =
+                            ui.allocate_exact_size(Vec2::new(26.0, 26.0), egui::Sense::hover());
+                        ui.painter().rect_filled(rect, 6.0, Color32::from_rgb(r, g, b));
+                        ui.label(
+                            RichText::new(format!("#{r:02X}{g:02X}{b:02X}"))
+                                .font(FontId::monospace(13.0)),
+                        );
+                        ui.label(
+                            RichText::new("结果已写入 # 输入框")
+                                .size(10.0)
+                                .color(MUTED),
+                        );
+                    });
                 });
 
                 ui.add_space(10.0);
