@@ -7,14 +7,16 @@ use omenrgb_core::ZONE_NAMES;
 use std::io::{BufReader, Cursor};
 use std::sync::Arc;
 
-const BG: Color32 = Color32::from_rgb(0x0D, 0x11, 0x17);
-const PANEL: Color32 = Color32::from_rgb(0x15, 0x1B, 0x23);
-const PANEL2: Color32 = Color32::from_rgb(0x1B, 0x22, 0x2C);
-const TEXT: Color32 = Color32::from_rgb(0xE6, 0xED, 0xF3);
-const MUTED: Color32 = Color32::from_rgb(0x8B, 0x94, 0x9E);
-const ACCENT: Color32 = Color32::from_rgb(0x58, 0xA6, 0xFF);
-const OK: Color32 = Color32::from_rgb(0x3F, 0xB9, 0x50);
-const ERR: Color32 = Color32::from_rgb(0xF8, 0x51, 0x49);
+// OMEN 风格深色主题：暖黑背景 + 图标同款红粉主色（#FF2C74 → #FF6A3D 渐变系）
+const BG: Color32 = Color32::from_rgb(0x10, 0x11, 0x16);
+const PANEL: Color32 = Color32::from_rgb(0x19, 0x1A, 0x22);
+const PANEL2: Color32 = Color32::from_rgb(0x22, 0x23, 0x2E);
+const TEXT: Color32 = Color32::from_rgb(0xF0, 0xF1, 0xF6);
+const MUTED: Color32 = Color32::from_rgb(0x9C, 0x9D, 0xA8);
+const ACCENT: Color32 = Color32::from_rgb(0xFF, 0x2C, 0x74);
+const ACCENT_ORANGE: Color32 = Color32::from_rgb(0xFF, 0x6A, 0x3D);
+const OK: Color32 = Color32::from_rgb(0x4C, 0xC3, 0x8A);
+const ERR: Color32 = Color32::from_rgb(0xFF, 0x4D, 0x4F);
 
 const PRESETS: [&str; 16] = [
     "FF3B30", "FF9500", "FFCC00", "34C759",
@@ -517,7 +519,7 @@ impl eframe::App for App {
         style.visuals.widgets.noninteractive.fg_stroke.color = TEXT;
         style.visuals.widgets.inactive.bg_fill = PANEL2;
         style.visuals.widgets.inactive.fg_stroke.color = TEXT;
-        style.visuals.widgets.hovered.bg_fill = Color32::from_rgb(0x21, 0x29, 0x35);
+        style.visuals.widgets.hovered.bg_fill = Color32::from_rgb(0x2A, 0x2B, 0x38);
         style.visuals.widgets.active.bg_fill = ACCENT;
         style.visuals.widgets.active.fg_stroke.color = Color32::BLACK;
         ctx.set_style(style);
@@ -538,10 +540,10 @@ impl eframe::App for App {
 
         egui::TopBottomPanel::top("header").frame(egui::Frame::NONE.fill(BG).inner_margin(16.0)).show(ctx, |ui| {
             ui.horizontal(|ui| {
-                ui.label(RichText::new("OMEN RGB").size(22.0).strong().color(TEXT));
+                ui.label(RichText::new("OMEN RGB").size(22.0).strong().color(ACCENT));
                 ui.label(RichText::new("HP OMEN 16 · 四分区键盘灯控").size(11.0).color(MUTED));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if ui.button(RichText::new("刷新").color(Color32::BLACK)).clicked() {
+                    if ui.button(RichText::new("刷新").color(Color32::WHITE)).clicked() {
                         self.refresh();
                     }
                 });
@@ -583,7 +585,7 @@ impl eframe::App for App {
                         let _ = edit;
                     });
                     ui.add_space(8.0);
-                    if ui.button(RichText::new("应用到所选分区").size(13.0).color(Color32::BLACK)).clicked() {
+                    if ui.button(RichText::new("应用到所选分区").size(13.0).color(Color32::WHITE)).clicked() {
                         self.apply_selected();
                     }
                 });
