@@ -758,11 +758,14 @@ fn main() -> eframe::Result {
             .with_inner_size([960.0, 640.0])
             .with_min_inner_size([820.0, 560.0])
             .with_title("OMEN RGB 键盘控制器")
+            // Wayland: KDE 用 app_id 匹配 .desktop 文件名来决定任务栏/启动器图标，
+            // 必须与 omenrgb.desktop 的文件名一致，窗口自绘图标只影响标题栏。
+            .with_app_id("omenrgb")
             .with_icon(window_icon().expect("内置图标缺失")),
         ..Default::default()
     };
     eframe::run_native(
-        "OMEN RGB",
+        "omenrgb",
         options,
         Box::new(|cc| {
             setup_fonts(&cc.egui_ctx);
