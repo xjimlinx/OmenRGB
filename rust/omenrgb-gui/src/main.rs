@@ -583,9 +583,10 @@ impl eframe::App for App {
 
                 ui.add_space(10.0);
                 section(ui, "亮度", |ui| {
-                    // 硬件只支持三段：0=关、50=低、100=高（逆向自 OGH 的 KbBacklitBrightness）
+                    // 实测：0=灭、1=灭、50=低亮、100=满亮；2-49 未确认。
+                    // 开档之间（50↔100）切换暂不稳定，先提供 关/开 两段式。
                     ui.horizontal(|ui| {
-                        for (label, level) in [("关", 0u8), ("低", 50u8), ("高", 100u8)] {
+                        for (label, level) in [("关", 0u8), ("开", 100u8)] {
                             let selected = self.brightness == level;
                             let text = if selected {
                                 RichText::new(label).size(13.0).strong().color(Color32::BLACK)
