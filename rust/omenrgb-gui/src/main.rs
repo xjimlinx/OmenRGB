@@ -40,6 +40,7 @@ enum TrayMsg {
 /// KDE/SNI 系统托盘（纯 Rust，无 GTK 依赖）
 struct TrayApp {
     tx: mpsc::Sender<TrayMsg>,
+    ctx: egui::Context,
 }
 
 impl ksni::Tray for TrayApp {
@@ -76,6 +77,7 @@ impl ksni::Tray for TrayApp {
             StandardItem {
                 label: "显示主界面".into(),
                 activate: Box::new(|t: &mut Self| {
+                    t.ctx.request_repaint(); // 立即唤醒事件循环，不等 500ms 轮询
                     let _ = t.tx.send(TrayMsg::Show);
                 }),
                 ..Default::default()
@@ -685,12 +687,19 @@ impl App {
 }
 
 impl App {
+    /// 请求隐藏主窗口：置标志 + 立即唤醒根视口执行隐藏，
+    /// 避免等到根视口 500ms 轮询才生效造成点击延迟。
+    fn request_hide(&mut self, ctx: &egui::Context) {
+        self.hide_requested = true;
+        ctx.request_repaint_of(egui::ViewportId::ROOT);
+    }
+
     /// 主窗口 UI（作为子视口渲染；关闭=销毁=Wayland 真隐藏，显示=重建）
     pub fn update_main_ui(&mut self, ctx: &egui::Context) {
         // 点窗口关闭键（X）→ 隐藏到托盘。egui 对非根视口只置 close_requested，
         // 需要应用自己在下帧停止渲染它（复用"隐藏到托盘"按钮的路径）。
         if ctx.input(|i| i.viewport().close_requested()) {
-            self.hide_requested = true;
+            self.request_hide(ctx);
         }
         // 视口重建（隐藏→显示）后 Context 会变：重建纹理与字体
         if self.last_vid != Some(ctx.viewport_id()) {
@@ -738,7 +747,7 @@ impl App {
                 ui.label(RichText::new("HP OMEN 16 · 四分区键盘灯控").size(11.0).color(MUTED));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                     if ui.button(RichText::new("▁ 隐藏到托盘").color(Color32::WHITE)).clicked() {
-                        self.hide_requested = true;
+                        self.request_hide(ctx);
                     }
                     if ui.button(RichText::new("↻ 刷新").color(Color32::WHITE)).clicked() {
                         self.refresh();
@@ -1292,20 +1301,7 @@ impl eframe::App for GuiApp {
 }
 
 fn main() -> eframe::Result {
-    // 系统托盘（KDE/SNI）：启动失败不致命，窗口仍可正常使用
-    let (tray_tx, tray_rx) = mpsc::channel::<TrayMsg>();
-    let tray = TrayApp { tx: tray_tx };
-    if let Err(e) = async_io::block_on(tray.spawn()) {
-        eprintln!("[omenrgb-gui] 托盘启动失败: {e}");
-    }
-    let app = GuiApp {
-        state: Arc::new(Mutex::new(App::default())),
-        tray_rx,
-        main_open: true, // 启动即显示主窗口
-        main_alive: false,
-        hiding: false,
-        kwin_skip: install_kwin_skip(),
-    };
+    let kwin_skip = install_kwin_skip();
     let options = eframe::NativeOptions {
         // 根视口仅作事件循环载体：创建时即不可见（Wayland/X11 都支持初始隐藏）
         viewport: egui::ViewportBuilder::default()
@@ -1321,6 +1317,24 @@ fn main() -> eframe::Result {
         options,
         Box::new(|cc| {
             setup_fonts(&cc.egui_ctx);
+            // 系统托盘（KDE/SNI）：启动失败不致命，窗口仍可正常使用。
+            // 持有 egui Context，托盘"显示主界面"可直接唤醒事件循环（无轮询延迟）。
+            let (tray_tx, tray_rx) = mpsc::channel::<TrayMsg>();
+            let tray = TrayApp {
+                tx: tray_tx,
+                ctx: cc.egui_ctx.clone(),
+            };
+            if let Err(e) = async_io::block_on(tray.spawn()) {
+                eprintln!("[omenrgb-gui] 托盘启动失败: {e}");
+            }
+            let app = GuiApp {
+                state: Arc::new(Mutex::new(App::default())),
+                tray_rx,
+                main_open: true, // 启动即显示主窗口
+                main_alive: false,
+                hiding: false,
+                kwin_skip,
+            };
             Ok(Box::new(app))
         }),
     )
