@@ -543,7 +543,7 @@ impl eframe::App for App {
                 ui.label(RichText::new("OMEN RGB").size(22.0).strong().color(ACCENT));
                 ui.label(RichText::new("HP OMEN 16 · 四分区键盘灯控").size(11.0).color(MUTED));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if ui.button(RichText::new("刷新").color(Color32::WHITE)).clicked() {
+                    if ui.button(RichText::new("↻ 刷新").color(Color32::WHITE)).clicked() {
                         self.refresh();
                     }
                 });
@@ -585,7 +585,10 @@ impl eframe::App for App {
                         let _ = edit;
                     });
                     ui.add_space(8.0);
-                    if ui.button(RichText::new("应用到所选分区").size(13.0).color(Color32::WHITE)).clicked() {
+                    if ui
+                        .button(RichText::new("✓ 应用到所选分区").size(13.0).color(Color32::WHITE))
+                        .clicked()
+                    {
                         self.apply_selected();
                     }
                 });
