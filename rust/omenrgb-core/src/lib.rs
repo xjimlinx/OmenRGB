@@ -15,6 +15,7 @@ pub const CMDT_LIGHTBAR_MAILBOX: u32 = 0x0B;
 pub const CMDT_SET_COLOR: u32 = 0x03;
 pub const CMDT_GET_COLOR: u32 = 0x02;
 pub const CMDT_GET_BRIGHTNESS: u32 = 0x04;
+pub const CMDT_SET_BRIGHTNESS: u32 = 0x05;
 pub const CMDT_GET_KEYBOARD_TYPE: u32 = 0x2B;
 
 pub const DEVICE_KEYBOARD: u8 = 1; // TargetDevice::FourZoneAni

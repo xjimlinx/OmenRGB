@@ -6,7 +6,7 @@ use crate::payload;
 use crate::wmi;
 use crate::{
     animation_mode_byte, kbam, CMDT_GET_BRIGHTNESS, CMDT_GET_COLOR, CMDT_LIGHTBAR_MAILBOX,
-    CMDT_SET_COLOR, CMD_BACKLIGHT,
+    CMDT_SET_BRIGHTNESS, CMDT_SET_COLOR, CMD_BACKLIGHT,
 };
 
 #[derive(Debug, Clone, Serialize)]
@@ -57,9 +57,18 @@ impl Backend {
         }
     }
 
+    /// 写 EC 背光总开关（LBRT）：0xE4=开、0x64=关。
+    /// 注意：LBRT 只有开/关两态，中间亮度由 LightBarCmdByte[3] 实时控制。
+    fn write_lbrt(value: u8) -> Result<(), String> {
+        wmi::wmaa(CMD_BACKLIGHT, CMDT_SET_BRIGHTNESS, &[value], 1).map(|_| ())
+    }
+
     pub fn get_state(&mut self) -> Result<Status, String> {
         let zones = self.read_zones()?;
-        let brightness = self.read_brightness()?;
+        // EC 的 LBRT 只表达“开/关”，读回永远是 0 或 100；
+        // 实时亮度以最后写入的等级为准，否则 GUI 滑块每次都会被拉回 100%。
+        let lbrt = self.read_brightness()?;
+        let brightness = if lbrt == 0 { 0 } else { self.last_brightness as i64 };
         let (kbam, kbam_label) = match kbam::read_kbam() {
             Ok(v) => (Some(v), Some(format!("模式 {v}"))),
             Err(_) => (None, None),
@@ -108,6 +117,13 @@ impl Backend {
     pub fn set_brightness(&mut self, level: u8) -> Result<(), String> {
         if level > 100 {
             return Err("亮度必须是 0-100".into());
+        }
+        if level == 0 {
+            // 0%：持久关灯（LBRT=0x64）
+            Self::write_lbrt(0x64)?;
+        } else if self.read_brightness()? == 0 {
+            // 之前是关的，先打开总开关再调亮度
+            Self::write_lbrt(0xE4)?;
         }
         let colors = match &self.last_colors {
             Some(c) => c.clone(),
