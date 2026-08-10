@@ -6,7 +6,9 @@ use omenrgb_core::client::Client;
 use omenrgb_core::animation_display_name;
 use omenrgb_core::ZONE_NAMES;
 use ksni::TrayMethods;
-use std::io::{BufReader, Cursor};
+use std::io::{BufReader, Cursor, Write};
+use std::os::unix::io::AsRawFd;
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc;
 use std::sync::{Arc, Mutex};
 
@@ -70,6 +72,61 @@ const ANIMATIONS: [&str; 10] = [
     "静态", "colorcycle", "starlight", "breathing", "wave",
     "raindrop", "audiopulse", "confetti", "sun", "swipe",
 ];
+
+/// 第二个实例通过 SIGUSR1 请求本实例显示主窗口。
+static SHOW_REQUESTED: AtomicBool = AtomicBool::new(false);
+
+extern "C" fn handle_show_signal(_sig: libc::c_int) {
+    SHOW_REQUESTED.store(true, Ordering::Relaxed);
+}
+
+/// 单实例锁文件路径（优先 XDG_RUNTIME_DIR，避免 /tmp 被清理/权限问题）。
+fn single_instance_lock_path() -> std::path::PathBuf {
+    if let Some(dir) = std::env::var_os("XDG_RUNTIME_DIR") {
+        std::path::PathBuf::from(dir).join("omenrgb-gui.lock")
+    } else {
+        std::path::PathBuf::from("/tmp/omenrgb-gui.lock")
+    }
+}
+
+/// 单实例锁：成功返回持有锁的文件（main 生命周期内持有，进程退出自动释放）。
+/// 失败（已有实例）则通知现有实例显示窗口并返回 None。
+fn acquire_single_instance_lock() -> Option<std::fs::File> {
+    let path = single_instance_lock_path();
+    let file = std::fs::OpenOptions::new()
+        .create(true)
+        .read(true)
+        .write(true)
+        .open(&path)
+        .ok()?; // 打不开锁文件就不做强限制，避免影响正常使用
+    let rc = unsafe { libc::flock(file.as_raw_fd(), libc::LOCK_EX | libc::LOCK_NB) };
+    if rc == 0 {
+        let _ = file.set_len(0);
+        let _ = (&file).write_all(format!("{}\n", std::process::id()).as_bytes());
+        return Some(file);
+    }
+    let pid: i32 = std::fs::read_to_string(&path)
+        .ok()
+        .and_then(|s| s.trim().parse().ok())
+        .unwrap_or(0);
+    if pid > 0 {
+        unsafe {
+            libc::kill(pid, libc::SIGUSR1);
+        }
+    }
+    let _ = std::process::Command::new("notify-send")
+        .args([
+            "-a",
+            "OMEN RGB",
+            "-i",
+            "omenrgb",
+            "OMEN RGB 已在运行",
+            "已显示现有窗口，请勿重复打开",
+        ])
+        .status();
+    eprintln!("[omenrgb-gui] 已有实例在运行（pid={pid}），已请求显示其窗口，本实例退出");
+    None
+}
 
 /// 托盘菜单消息 → 主界面
 enum TrayMsg {
@@ -1431,6 +1488,11 @@ impl eframe::App for GuiApp {
     }
 
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        // 第二个实例发来 SIGUSR1 → 显示主窗口（并从托盘恢复）
+        if SHOW_REQUESTED.swap(false, Ordering::Relaxed) {
+            self.main_open = true;
+            ctx.send_viewport_cmd_to(main_vid(), egui::ViewportCommand::Focus);
+        }
         // 托盘消息
         while let Ok(msg) = self.tray_rx.try_recv() {
             match msg {
@@ -1469,6 +1531,14 @@ impl eframe::App for GuiApp {
 }
 
 fn main() -> eframe::Result {
+    // 单实例：已有实例时请求其显示窗口并退出
+    let _instance_lock = match acquire_single_instance_lock() {
+        Some(f) => f,
+        None => std::process::exit(1),
+    };
+    unsafe {
+        libc::signal(libc::SIGUSR1, handle_show_signal as libc::sighandler_t);
+    }
     let kwin_skip = install_kwin_skip();
     let options = eframe::NativeOptions {
         // 根视口仅作事件循环载体：创建时即不可见（Wayland/X11 都支持初始隐藏）
