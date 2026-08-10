@@ -4,7 +4,9 @@ use eframe::egui::{self, Color32, FontId, Pos2, Rect, RichText, Stroke, StrokeKi
 use omenrgb_core::client::Client;
 use omenrgb_core::animation_display_name;
 use omenrgb_core::ZONE_NAMES;
+use ksni::TrayMethods;
 use std::io::{BufReader, Cursor};
+use std::sync::mpsc;
 use std::sync::Arc;
 
 // OMEN 风格深色主题：暖黑背景 + 图标同款红粉主色（#FF2C74 → #FF6A3D 渐变系）
@@ -28,6 +30,69 @@ const ANIMATIONS: [&str; 10] = [
     "静态", "colorcycle", "starlight", "breathing", "wave",
     "raindrop", "audiopulse", "confetti", "sun", "swipe",
 ];
+
+/// 托盘菜单消息 → 主界面
+enum TrayMsg {
+    Show,
+    Quit,
+}
+
+/// KDE/SNI 系统托盘（纯 Rust，无 GTK 依赖）
+struct TrayApp {
+    tx: mpsc::Sender<TrayMsg>,
+}
+
+impl ksni::Tray for TrayApp {
+    fn id(&self) -> String {
+        "omenrgb".into()
+    }
+
+    fn title(&self) -> String {
+        "OMEN RGB 键盘控制器".into()
+    }
+
+    fn icon_pixmap(&self) -> Vec<ksni::Icon> {
+        let bytes = include_bytes!("../../../icons/omenrgb-512.png");
+        let Ok(img) = image::load_from_memory(bytes) else {
+            return Vec::new();
+        };
+        let img = img.to_rgba8();
+        let (w, h) = img.dimensions();
+        // SNI 需要 ARGB32（网络字节序=大端），把 RGBA 转 ARGB
+        let mut data = Vec::with_capacity((w * h * 4) as usize);
+        for px in img.pixels() {
+            data.extend_from_slice(&[px[3], px[0], px[1], px[2]]);
+        }
+        vec![ksni::Icon {
+            width: w as i32,
+            height: h as i32,
+            data,
+        }]
+    }
+
+    fn menu(&self) -> Vec<ksni::MenuItem<Self>> {
+        use ksni::menu::*;
+        vec![
+            StandardItem {
+                label: "显示主界面".into(),
+                activate: Box::new(|t: &mut Self| {
+                    let _ = t.tx.send(TrayMsg::Show);
+                }),
+                ..Default::default()
+            }
+            .into(),
+            MenuItem::Separator,
+            StandardItem {
+                label: "退出".into(),
+                activate: Box::new(|t: &mut Self| {
+                    let _ = t.tx.send(TrayMsg::Quit);
+                }),
+                ..Default::default()
+            }
+            .into(),
+        ]
+    }
+}
 
 fn hex_to_color(s: &str) -> Color32 {
     let s = s.trim_start_matches('#');
@@ -128,6 +193,8 @@ struct App {
     profile_name: String,
     pick_hue: f32,
     pick_bright: f32,
+    tray_rx: mpsc::Receiver<TrayMsg>,
+    quitting: bool,
 }
 
 /// dojo-zones.json 中的分区定义：4 个分区，每个分区若干 [X, Y, Width, Height] 光区
@@ -326,7 +393,8 @@ fn animation_gif(name: &str) -> Option<&'static [u8]> {
 }
 
 impl Default for App {
-    fn default() -> Self {
+fn default() -> Self {
+        let (_tx, tray_rx) = mpsc::channel();
         Self {
             client: Client::new(),
             keyboard: None,
@@ -345,6 +413,17 @@ impl Default for App {
             profile_name: String::new(),
             pick_hue: 0.0,
             pick_bright: 50.0,
+            tray_rx,
+            quitting: false,
+        }
+    }
+}
+
+impl App {
+    fn with_tray(tray_rx: mpsc::Receiver<TrayMsg>) -> Self {
+        Self {
+            tray_rx,
+            ..Self::default()
         }
     }
 }
@@ -617,6 +696,23 @@ impl App {
 
 impl eframe::App for App {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        // 托盘消息
+        while let Ok(msg) = self.tray_rx.try_recv() {
+            match msg {
+                TrayMsg::Show => {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+                }
+                TrayMsg::Quit => {
+                    self.quitting = true;
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Close);
+                }
+            }
+        }
+        // 点窗口关闭按钮 → 隐藏到托盘（托盘"退出"才真正退出）
+        if ctx.input(|i| i.viewport().close_requested()) && !self.quitting {
+            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
+            ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
+        }
         if self.keyboard.is_none() {
             self.load_keyboard(ctx);
         }
@@ -655,6 +751,9 @@ impl eframe::App for App {
                 ui.label(RichText::new("OMEN RGB").size(22.0).strong().color(ACCENT));
                 ui.label(RichText::new("HP OMEN 16 · 四分区键盘灯控").size(11.0).color(MUTED));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                    if ui.button(RichText::new("▁ 隐藏到托盘").color(Color32::WHITE)).clicked() {
+                        ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
+                    }
                     if ui.button(RichText::new("↻ 刷新").color(Color32::WHITE)).clicked() {
                         self.refresh();
                     }
@@ -671,7 +770,13 @@ impl eframe::App for App {
             });
         });
 
-        egui::SidePanel::right("side").exact_width(300.0).frame(egui::Frame::NONE.fill(BG).inner_margin(14.0)).show(ctx, |ui| {
+        egui::SidePanel::right("side")
+            .resizable(true)
+            .default_width(300.0)
+            .min_width(270.0)
+            .max_width(400.0)
+            .frame(egui::Frame::NONE.fill(BG).inner_margin(14.0))
+            .show(ctx, |ui| {
             egui::ScrollArea::vertical().show(ui, |ui| {
                 ui.add_space(6.0);
                 section(ui, "颜色", |ui| {
@@ -707,37 +812,49 @@ impl eframe::App for App {
 
                 ui.add_space(10.0);
                 section(ui, "高级配色（双条）", |ui| {
-                    ui.label(RichText::new("色相").size(12.0).color(MUTED));
-                    let hue_resp = gradient_slider(ui, &mut self.pick_hue, 0.0, 360.0, |t| {
-                        let [r, g, b] = hsl_to_rgb(t * 360.0, 1.0, 0.5);
-                        Color32::from_rgb(r, g, b)
-                    });
-                    let _ = hue_resp;
-                    ui.add_space(2.0);
-                    ui.label(RichText::new("灰度/亮度").size(12.0).color(MUTED));
-                    let br_resp = gradient_slider(ui, &mut self.pick_bright, 0.0, 100.0, |t| {
-                        let v = (t * 255.0) as u8;
-                        Color32::from_rgb(v, v, v)
-                    });
-                    if hue_resp.dragged() || hue_resp.clicked() || br_resp.dragged() || br_resp.clicked() {
-                        let [r, g, b] = hsl_to_rgb(self.pick_hue, 1.0, self.pick_bright / 100.0);
-                        self.hex = format!("{r:02X}{g:02X}{b:02X}");
-                    }
-                    ui.add_space(4.0);
-                    ui.horizontal(|ui| {
-                        let [r, g, b] = hsl_to_rgb(self.pick_hue, 1.0, self.pick_bright / 100.0);
-                        let (rect, _) =
-                            ui.allocate_exact_size(Vec2::new(26.0, 26.0), egui::Sense::hover());
-                        ui.painter().rect_filled(rect, 6.0, Color32::from_rgb(r, g, b));
-                        ui.label(
-                            RichText::new(format!("#{r:02X}{g:02X}{b:02X}"))
-                                .font(FontId::monospace(13.0)),
-                        );
-                        ui.label(
-                            RichText::new("结果已写入 # 输入框")
-                                .size(10.0)
-                                .color(MUTED),
-                        );
+                    egui::CollapsingHeader::new(
+                        RichText::new("双条调色（OGH 风格）").size(12.5).color(MUTED),
+                    )
+                    .default_open(false)
+                    .show(ui, |ui| {
+                        ui.label(RichText::new("色相").size(12.0).color(MUTED));
+                        let hue_resp = gradient_slider(ui, &mut self.pick_hue, 0.0, 360.0, |t| {
+                            let [r, g, b] = hsl_to_rgb(t * 360.0, 1.0, 0.5);
+                            Color32::from_rgb(r, g, b)
+                        });
+                        let _ = hue_resp;
+                        ui.add_space(2.0);
+                        ui.label(RichText::new("灰度/亮度").size(12.0).color(MUTED));
+                        let br_resp = gradient_slider(ui, &mut self.pick_bright, 0.0, 100.0, |t| {
+                            let v = (t * 255.0) as u8;
+                            Color32::from_rgb(v, v, v)
+                        });
+                        if hue_resp.dragged()
+                            || hue_resp.clicked()
+                            || br_resp.dragged()
+                            || br_resp.clicked()
+                        {
+                            let [r, g, b] =
+                                hsl_to_rgb(self.pick_hue, 1.0, self.pick_bright / 100.0);
+                            self.hex = format!("{r:02X}{g:02X}{b:02X}");
+                        }
+                        ui.add_space(4.0);
+                        ui.horizontal(|ui| {
+                            let [r, g, b] =
+                                hsl_to_rgb(self.pick_hue, 1.0, self.pick_bright / 100.0);
+                            let (rect, _) =
+                                ui.allocate_exact_size(Vec2::new(26.0, 26.0), egui::Sense::hover());
+                            ui.painter().rect_filled(rect, 6.0, Color32::from_rgb(r, g, b));
+                            ui.label(
+                                RichText::new(format!("#{r:02X}{g:02X}{b:02X}"))
+                                    .font(FontId::monospace(13.0)),
+                            );
+                            ui.label(
+                                RichText::new("结果已写入 # 输入框")
+                                    .size(10.0)
+                                    .color(MUTED),
+                            );
+                        });
                     });
                 });
 
@@ -1017,6 +1134,12 @@ fn window_icon() -> Option<Arc<egui::IconData>> {
 }
 
 fn main() -> eframe::Result {
+    // 系统托盘（KDE/SNI）：启动失败不致命，窗口仍可正常使用
+    let (tray_tx, tray_rx) = mpsc::channel::<TrayMsg>();
+    let tray = TrayApp { tx: tray_tx };
+    if let Err(e) = async_io::block_on(tray.spawn()) {
+        eprintln!("[omenrgb-gui] 托盘启动失败: {e}");
+    }
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size([960.0, 640.0])
@@ -1033,7 +1156,7 @@ fn main() -> eframe::Result {
         options,
         Box::new(|cc| {
             setup_fonts(&cc.egui_ctx);
-            Ok(Box::new(App::default()))
+            Ok(Box::new(App::with_tray(tray_rx)))
         }),
     )
 }
