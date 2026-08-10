@@ -164,6 +164,10 @@ fn main() {
     println!("omenrgbd 监听 {path}");
 
     let backend = Arc::new(Mutex::new(Backend::new()));
+    // 启动时恢复上次保存的灯效状态（颜色/亮度/动画）
+    if let Err(e) = backend.lock().unwrap().restore() {
+        eprintln!("[omenrgbd] 状态恢复失败: {e}");
+    }
 
     unsafe {
         libc::signal(libc::SIGTERM, handle_signal as libc::sighandler_t);

@@ -1,6 +1,7 @@
 //! 灯效操作封装（守护进程使用，需要 root）。
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
+use std::path::PathBuf;
 
 use crate::payload;
 use crate::wmi;
@@ -21,20 +22,96 @@ pub struct Status {
     pub kbam_label: Option<String>,
 }
 
+/// 持久化状态：守护进程每次改动后写入，启动时恢复。
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SavedState {
+    pub colors: [String; 4],
+    pub brightness: u8,
+    /// "static" 或动画内部名（colorcycle/starlight/...）
+    pub animation: String,
+}
+
 pub struct Backend {
     last_colors: Option<[String; 4]>,
     last_brightness: u8,
+    last_animation: String,
+    state_path: PathBuf,
 }
 
 impl Default for Backend {
     fn default() -> Self {
-        Self { last_colors: None, last_brightness: 100 }
+        Self {
+            last_colors: None,
+            last_brightness: 100,
+            last_animation: "static".to_string(),
+            state_path: std::env::var("OMENRGB_STATE_PATH")
+                .map(PathBuf::from)
+                .unwrap_or_else(|_| PathBuf::from("/var/lib/omenrgb/state.json")),
+        }
     }
 }
 
 impl Backend {
     pub fn new() -> Self {
         Self::default()
+    }
+
+    /// 从磁盘读取上次保存的状态（不应用，只填充内存字段）。
+    fn load_state(&mut self) -> Result<(), String> {
+        let text = std::fs::read_to_string(&self.state_path)
+            .map_err(|e| format!("读取状态 {} 失败: {e}", self.state_path.display()))?;
+        let state: SavedState = serde_json::from_str(&text)
+            .map_err(|e| format!("解析状态 {} 失败: {e}", self.state_path.display()))?;
+        self.last_colors = Some(state.colors);
+        self.last_brightness = state.brightness.clamp(0, 100);
+        self.last_animation = if animation_mode_byte(&state.animation).is_some() {
+            state.animation
+        } else {
+            "static".to_string()
+        };
+        Ok(())
+    }
+
+    /// 把当前状态写入磁盘（失败不致命，仅记录）。
+    fn save_state(&self) {
+        let Some(colors) = &self.last_colors else { return };
+        let state = SavedState {
+            colors: colors.clone(),
+            brightness: self.last_brightness,
+            animation: self.last_animation.clone(),
+        };
+        let result = (|| -> Result<(), String> {
+            if let Some(parent) = self.state_path.parent() {
+                std::fs::create_dir_all(parent)
+                    .map_err(|e| format!("创建 {} 失败: {e}", parent.display()))?;
+            }
+            let tmp = self.state_path.with_extension("json.tmp");
+            std::fs::write(&tmp, serde_json::to_string_pretty(&state).unwrap())
+                .map_err(|e| format!("写入 {} 失败: {e}", tmp.display()))?;
+            std::fs::rename(&tmp, &self.state_path)
+                .map_err(|e| format!("保存 {} 失败: {e}", self.state_path.display()))?;
+            Ok(())
+        })();
+        if let Err(e) = result {
+            eprintln!("[omenrgbd] 保存状态失败: {e}");
+        }
+    }
+
+    /// 启动时恢复上次状态：读盘并重放颜色/亮度/动画。
+    pub fn restore(&mut self) -> Result<(), String> {
+        if let Err(e) = self.load_state() {
+            // 没有存档或存档损坏：保持默认，不视为错误
+            eprintln!("[omenrgbd] 无可用状态，跳过恢复: {e}");
+            return Ok(());
+        }
+        if self.last_animation != "static" {
+            let name = self.last_animation.clone();
+            self.animate(&name)?;
+        } else if let Some(colors) = self.last_colors.clone() {
+            self.set_colors(&colors, self.last_brightness)?;
+        }
+        eprintln!("[omenrgbd] 已恢复上次状态");
+        Ok(())
     }
 
     fn read_zones(&self) -> Result<[String; 4], String> {
@@ -94,6 +171,8 @@ impl Backend {
         let _ = wmi::wmaa(CMD_BACKLIGHT, CMDT_SET_COLOR, &legacy, 128);
         self.last_colors = Some(colors.clone());
         self.last_brightness = brightness;
+        self.last_animation = "static".to_string();
+        self.save_state();
         Ok(())
     }
 
@@ -137,6 +216,9 @@ impl Backend {
         };
         let p = payload::lightbar_payload(&colors, mode, self.last_brightness, 1)?;
         wmi::wmaa(CMD_BACKLIGHT, CMDT_LIGHTBAR_MAILBOX, &p, 8)?;
+        self.last_colors = Some(colors);
+        self.last_animation = name.to_string();
+        self.save_state();
         Ok(())
     }
 

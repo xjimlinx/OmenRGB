@@ -14,7 +14,6 @@ const PANEL2: Color32 = Color32::from_rgb(0x22, 0x23, 0x2E);
 const TEXT: Color32 = Color32::from_rgb(0xF0, 0xF1, 0xF6);
 const MUTED: Color32 = Color32::from_rgb(0x9C, 0x9D, 0xA8);
 const ACCENT: Color32 = Color32::from_rgb(0xFF, 0x2C, 0x74);
-const ACCENT_ORANGE: Color32 = Color32::from_rgb(0xFF, 0x6A, 0x3D);
 const OK: Color32 = Color32::from_rgb(0x4C, 0xC3, 0x8A);
 const ERR: Color32 = Color32::from_rgb(0xFF, 0x4D, 0x4F);
 
