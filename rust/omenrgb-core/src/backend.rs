@@ -118,13 +118,10 @@ impl Backend {
         if level > 100 {
             return Err("亮度必须是 0-100".into());
         }
-        if level == 0 {
-            // 0%：持久关灯（LBRT=0x64）
-            Self::write_lbrt(0x64)?;
-        } else if self.read_brightness()? == 0 {
-            // 之前是关的，先打开总开关再调亮度
-            Self::write_lbrt(0xE4)?;
-        }
+        // 实测：EC 只有在 LBRT 刚被写过（0x64=关 / 0xE4=开）后，才会接受
+        // 随后的邮箱亮度字节；否则 50↔100 这类同开状态间的切换会被忽略。
+        // 因此每次亮度变化都先写一次 LBRT 触发提交。
+        Self::write_lbrt(if level == 0 { 0x64 } else { 0xE4 })?;
         let colors = match &self.last_colors {
             Some(c) => c.clone(),
             None => self.read_zones()?,
