@@ -53,6 +53,7 @@ struct App {
     anim: Option<GifAnim>, // 当前动画的真实 OGH 预览
     status: String,
     status_color: Color32,
+    initial_refresh: bool,
 }
 
 /// dojo-zones.json 中的分区定义：4 个分区，每个分区若干 [X, Y, Width, Height] 光区
@@ -265,6 +266,7 @@ impl Default for App {
             anim: None,
             status: "就绪".into(),
             status_color: MUTED,
+            initial_refresh: true,
         }
     }
 }
@@ -521,6 +523,11 @@ impl eframe::App for App {
         ctx.set_style(style);
         if self.animation != "静态" {
             ctx.request_repaint();
+        }
+        // 启动时自动读取一次守护进程状态（分区颜色/亮度/模式）
+        if self.initial_refresh {
+            self.initial_refresh = false;
+            self.refresh();
         }
         // 驱动 GIF 预览播放
         if let Some(anim) = &mut self.anim {
