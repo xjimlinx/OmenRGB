@@ -83,6 +83,39 @@ fn dispatch(backend: &mut Backend, req: Request) -> Result<serde_json::Value, St
         "static" => backend
             .static_colors(None)
             .map(|_| serde_json::json!({"mode": "static"})),
+        "profile_save" => {
+            let name = args.first().ok_or("缺少方案名")?;
+            backend.profile_save(name).map(|_| serde_json::json!({"saved": name}))
+        }
+        "profile_load" => {
+            let name = args.first().ok_or("缺少方案名")?;
+            let s = backend.profile_load(name)?;
+            Ok(serde_json::json!({
+                "loaded": name,
+                "colors": s.colors,
+                "brightness": s.brightness,
+                "animation": s.animation,
+            }))
+        }
+        "profile_list" => {
+            let list: Vec<_> = backend
+                .profile_list()
+                .into_iter()
+                .map(|(name, s)| {
+                    serde_json::json!({
+                        "name": name,
+                        "colors": s.colors,
+                        "brightness": s.brightness,
+                        "animation": s.animation,
+                    })
+                })
+                .collect();
+            Ok(serde_json::json!({"profiles": list}))
+        }
+        "profile_delete" => {
+            let name = args.first().ok_or("缺少方案名")?;
+            backend.profile_delete(name).map(|_| serde_json::json!({"deleted": name}))
+        }
         "kbam" => match omenrgb_core::kbam::read_kbam() {
             Ok(v) => Ok(serde_json::json!({"kbam": v})),
             Err(e) => Err(e),

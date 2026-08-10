@@ -55,6 +55,8 @@ struct App {
     status: String,
     status_color: Color32,
     initial_refresh: bool,
+    profiles: Vec<(String, String, u8, String)>, // (名称, 颜色摘要, 亮度, 动画)
+    profile_name: String,
 }
 
 /// dojo-zones.json 中的分区定义：4 个分区，每个分区若干 [X, Y, Width, Height] 光区
@@ -268,6 +270,8 @@ impl Default for App {
             status: "就绪".into(),
             status_color: MUTED,
             initial_refresh: true,
+            profiles: Vec::new(),
+            profile_name: String::new(),
         }
     }
 }
@@ -335,6 +339,41 @@ impl App {
             }
             Err(e) => {
                 self.status = format!("无法连接守护进程: {e}");
+                self.status_color = ERR;
+            }
+        }
+    }
+
+    fn refresh_profiles(&mut self) {
+        match self.client.call("profile_list", &[]) {
+            Ok(v) => {
+                self.profiles = v["profiles"]
+                    .as_array()
+                    .map(|arr| {
+                        arr.iter()
+                            .map(|p| {
+                                let colors = p["colors"]
+                                    .as_array()
+                                    .map(|z| {
+                                        z.iter()
+                                            .map(|x| x.as_str().unwrap_or("?").to_string())
+                                            .collect::<Vec<_>>()
+                                            .join(",")
+                                    })
+                                    .unwrap_or_default();
+                                (
+                                    p["name"].as_str().unwrap_or("?").to_string(),
+                                    colors,
+                                    p["brightness"].as_u64().unwrap_or(0) as u8,
+                                    p["animation"].as_str().unwrap_or("static").to_string(),
+                                )
+                            })
+                            .collect()
+                    })
+                    .unwrap_or_default();
+            }
+            Err(e) => {
+                self.status = format!("读取方案失败: {e}");
                 self.status_color = ERR;
             }
         }
@@ -529,6 +568,7 @@ impl eframe::App for App {
         if self.initial_refresh {
             self.initial_refresh = false;
             self.refresh();
+            self.refresh_profiles();
         }
         // 驱动 GIF 预览播放
         if let Some(anim) = &mut self.anim {
@@ -619,6 +659,100 @@ impl eframe::App for App {
                             }
                         }
                     });
+                });
+
+                ui.add_space(10.0);
+                section(ui, "配置方案", |ui| {
+                    ui.horizontal(|ui| {
+                        let edit = ui.add(
+                            egui::TextEdit::singleline(&mut self.profile_name)
+                                .desired_width(120.0)
+                                .hint_text("方案名"),
+                        );
+                        let _ = edit;
+                        if ui
+                            .button(RichText::new("💾 保存当前").size(12.5).color(Color32::WHITE))
+                            .clicked()
+                        {
+                            let name = self.profile_name.trim().to_string();
+                            if name.is_empty() {
+                                self.status = "请先输入方案名".into();
+                                self.status_color = ERR;
+                            } else {
+                                match self.client.call("profile_save", &[&name]) {
+                                    Ok(v) => {
+                                        self.status = format!(
+                                            "已保存方案: {}",
+                                            v["saved"].as_str().unwrap_or("")
+                                        );
+                                        self.status_color = OK;
+                                        self.profile_name.clear();
+                                        self.refresh_profiles();
+                                    }
+                                    Err(e) => {
+                                        self.status = format!("保存失败: {e}");
+                                        self.status_color = ERR;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    ui.add_space(4.0);
+                    if self.profiles.is_empty() {
+                        ui.label(RichText::new("暂无方案，保存一个开始").color(MUTED).size(12.0));
+                    }
+                    let profiles = self.profiles.clone();
+                    for (name, colors, brightness, animation) in &profiles {
+                        ui.horizontal(|ui| {
+                            let anim_label = if animation == "static" {
+                                "静态".to_string()
+                            } else {
+                                animation_display_name(animation).1.to_string()
+                            };
+                            ui.label(
+                                RichText::new(format!(
+                                    "{name} · {brightness}% · {anim_label}"
+                                ))
+                                .size(12.5),
+                            );
+                            if ui.button(RichText::new("应用").size(12.0)).clicked() {
+                                match self.client.call("profile_load", &[name]) {
+                                    Ok(v) => {
+                                        self.status = format!(
+                                            "已应用方案: {}",
+                                            v["loaded"].as_str().unwrap_or("")
+                                        );
+                                        self.status_color = OK;
+                                        self.refresh();
+                                    }
+                                    Err(e) => {
+                                        self.status = format!("应用失败: {e}");
+                                        self.status_color = ERR;
+                                    }
+                                }
+                            }
+                            if ui
+                                .button(RichText::new("删除").size(12.0).color(ERR))
+                                .clicked()
+                            {
+                                match self.client.call("profile_delete", &[name]) {
+                                    Ok(v) => {
+                                        self.status = format!(
+                                            "已删除方案: {}",
+                                            v["deleted"].as_str().unwrap_or("")
+                                        );
+                                        self.status_color = OK;
+                                        self.refresh_profiles();
+                                    }
+                                    Err(e) => {
+                                        self.status = format!("删除失败: {e}");
+                                        self.status_color = ERR;
+                                    }
+                                }
+                            }
+                        });
+                        ui.label(RichText::new(format!("#{colors}")).size(10.0).color(MUTED));
+                    }
                 });
 
                 ui.add_space(10.0);

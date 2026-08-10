@@ -17,6 +17,10 @@ fn usage() -> ! {
   omenrgb brightness 0-100           亮度\n\
   omenrgb animate NAME               动画 (colorcycle/starlight/breathing/wave/\n\
                                      raindrop/audiopulse/confetti/sun/swipe)\n\
+  omenrgb profile save NAME          把当前灯效保存为方案\n\
+  omenrgb profile load NAME          应用方案\n\
+  omenrgb profile list               列出方案\n\
+  omenrgb profile delete NAME        删除方案\n\
   omenrgb lbrt 0-255                 诊断：直接写 EC 亮度寄存器（十六进制如 0xE4）\n\
   omenrgb kbam                       读取键盘模式寄存器\n\
   omenrgb zones                      显示分区名\n"
@@ -72,6 +76,48 @@ fn main() -> ExitCode {
             client.call("animate", &[name]).map(|v| {
                 println!("已发送动画: {}", v["animation"].as_str().unwrap_or(""));
             })
+        }
+        "profile" => {
+            let sub = rest.first().unwrap_or_else(|| usage());
+            let name = rest.get(1).copied();
+            match *sub {
+                "save" => client.call("profile_save", &[name.unwrap_or_else(|| usage())]).map(|v| {
+                    println!("已保存方案: {}", v["saved"].as_str().unwrap_or(""));
+                }),
+                "load" => client.call("profile_load", &[name.unwrap_or_else(|| usage())]).map(|v| {
+                    println!("已应用方案: {}", v["loaded"].as_str().unwrap_or(""));
+                    println!(
+                        "  颜色: {}",
+                        v["colors"]
+                            .as_array()
+                            .map(|z| z.iter().map(|x| x.as_str().unwrap_or("?").to_string()).collect::<Vec<_>>().join(", "))
+                            .unwrap_or_default()
+                    );
+                    println!("  亮度: {}%  动画: {}", v["brightness"].as_i64().unwrap_or(0), v["animation"].as_str().unwrap_or("static"));
+                }),
+                "list" => client.call("profile_list", &[]).map(|v| {
+                    let profiles = v["profiles"].as_array().cloned().unwrap_or_default();
+                    if profiles.is_empty() {
+                        println!("（暂无方案）");
+                    }
+                    for p in profiles {
+                        println!(
+                            "{}: 亮度 {}% 动画 {} 颜色 [{}]",
+                            p["name"].as_str().unwrap_or("?"),
+                            p["brightness"].as_i64().unwrap_or(0),
+                            p["animation"].as_str().unwrap_or("static"),
+                            p["colors"]
+                                .as_array()
+                                .map(|z| z.iter().map(|x| x.as_str().unwrap_or("?").to_string()).collect::<Vec<_>>().join(","))
+                                .unwrap_or_default()
+                        );
+                    }
+                }),
+                "delete" => client.call("profile_delete", &[name.unwrap_or_else(|| usage())]).map(|v| {
+                    println!("已删除方案: {}", v["deleted"].as_str().unwrap_or(""));
+                }),
+                _ => usage(),
+            }
         }
         "lbrt" => {
             let raw = rest.first().unwrap_or_else(|| usage());

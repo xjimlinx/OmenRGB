@@ -1,6 +1,7 @@
 //! 灯效操作封装（守护进程使用，需要 root）。
 
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 use std::path::PathBuf;
 
 use crate::payload;
@@ -36,6 +37,7 @@ pub struct Backend {
     last_brightness: u8,
     last_animation: String,
     state_path: PathBuf,
+    profiles_path: PathBuf,
 }
 
 impl Default for Backend {
@@ -47,6 +49,9 @@ impl Default for Backend {
             state_path: std::env::var("OMENRGB_STATE_PATH")
                 .map(PathBuf::from)
                 .unwrap_or_else(|_| PathBuf::from("/var/lib/omenrgb/state.json")),
+            profiles_path: std::env::var("OMENRGB_PROFILES_PATH")
+                .map(PathBuf::from)
+                .unwrap_or_else(|_| PathBuf::from("/var/lib/omenrgb/profiles.json")),
         }
     }
 }
@@ -104,13 +109,29 @@ impl Backend {
             eprintln!("[omenrgbd] 无可用状态，跳过恢复: {e}");
             return Ok(());
         }
-        if self.last_animation != "static" {
-            let name = self.last_animation.clone();
-            self.animate(&name)?;
-        } else if let Some(colors) = self.last_colors.clone() {
-            self.set_colors(&colors, self.last_brightness)?;
-        }
+        self.apply_current()?;
         eprintln!("[omenrgbd] 已恢复上次状态");
+        Ok(())
+    }
+
+    /// 按内存字段重放一次灯效（动画或静态），不触发状态保存。
+    fn apply_current(&mut self) -> Result<(), String> {
+        if self.last_animation != "static" {
+            let mode = animation_mode_byte(&self.last_animation)
+                .ok_or_else(|| format!("未知动画: {}", self.last_animation))?;
+            let colors = match &self.last_colors {
+                Some(c) => c.clone(),
+                None => self.read_zones()?,
+            };
+            let p = payload::lightbar_payload(&colors, mode, self.last_brightness, 1)?;
+            wmi::wmaa(CMD_BACKLIGHT, CMDT_LIGHTBAR_MAILBOX, &p, 8)?;
+            self.last_colors = Some(colors);
+        } else if let Some(colors) = self.last_colors.clone() {
+            let p = payload::static_payload(&colors, self.last_brightness)?;
+            wmi::wmaa(CMD_BACKLIGHT, CMDT_LIGHTBAR_MAILBOX, &p, 8)?;
+            let legacy = payload::legacy_color_table(&colors)?;
+            let _ = wmi::wmaa(CMD_BACKLIGHT, CMDT_SET_COLOR, &legacy, 128);
+        }
         Ok(())
     }
 
@@ -230,4 +251,82 @@ impl Backend {
         self.set_colors(&colors, brightness.unwrap_or(self.last_brightness))
     }
 
+    // ---------- 配置方案 ----------
+
+    fn load_profiles(&self) -> BTreeMap<String, SavedState> {
+        std::fs::read_to_string(&self.profiles_path)
+            .ok()
+            .and_then(|t| serde_json::from_str(&t).ok())
+            .unwrap_or_default()
+    }
+
+    fn write_profiles(&self, profiles: &BTreeMap<String, SavedState>) -> Result<(), String> {
+        if let Some(parent) = self.profiles_path.parent() {
+            std::fs::create_dir_all(parent)
+                .map_err(|e| format!("创建 {} 失败: {e}", parent.display()))?;
+        }
+        let tmp = self.profiles_path.with_extension("json.tmp");
+        std::fs::write(&tmp, serde_json::to_string_pretty(profiles).unwrap())
+            .map_err(|e| format!("写入 {} 失败: {e}", tmp.display()))?;
+        std::fs::rename(&tmp, &self.profiles_path)
+            .map_err(|e| format!("保存 {} 失败: {e}", self.profiles_path.display()))?;
+        Ok(())
+    }
+
+    /// 把当前灯效保存为命名方案。
+    pub fn profile_save(&mut self, name: &str) -> Result<(), String> {
+        let name = name.trim();
+        if name.is_empty() {
+            return Err("方案名不能为空".into());
+        }
+        let colors = match &self.last_colors {
+            Some(c) => c.clone(),
+            None => self.read_zones()?,
+        };
+        let mut profiles = self.load_profiles();
+        profiles.insert(
+            name.to_string(),
+            SavedState {
+                colors,
+                brightness: self.last_brightness,
+                animation: self.last_animation.clone(),
+            },
+        );
+        self.write_profiles(&profiles)
+    }
+
+    /// 应用一个已保存的方案（并成为当前状态，随 state.json 持久化）。
+    pub fn profile_load(&mut self, name: &str) -> Result<SavedState, String> {
+        let profiles = self.load_profiles();
+        let state = profiles
+            .get(name)
+            .cloned()
+            .ok_or_else(|| format!("方案不存在: {name}"))?;
+        self.last_colors = Some(state.colors.clone());
+        self.last_brightness = state.brightness.clamp(0, 100);
+        self.last_animation = if animation_mode_byte(&state.animation).is_some() {
+            state.animation.clone()
+        } else {
+            "static".to_string()
+        };
+        self.apply_current()?;
+        self.save_state();
+        Ok(state)
+    }
+
+    /// 列出全部方案。
+    pub fn profile_list(&self) -> Vec<(String, SavedState)> {
+        self.load_profiles()
+            .into_iter()
+            .map(|(k, v)| (k, v))
+            .collect()
+    }
+
+    pub fn profile_delete(&mut self, name: &str) -> Result<(), String> {
+        let mut profiles = self.load_profiles();
+        if profiles.remove(name).is_none() {
+            return Err(format!("方案不存在: {name}"));
+        }
+        self.write_profiles(&profiles)
+    }
 }
