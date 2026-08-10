@@ -22,6 +22,26 @@ fn mid_for_outsize(outsize: u32) -> u32 {
 
 /// 执行一次 WMAA 调用，返回响应数据（PASS 头之后的字节）。
 pub fn wmaa(command: u32, cmdtype: u32, payload: &[u8], outsize: u32) -> Result<Vec<u8>, String> {
+    wmaa_impl(command, cmdtype, payload, outsize, true)
+}
+
+/// 同 [`wmaa`]，但不打印每帧日志（供高速动画线程使用，避免刷爆 journald）。
+pub fn wmaa_quiet(
+    command: u32,
+    cmdtype: u32,
+    payload: &[u8],
+    outsize: u32,
+) -> Result<Vec<u8>, String> {
+    wmaa_impl(command, cmdtype, payload, outsize, false)
+}
+
+fn wmaa_impl(
+    command: u32,
+    cmdtype: u32,
+    payload: &[u8],
+    outsize: u32,
+    log: bool,
+) -> Result<Vec<u8>, String> {
     let mut buf = Vec::with_capacity(16 + payload.len());
     buf.extend_from_slice(&SECU.to_le_bytes());
     buf.extend_from_slice(&command.to_le_bytes());
@@ -31,7 +51,9 @@ pub fn wmaa(command: u32, cmdtype: u32, payload: &[u8], outsize: u32) -> Result<
 
     let mid = mid_for_outsize(outsize);
     let line = format!("{WMAA} 0 {mid} b{}", hex::encode(&buf));
-    eprintln!("[wmi] cmd={command:#x} type={cmdtype:#x} -> {line}");
+    if log {
+        eprintln!("[wmi] cmd={command:#x} type={cmdtype:#x} -> {line}");
+    }
 
     // 注意：acpi_call 每次 write() 都按一条命令处理，必须把命令和换行
     // 放在同一次写入里（与 Python 实现一致）。
@@ -49,7 +71,9 @@ pub fn wmaa(command: u32, cmdtype: u32, payload: &[u8], outsize: u32) -> Result<
     let mut buf = vec![0u8; 4096];
     let n = f.read(&mut buf).map_err(|e| format!("读取 acpi_call 失败: {e}"))?;
     let result = String::from_utf8_lossy(&buf[..n]).to_string();
-    eprintln!("[wmi] <= {:?}", result);
+    if log {
+        eprintln!("[wmi] <= {:?}", result);
+    }
     parse_result(&result)
 }
 

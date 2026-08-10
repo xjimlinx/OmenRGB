@@ -17,6 +17,9 @@ fn usage() -> ! {
   omenrgb brightness 0-100           亮度\n\
   omenrgb animate NAME               动画 (colorcycle/starlight/breathing/wave/\n\
                                      raindrop/audiopulse/confetti/sun/swipe)\n\
+  omenrgb anim-start NAME [RGB] [速度] 自定义动画 (breath/wave/rainbow/flow/chase/\n\
+                                      strobe/heartbeat/twinkle)\n\
+  omenrgb anim-stop                  停止自定义动画\n\
   omenrgb profile save NAME          把当前灯效保存为方案\n\
   omenrgb profile load NAME          应用方案\n\
   omenrgb profile list               列出方案\n\
@@ -77,6 +80,23 @@ fn main() -> ExitCode {
                 println!("已发送动画: {}", v["animation"].as_str().unwrap_or(""));
             })
         }
+        "anim-start" => {
+            let name = rest.first().unwrap_or_else(|| usage());
+            let base = rest.get(1).copied().unwrap_or("FF2C74");
+            let speed = rest.get(2).copied().unwrap_or("1.0");
+            client.call("anim_start", &[name, base, speed]).map(|v| {
+                println!(
+                    "已启动自定义动画: {}（基础色 #{}，速度 {}x）",
+                    v["animation"].as_str().unwrap_or(""),
+                    v["base"].as_str().unwrap_or(""),
+                    v["speed"].as_f64().unwrap_or(1.0)
+                );
+            })
+        }
+        "anim-stop" => client.call("anim_stop", &[]).map(|v| {
+            println!("已停止自定义动画");
+            let _ = v;
+        }),
         "profile" => {
             let sub = rest.first().unwrap_or_else(|| usage());
             let name = rest.get(1).copied();

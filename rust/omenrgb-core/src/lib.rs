@@ -3,6 +3,7 @@
 //! 协议来自对 Windows OMEN CC（DojoLightingBg）的逆向：
 //! 实时灯效走 WMI 0x20009 CMDT 0x0B（EC 邮箱）+ LightBarCmdByte 载荷。
 
+pub mod anim;
 pub mod backend;
 pub mod client;
 pub mod kbam;

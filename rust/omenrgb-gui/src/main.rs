@@ -1,6 +1,7 @@
 //! OMEN RGB 键盘控制器 — egui 深色游戏风 GUI（经守护进程读写）。
 
 use eframe::egui::{self, Color32, FontId, Pos2, Rect, RichText, Stroke, StrokeKind, TextureHandle, Vec2};
+use omenrgb_core::anim::{custom_anim_desc, custom_anim_label, CUSTOM_ANIMS};
 use omenrgb_core::client::Client;
 use omenrgb_core::animation_display_name;
 use omenrgb_core::ZONE_NAMES;
@@ -19,11 +20,50 @@ const ACCENT: Color32 = Color32::from_rgb(0xFF, 0x2C, 0x74);
 const OK: Color32 = Color32::from_rgb(0x4C, 0xC3, 0x8A);
 const ERR: Color32 = Color32::from_rgb(0xFF, 0x4D, 0x4F);
 
-const PRESETS: [&str; 16] = [
-    "FF3B30", "FF9500", "FFCC00", "34C759",
-    "00C7BE", "007AFF", "5856D6", "AF52DE",
-    "FF2D55", "FF6482", "FFD60A", "30D158",
-    "64D2FF", "5E5CE6", "BF5AF2", "FFFFFF",
+/// 预选颜色（按色系分组）。含从 Windows OGH 逆向提取的原生色
+/// （FourZoneModule.dll / 配置 JSON：#FF0F36 红、#FF710F 橙、#FFFF00/#FFF935 黄、
+///  #0FFA36 绿、#0F36FA 蓝、#FF0F84 粉、#FF0FFA 品红、#FA0FE7 紫）。
+const PRESET_GROUPS: &[(&str, &[&str])] = &[
+    (
+        "黑白灰",
+        &[
+            "000000", "3A3A3C", "636366", "8E8E93", "C7C7CC", "E5E5EA", "FFFFFF",
+        ],
+    ),
+    (
+        "红粉",
+        &[
+            "FF0000", "FF3B30", "DC143C", "FF0F36", "FF2D55", "FF6482", "FF1493", "FF69B4",
+            "FF0F84",
+        ],
+    ),
+    (
+        "橙黄棕",
+        &[
+            "FF4500", "FF9500", "FF710F", "FFF935", "FFCC00", "FFD60A", "FFFF00", "FFA500",
+            "D2691E", "8B4513",
+        ],
+    ),
+    (
+        "绿青",
+        &[
+            "0FFA36", "00FF00", "32CD32", "34C759", "30D158", "008000", "2E8B57", "00C7BE",
+            "00CED1", "008080",
+        ],
+    ),
+    (
+        "蓝",
+        &[
+            "007AFF", "0F36FA", "0000FF", "000080", "4682B4", "87CEEB", "64D2FF", "00BFFF",
+        ],
+    ),
+    (
+        "紫品",
+        &[
+            "5856D6", "5E5CE6", "4B0082", "8A2BE2", "9400D3", "AF52DE", "BF5AF2", "FA0FE7",
+            "FF00FF", "EE82EE",
+        ],
+    ),
 ];
 
 const ANIMATIONS: [&str; 10] = [
@@ -195,6 +235,10 @@ struct App {
     profile_name: String,
     pick_hue: f32,
     pick_bright: f32,
+    // 主机驱动自定义动画
+    custom_running: Option<String>,
+    custom_base: String,
+    custom_speed: f32,
     hide_requested: bool,
     last_vid: Option<egui::ViewportId>,
 }
@@ -414,6 +458,9 @@ fn default() -> Self {
             profile_name: String::new(),
             pick_hue: 0.0,
             pick_bright: 50.0,
+            custom_running: None,
+            custom_base: "FF2C74".into(),
+            custom_speed: 1.0,
             hide_requested: false,
             last_vid: None,
         }
@@ -467,6 +514,37 @@ impl App {
         self.anim = animation_gif(name).and_then(|b| GifAnim::new(ctx, b));
     }
 
+    /// 启动主机驱动自定义动画（守护进程 30fps 循环写静态色）。
+    fn start_custom_anim(&mut self, name: &str) {
+        let base = self.custom_base.clone();
+        let speed = self.custom_speed;
+        match self.client.call("anim_start", &[name, &base, &speed.to_string()]) {
+            Ok(_) => {
+                self.custom_running = Some(name.to_string());
+                self.status = format!("已启动自定义动画: {}", custom_anim_label(name));
+                self.status_color = OK;
+            }
+            Err(e) => {
+                self.status = format!("启动失败: {e}");
+                self.status_color = ERR;
+            }
+        }
+    }
+
+    fn stop_custom_anim(&mut self) {
+        match self.client.call("anim_stop", &[]) {
+            Ok(_) => {
+                self.custom_running = None;
+                self.status = "已停止自定义动画".into();
+                self.status_color = OK;
+            }
+            Err(e) => {
+                self.status = format!("停止失败: {e}");
+                self.status_color = ERR;
+            }
+        }
+    }
+
     fn refresh(&mut self) {
         match self.client.call("status", &[]) {
             Ok(v) => {
@@ -478,6 +556,7 @@ impl App {
                     }
                 }
                 self.brightness = v["brightness"].as_u64().unwrap_or(100) as u8;
+                self.custom_running = v["custom_anim"].as_str().map(|s| s.to_string());
                 self.status = format!("状态已刷新（KBAM={}）", v["kbam"].as_u64().unwrap_or(0));
                 self.status_color = OK;
             }
@@ -533,6 +612,7 @@ impl App {
         };
         match r {
             Ok(_) => {
+                self.custom_running = None; // 守护进程已自动停止自定义动画
                 self.zones = colors;
                 let msg = if self.selected == 4 {
                     format!("已应用 #{} 到全部区域", self.hex)
@@ -775,16 +855,32 @@ impl App {
             egui::ScrollArea::vertical().show(ui, |ui| {
                 ui.add_space(6.0);
                 section(ui, "颜色", |ui| {
-                    ui.horizontal_wrapped(|ui| {
-                        for p in PRESETS {
-                            let (rect, resp) = ui.allocate_exact_size(Vec2::splat(34.0), egui::Sense::click());
-                            ui.painter().rect_filled(rect, 6.0, hex_to_color(p));
-                            if resp.clicked() {
-                                self.hex = p.to_string();
-                                self.apply_selected();
+                    for (name, colors) in PRESET_GROUPS {
+                        ui.horizontal(|ui| {
+                            ui.add_space(2.0);
+                            ui.label(RichText::new(*name).size(11.0).color(MUTED));
+                        });
+                        ui.horizontal_wrapped(|ui| {
+                            for p in colors.iter() {
+                                let (rect, resp) =
+                                    ui.allocate_exact_size(Vec2::splat(30.0), egui::Sense::click());
+                                ui.painter().rect_filled(rect, 5.0, hex_to_color(p));
+                                // 浅色（白/灰）在深色背景上需要描边才看得清
+                                ui.painter().rect_stroke(
+                                    rect,
+                                    5.0,
+                                    egui::Stroke::new(1.0, Color32::from_gray(70)),
+                                    egui::StrokeKind::Inside,
+                                );
+                                let resp = resp.on_hover_text(format!("#{p}"));
+                                if resp.clicked() {
+                                    self.hex = (*p).to_string();
+                                    self.apply_selected();
+                                }
                             }
-                        }
-                    });
+                        });
+                        ui.add_space(4.0);
+                    }
                     ui.add_space(8.0);
                     ui.horizontal(|ui| {
                         ui.label(RichText::new("#").color(MUTED));
@@ -866,6 +962,7 @@ impl App {
                                 RichText::new(label).size(13.0)
                             };
                             if ui.selectable_label(selected, text).clicked() {
+                                self.custom_running = None;
                                 self.brightness = level;
                                 match self.client.call("brightness", &[&level.to_string()]) {
                                     Ok(_) => {
@@ -1003,6 +1100,7 @@ impl App {
                     if self.animation != "静态"
                         && ui.button("发送动画").clicked()
                     {
+                        self.custom_running = None;
                         match self.client.call("animate", &[&self.animation]) {
                             Ok(_) => {
                                 self.status = format!("已发送动画: {}", self.animation);
@@ -1014,6 +1112,76 @@ impl App {
                             }
                         }
                     }
+                });
+
+                ui.add_space(10.0);
+                section(ui, "自定义动画（主机驱动）", |ui| {
+                    ui.horizontal(|ui| {
+                        ui.label(RichText::new("基础色 #").size(12.0).color(MUTED));
+                        let edit = ui.add(
+                            egui::TextEdit::singleline(&mut self.custom_base)
+                                .font(FontId::monospace(15.0))
+                                .desired_width(82.0)
+                                .char_limit(6),
+                        );
+                        let _ = edit;
+                        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                            if let Some(name) = &self.custom_running {
+                                ui.label(
+                                    RichText::new(format!("▶ {}", custom_anim_label(name)))
+                                        .size(12.0)
+                                        .color(OK),
+                                );
+                            } else {
+                                ui.label(RichText::new("未运行").size(12.0).color(MUTED));
+                            }
+                        });
+                    });
+                    ui.add_space(4.0);
+                    ui.horizontal(|ui| {
+                        ui.label(RichText::new("速度").size(12.0).color(MUTED));
+                        ui.add(
+                            egui::Slider::new(&mut self.custom_speed, 0.2..=2.0)
+                                .show_value(false),
+                        );
+                        ui.label(
+                            RichText::new(format!("{:.1}x", self.custom_speed))
+                                .size(11.0)
+                                .color(MUTED),
+                        );
+                    });
+                    ui.add_space(4.0);
+                    ui.horizontal_wrapped(|ui| {
+                        for a in CUSTOM_ANIMS {
+                            let running = self.custom_running.as_deref() == Some(a.name);
+                            let text = if running {
+                                RichText::new(format!("▶ {}", a.label_cn))
+                                    .size(12.0)
+                                    .strong()
+                                    .color(Color32::BLACK)
+                            } else {
+                                RichText::new(a.label_cn).size(12.0)
+                            };
+                            if ui.selectable_label(running, text).clicked() {
+                                self.start_custom_anim(a.name);
+                            }
+                        }
+                    });
+                    ui.add_space(4.0);
+                    if self.custom_running.is_some()
+                        && ui
+                            .button(RichText::new("⏹ 停止自定义动画").size(12.5).color(ERR))
+                            .clicked()
+                    {
+                        self.stop_custom_anim();
+                    }
+                    ui.label(
+                        RichText::new(
+                            "由主机逐帧驱动（30fps），仅影响四个分区；选静态色/固件动画会自动停止",
+                        )
+                        .size(10.0)
+                        .color(MUTED),
+                    );
                 });
             });
         });

@@ -19,6 +19,8 @@ pub struct Status {
     pub mode: &'static str,
     pub speed: u8,
     pub gradient: String,
+    /// 正在运行的主机驱动自定义动画（None=未运行）
+    pub custom_anim: Option<String>,
     pub kbam: Option<u8>,
     pub kbam_label: Option<String>,
 }
@@ -36,6 +38,7 @@ pub struct Backend {
     last_colors: Option<[String; 4]>,
     last_brightness: u8,
     last_animation: String,
+    custom_anim: Option<String>,
     state_path: PathBuf,
     profiles_path: PathBuf,
 }
@@ -46,6 +49,7 @@ impl Default for Backend {
             last_colors: None,
             last_brightness: 100,
             last_animation: "static".to_string(),
+            custom_anim: None,
             state_path: std::env::var("OMENRGB_STATE_PATH")
                 .map(PathBuf::from)
                 .unwrap_or_else(|_| PathBuf::from("/var/lib/omenrgb/state.json")),
@@ -180,6 +184,7 @@ impl Backend {
             mode: "static",
             speed: 1,
             gradient: String::new(),
+            custom_anim: self.custom_anim.clone(),
             kbam,
             kbam_label,
         })
@@ -241,6 +246,16 @@ impl Backend {
         self.last_animation = name.to_string();
         self.save_state();
         Ok(())
+    }
+
+    /// 记录当前运行的主机驱动自定义动画（None=未运行）。
+    pub fn set_custom_anim(&mut self, name: Option<&str>) {
+        self.custom_anim = name.map(|s| s.to_string());
+    }
+
+    /// 最后下发的亮度等级（0/50/100）。
+    pub fn brightness(&self) -> u8 {
+        self.last_brightness
     }
 
     pub fn static_colors(&mut self, brightness: Option<u8>) -> Result<(), String> {
