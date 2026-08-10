@@ -1,0 +1,138 @@
+//! 灯效操作封装（守护进程使用，需要 root）。
+
+use serde::Serialize;
+
+use crate::payload;
+use crate::wmi;
+use crate::{
+    animation_mode_byte, kbam, CMDT_GET_BRIGHTNESS, CMDT_GET_COLOR, CMDT_LIGHTBAR_MAILBOX,
+    CMDT_SET_COLOR, CMD_BACKLIGHT,
+};
+
+#[derive(Debug, Clone, Serialize)]
+pub struct Status {
+    pub backend: &'static str,
+    pub zones: [String; 4],
+    pub brightness: i64,
+    pub mode: &'static str,
+    pub speed: u8,
+    pub gradient: String,
+    pub kbam: Option<u8>,
+    pub kbam_label: Option<String>,
+}
+
+pub struct Backend {
+    last_colors: Option<[String; 4]>,
+    last_brightness: u8,
+}
+
+impl Default for Backend {
+    fn default() -> Self {
+        Self { last_colors: None, last_brightness: 100 }
+    }
+}
+
+impl Backend {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    fn read_zones(&self) -> Result<[String; 4], String> {
+        let table = wmi::wmaa(CMD_BACKLIGHT, CMDT_GET_COLOR, &[], 128)?;
+        let zones = payload::zones_from_table(&table);
+        let mut out = std::array::from_fn(|_| String::new());
+        for (i, z) in zones.iter().enumerate() {
+            out[i] = z.clone();
+        }
+        Ok(out)
+    }
+
+    fn read_brightness(&self) -> Result<i64, String> {
+        let b = wmi::wmaa(CMD_BACKLIGHT, CMDT_GET_BRIGHTNESS, &[], 4)?;
+        match b.first() {
+            Some(0xE4) => Ok(100),
+            Some(0x64) => Ok(0),
+            Some(v) => Ok(*v as i64),
+            None => Ok(0),
+        }
+    }
+
+    pub fn get_state(&mut self) -> Result<Status, String> {
+        let zones = self.read_zones()?;
+        let brightness = self.read_brightness()?;
+        let (kbam, kbam_label) = match kbam::read_kbam() {
+            Ok(v) => (Some(v), Some(format!("模式 {v}"))),
+            Err(_) => (None, None),
+        };
+        self.last_colors = Some(zones.clone());
+        self.last_brightness = brightness.clamp(0, 100) as u8;
+        Ok(Status {
+            backend: "omenrgbd",
+            zones,
+            brightness,
+            mode: "static",
+            speed: 1,
+            gradient: String::new(),
+            kbam,
+            kbam_label,
+        })
+    }
+
+    pub fn set_colors(&mut self, colors: &[String; 4], brightness: u8) -> Result<(), String> {
+        let p = payload::static_payload(colors, brightness)?;
+        wmi::wmaa(CMD_BACKLIGHT, CMDT_LIGHTBAR_MAILBOX, &p, 8)?;
+        let legacy = payload::legacy_color_table(colors)?;
+        let _ = wmi::wmaa(CMD_BACKLIGHT, CMDT_SET_COLOR, &legacy, 128);
+        self.last_colors = Some(colors.clone());
+        self.last_brightness = brightness;
+        Ok(())
+    }
+
+    pub fn set_all(&mut self, rgb: &str, brightness: Option<u8>) -> Result<(), String> {
+        let colors = [rgb.to_string(), rgb.to_string(), rgb.to_string(), rgb.to_string()];
+        self.set_colors(&colors, brightness.unwrap_or(self.last_brightness))
+    }
+
+    pub fn set_zone(&mut self, index: usize, rgb: &str, brightness: Option<u8>) -> Result<(), String> {
+        if index >= 4 {
+            return Err("区域索引必须是 0-3".into());
+        }
+        let mut colors = match &self.last_colors {
+            Some(c) => c.clone(),
+            None => self.read_zones()?,
+        };
+        colors[index] = rgb.to_string();
+        self.set_colors(&colors, brightness.unwrap_or(self.last_brightness))
+    }
+
+    pub fn set_brightness(&mut self, level: u8) -> Result<(), String> {
+        if level > 100 {
+            return Err("亮度必须是 0-100".into());
+        }
+        let colors = match &self.last_colors {
+            Some(c) => c.clone(),
+            None => self.read_zones()?,
+        };
+        self.set_colors(&colors, level)
+    }
+
+    pub fn animate(&mut self, name: &str) -> Result<(), String> {
+        let mode = animation_mode_byte(name).ok_or_else(|| format!("未知动画: {name}"))?;
+        let colors = match &self.last_colors {
+            Some(c) => c.clone(),
+            None => self.read_zones()?,
+        };
+        let p = payload::lightbar_payload(&colors, mode, self.last_brightness, 1)?;
+        wmi::wmaa(CMD_BACKLIGHT, CMDT_LIGHTBAR_MAILBOX, &p, 8)?;
+        Ok(())
+    }
+
+    pub fn static_colors(&mut self, brightness: Option<u8>) -> Result<(), String> {
+        let colors = match &self.last_colors {
+            Some(c) => c.clone(),
+            None => self.read_zones()?,
+        };
+        self.set_colors(&colors, brightness.unwrap_or(self.last_brightness))
+    }
+
+}

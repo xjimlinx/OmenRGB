@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>x86 platform driver layer - Patchwork</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.1999ae14de69.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/selectize.bootstrap3.604d8cc2f81a.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.15cf98d7fb55.css"/>
+    <script src="/static/js/jquery-3.6.0.min.8fb8fee4fcc3.js"></script>
+    <script src="/static/js/jquery.stickytableheaders.min.c02ed5dfea63.js"></script>
+    <script src="/static/js/jquery.checkboxes-1.2.2.min.8b93dcd0879a.js"></script>
+    <!-- IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">
+      </script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"></script>
+    <![endif]-->
+    <script src="/static/js/bootstrap.min.abda843684d0.js"></script>
+    <script src="/static/js/selectize.min.d7d3bc8b8d8e.js"></script>
+    <script src="/static/js/clipboard.min.3e5e0fa949e0.js"></script>
+    <script src="/static/js/js.cookie.min.0c08bc1c340c.js"></script>
+    <script>
+      $(document).ready(function() {
+          new Clipboard(document.querySelectorAll('button.btn-copy'));
+      });
+    </script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Patchwork</a>
+          <span class="navbar-subbrand">
+             x86 platform driver layer
+          </span>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+
+
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="/project/platform-driver-x86/list/">
+                <span class="glyphicon glyphicon-file"></span>
+                Patches
+              </a>
+            </li>
+            <li class="">
+              <a href="/project/platform-driver-x86/bundles/">
+                <span class="glyphicon glyphicon-gift"></span>
+                Bundles
+              </a>
+            </li>
+            <li class="">
+              <a href="/project/platform-driver-x86/">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                About this project
+              </a>
+            </li>
+          </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+
+            <li><a href="/user/login/">Login</a></li>
+            <li><a href="/register/">Register</a></li>
+            <li><a href="/mail/">Mail settings</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+<ul class="messages"></ul><div id="errors"></div>
+    <div id="main-content" class="container-fluid">
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var filterform_displayed = false;
+function filter_click()
+{
+    var form = document.getElementById('filterform');
+    if (!form) {
+        return;
+    }
+
+    if (filterform_displayed) {
+        form.style['display'] = 'none';
+        filterform_displayed = false;
+    } else {
+        form.style['display'] = 'block';
+        filterform_displayed = true;
+    }
+}
+
+Selectize.define('enter_key_submit', function (options) {
+    var self = this;
+
+    this.onKeyDown = (function (e) {
+        var original = self.onKeyDown;
+
+        return function (e) {
+            var wasOpened = this.isOpen;
+            original.apply(this, arguments);
+
+            if (e.keyCode === 13 &&
+                (this.$control_input.val() != '' || !wasOpened))
+                self.trigger('submit');
+        };
+    })();
+});
+
+$(document).ready(function() {
+    $('#submitter_input').selectize({
+        plugins: ['enter_key_submit'],
+        maxItems: 1,
+        persist: false,
+        onInitialize: function() {
+            this.on('submit', function() {
+                if (!this.items.length)
+                    this.$input.val(this.lastValue);
+                this.$input.closest('form').submit();
+            }, this);
+        },
+
+        load: function(query, callback) {
+            if (query.length < 4)
+                return callback();
+
+            req = $.ajax({
+                url: "/submitter/",
+                data: {q: query, l: 10},
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    callback($.map(res, function (obj) {
+                        return {value: obj.pk, text: `${obj.name} <${obj.email}>`};
+                    }));
+                }
+            });
+        }
+    });
+});
+</script>
+
+<div class="filters">
+  <div id="filtersummary">
+    <a href="javascript:filter_click()">Show patches with</a>:
+
+
+    State = <strong>Action Required</strong>
+
+    <a class="filter-action" href="?q=multicolor%20LED&amp;order=-date&amp;state=*">
+      &nbsp;&nbsp;<span class="glyphicon glyphicon-minus-sign"></span>
+    </a>
+
+
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+
+
+    Search = <strong>multicolor LED</strong>
+
+    <a class="filter-action" href="?order=-date">
+      &nbsp;&nbsp;<span class="glyphicon glyphicon-minus-sign"></span>
+    </a>
+
+
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+
+
+    Archived = <strong>No</strong>
+
+    <a class="filter-action" href="?q=multicolor%20LED&amp;order=-date&amp;archive=both">
+      &nbsp;&nbsp;<span class="glyphicon glyphicon-minus-sign"></span>
+    </a>
+
+
+
+
+
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;1
+    patch
+
+  </div>
+
+  <div id="filterform" style="padding-top: 1em; display: none">
+    <form class="form-horizontal" method="get">
+
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Series</label>
+        <div class="col-sm-5">
+          <input type="text" name="series" id="series_input" class="form-control">
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Submitter</label>
+        <div class="col-sm-5">
+          <input type="text" name="submitter" id="submitter_input" class="form-control">
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">State</label>
+        <div class="col-sm-5">
+          <select name="state" class="form-control"><option  value="*">any</option><option selected value="">Action Required</option><option value="1" >New</option><option value="2" >Under Review</option><option value="3" >Accepted</option><option value="4" >Rejected</option><option value="5" >RFC</option><option value="6" >Not Applicable</option><option value="7" >Changes Requested</option><option value="8" >Awaiting Upstream</option><option value="9" >Superseded</option><option value="10" >Deferred</option><option value="11" >Mainlined</option><option value="13" >Queued</option><option value="15" >Needs ACK</option><option value="17" >Handled Elsewhere</option><option value="19" >In Next</option></select>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Search</label>
+        <div class="col-sm-5">
+          <input name="q" class="form-control" value="multicolor LED">
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Archived</label>
+        <div class="col-sm-5">
+          <label class="checkbox-inline"> <input type="radio" name="archive" checked value="">No</label><label class="checkbox-inline"> <input type="radio" name="archive"  value="true">Yes</label><label class="checkbox-inline"> <input type="radio" name="archive"  value="both">Both</label>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Delegate</label>
+        <div class="col-sm-5">
+          <select name="delegate" class="form-control"><option selected value="">------</option><option  value="Nobody">Nobody</option><option  value="3">holtmann</option><option  value="3">holtmann</option><option  value="3">holtmann</option><option  value="6">agk</option><option  value="26">mchehab</option><option  value="26">mchehab</option><option  value="29">gregkh</option><option  value="29">gregkh</option><option  value="37">mtosatti</option><option  value="46">avi</option><option  value="55">cvaroqui</option><option  value="58">jbrassow</option><option  value="60">mikulas</option><option  value="61">dtor</option><option  value="75">bmarzins</option><option  value="78">tmlind</option><option  value="90">jmberg</option><option  value="90">jmberg</option><option  value="102">mcgrof</option><option  value="102">mcgrof</option><option  value="102">mcgrof</option><option  value="107">lenb</option><option  value="107">lenb</option><option  value="112">kyle</option><option  value="121">felipebalbi</option><option  value="126">varenet</option><option  value="128">helge</option><option  value="128">helge</option><option  value="144">khilman</option><option  value="144">khilman</option><option  value="144">khilman</option><option  value="149">jwoithe</option><option  value="150">mlin</option><option  value="151">Zhang Rui</option><option  value="151">Zhang Rui</option><option  value="152">iksaif</option><option  value="155">cjackiewicz</option><option  value="156">hmh</option><option  value="186">jbarnes</option><option  value="186">jbarnes</option><option  value="186">jbarnes</option><option  value="189">willy</option><option  value="197">snitzer</option><option  value="204">iwamatsu</option><option  value="209">dougsland</option><option  value="226">mjg59</option><option  value="230">rafael</option><option  value="230">rafael</option><option  value="230">rafael</option><option  value="232">ericvh@gmail.com</option><option  value="251">ykzhao</option><option  value="260">venkip</option><option  value="447">sandeen</option><option  value="453">pwsan</option><option  value="456">lucho@ionkov.net</option><option  value="457">rminnich</option><option  value="523">anholt</option><option  value="527">aystarik</option><option  value="901">mason</option><option  value="949">glikely</option><option  value="988">krh</option><option  value="1351">djbw</option><option  value="1351">djbw</option><option  value="1351">djbw</option><option  value="3305">cmarinas</option><option  value="3306">doyu</option><option  value="3308">jrn</option><option  value="3350">sage</option><option  value="3443">tomba</option><option  value="3474">mmarek</option><option  value="3971">cjb</option><option  value="4932">jikos</option><option  value="5092">bcousson</option><option  value="5481">jic23</option><option  value="5611">olof</option><option  value="5611">olof</option><option  value="6111">nsekhar</option><option  value="7052">horms</option><option  value="7052">horms</option><option  value="7262">bwidawsk</option><option  value="7262">bwidawsk</option><option  value="7961">shemminger</option><option  value="8541">eulfhan</option><option  value="8661">josef</option><option  value="8661">josef</option><option  value="8661">josef</option><option  value="9171">dianders</option><option  value="9801">jpan9</option><option  value="9991">kdave</option><option  value="10191">bleung</option><option  value="10501">evalenti</option><option  value="10851">jlbec</option><option  value="11141">wsa</option><option  value="13257">bhelgaas</option><option  value="13621">vkoul</option><option  value="13621">vkoul</option><option  value="15881">szlin</option><option  value="16211">davejiang</option><option  value="16301">markgross</option><option  value="18371">tagr</option><option  value="18871">tiwai</option><option  value="21891">vireshk</option><option  value="23571">mmind</option><option  value="24681">geert</option><option  value="24681">geert</option><option  value="24821">herbert</option><option  value="24821">herbert</option><option  value="25621">kvalo</option><option  value="25621">kvalo</option><option  value="25621">kvalo</option><option  value="26261">bentiss</option><option  value="26461">arend</option><option  value="26461">arend</option><option  value="26561">rzwisler</option><option  value="26571">stellarhopper</option><option  value="26571">stellarhopper</option><option  value="27751">jejb</option><option  value="28641">matthias_bgg</option><option  value="30311">dvhart</option><option  value="31801">axboe</option><option  value="31801">axboe</option><option  value="31861">pcmoore</option><option  value="31861">pcmoore</option><option  value="31861">pcmoore</option><option  value="32081">mkp</option><option  value="32081">mkp</option><option  value="32301">stefan_schmidt</option><option  value="32671">leon</option><option  value="32731">lucvoo</option><option  value="32891">jsakkine</option><option  value="32891">jsakkine</option><option  value="32891">jsakkine</option><option  value="33421">bamse</option><option  value="33421">bamse</option><option  value="33541">demarchi</option><option  value="33771">krzk</option><option  value="33771">krzk</option><option  value="33771">krzk</option><option  value="33921">groeck</option><option  value="33921">groeck</option><option  value="34281">sboyd</option><option  value="34291">mturquette</option><option  value="36831">0andriy</option><option  value="38615">carlocaione</option><option  value="38625">luca</option><option  value="38701">dgc</option><option  value="38721">kbingham</option><option  value="39221">derosier</option><option  value="39295">narmstrong</option><option  value="39295">narmstrong</option><option  value="42735">atull</option><option  value="43691">tytso</option><option  value="43691">tytso</option><option  value="44683">djwong</option><option  value="45163">bvanassche</option><option  value="49715">soleen</option><option  value="50259">omos</option><option  value="51083">jpirko</option><option  value="51083">jpirko</option><option  value="56329">GustavoARSilva</option><option  value="56973">pkshih</option><option  value="57807">patersonc</option><option  value="60597">brauner</option><option  value="62711">shuahkh</option><option  value="62711">shuahkh</option><option  value="62711">shuahkh</option><option  value="63159">palmer</option><option  value="63389">jgg</option><option  value="67007">Kishon</option><option  value="68743">pevik</option><option  value="74111">idosch</option><option  value="77769">jsimmons</option><option  value="79667">lfadmin</option><option  value="10601">sudeepknh</option><option  value="11">broonie</option><option  value="11">broonie</option><option  value="8151">mricon</option><option  value="8151">mricon</option><option  value="8151">mricon</option><option  value="32291">kees</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="81903">lfgitoliteapi</option><option  value="953">arnd</option><option  value="7921">linusw</option><option  value="82023">perfinion</option><option  value="82085">bbrezillon</option><option  value="82149">bachradsusi</option><option  value="82957">rostedt</option><option  value="82957">rostedt</option><option  value="83099">kholk</option><option  value="83271">alexghiti</option><option  value="83523">ykaradzhov</option><option  value="84459">nbd</option><option  value="85157">ebiggers</option><option  value="85157">ebiggers</option><option  value="85817">pavelm</option><option  value="88089">sds</option><option  value="29721">m0reeze</option><option  value="90265">ganis</option><option  value="93527">jwcart2</option><option  value="94559">matttbe</option><option  value="100333">andmur01</option><option  value="100405">lorpie01</option><option  value="101693">chanwoochoi</option><option  value="11211">dlezcano</option><option  value="103479">jhedberg</option><option  value="103487">vudentz</option><option  value="103705">robertfoss</option><option  value="103813">bgix</option><option  value="104215">tedd_an</option><option  value="105813">tsbogend</option><option  value="106123">wens</option><option  value="107363">wcrobert</option><option  value="109853">robher</option><option  value="109853">robher</option><option  value="112169">kstewart</option><option  value="120361">kwilczynski</option><option  value="120919">hansg</option><option  value="121173">bpf</option><option  value="123371">netdev</option><option  value="123859">dsa</option><option  value="123907">ethtool</option><option  value="126941">netdrv</option><option  value="127271">martineau</option><option  value="127315">abelloni</option><option  value="127315">abelloni</option><option  value="130755">trix</option><option  value="138675">pabeni</option><option  value="144281">mani_sadhasivam</option><option  value="144281">mani_sadhasivam</option><option  value="145909">mlimonci</option><option  value="163027">liusong6</option><option  value="172325">mjp</option><option  value="175437">tohojo</option><option  value="185529">prestwoj</option><option  value="185529">prestwoj</option><option  value="187195">dhowells</option><option  value="188721">tzungbi</option><option  value="191395">conchuod</option><option  value="191395">conchuod</option><option  value="191395">conchuod</option><option  value="191832">paulmck</option><option  value="196482">jes</option><option  value="197649">mtkaczyk</option><option  value="198130">colyli</option><option  value="200631">cem</option><option  value="206975">pateldipen1984</option><option  value="215489">iweiny</option><option  value="215489">iweiny</option><option  value="215491">alisonschofield</option><option  value="218119">bjorn</option><option  value="218142">mhiramat</option><option  value="219564">nsc</option><option  value="220810">JanKiszka</option><option  value="9491">jaegeuk</option><option  value="224219">mraynal</option><option  value="224507">aring</option><option  value="227692">konradybcio</option><option  value="230326">ij</option><option  value="230326">ij</option><option  value="231487">Hailan</option><option  value="231541">jstitt007</option><option  value="231802">denkenz</option><option  value="231802">denkenz</option><option  value="233114">mkorenbl</option><option  value="233148">jjohnson</option><option  value="235834">frank_li</option><option  value="235844">geliang</option><option  value="236307">mdraidci</option><option  value="236307">mdraidci</option><option  value="237314">peluse</option><option  value="240840">ppavlu</option><option  value="240862">joelgranados</option><option  value="242112">cel</option><option  value="242112">cel</option><option  value="243471">shin</option><option  value="243471">shin</option><option  value="246414">wifibot</option><option  value="248609">lhodges</option><option  value="248627">dagomez</option><option  value="248654">fustini</option><option  value="248654">fustini</option><option  value="248743">nathanchance</option><option  value="248784">pjw</option><option  value="248876">tglozar</option><option  value="248877">gmonaco</option><option  value="248902">jstancek</option><option  value="248968">mkl</option><option  value="248976">hartkopp</option><option  value="249004">rppt</option><option  value="249004">rppt</option><option  value="249005">mailhol</option><option  value="249009">vladimiroltean</option><option  value="249012">nipa</option><option  value="249012">nipa</option><option  value="249012">nipa</option><option  value="249090">sashiko</option><option  value="249122">pratyush</option><option  value="249131">markuze</option><option  value="249136">vdubeyko</option><option  value="249138">idryomov</option><option  value="249189">blktests-ci</option><option  value="249272">akumarsuse</option><option  value="249321">ltpci</option><option  value="249323">acer</option><option  value="249325">metan</option><option  value="249327">wangli</option></select>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-5">
+          <button type="submit" class="btn btn-default">Apply</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#patchlist').stickyTableHeaders();
+
+    $('#patchlist').checkboxes('range', true);
+
+    $('#check-all').change(function(e) {
+        if(this.checked) {
+            $('#patchlist > tbody').checkboxes('check');
+        } else {
+            $('#patchlist > tbody').checkboxes('uncheck');
+        }
+        e.preventDefault();
+    });
+});
+</script>
+
+<form method="post">
+  <input type="hidden" name="csrfmiddlewaretoken" value="Z2Isl06BMG4LWeS8Gp5vItu2duCY1gKHxEZmV1IjN1MezILGruCZgehEFJGjj3EI">
+  <input type="hidden" name="form" value="patchlistform"/>
+  <input type="hidden" name="project" value="231"/>
+  <table id="patchlist" class="table table-hover table-extra-condensed table-striped pw-list" data-toggle="checkboxes" data-range="true">
+    <thead>
+      <tr>
+
+
+
+
+        <th>
+
+
+          <a class="colinactive" href="/project/platform-driver-x86/list/?q=multicolor LED&param=-date&order=name">Patch</a>
+
+
+        </th>
+
+        <th>
+          <span class="colinactive">Series</span>
+        </th>
+
+        <th>
+          <span title="Acked-by / Reviewed-by / Tested-by">A/R/T</span>
+        </th>
+
+        <th>
+          <span title="Success / Warning / Fail">S/W/F</span>
+        </th>
+
+        <th>
+
+          <a class="colactive" href="/project/platform-driver-x86/list/?q=multicolor LED&param=-date&order=date">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </a>
+          <a class="colactive" href="/project/platform-driver-x86/list/?q=multicolor LED&param=-date&order=date">
+            Date
+          </a>
+
+        </th>
+
+        <th>
+
+
+          <a class="colinactive" href="/project/platform-driver-x86/list/?q=multicolor LED&param=-date&order=submitter">
+            Submitter
+          </a>
+
+
+        </th>
+
+        <th>
+
+
+          <a class="colinactive" href="/project/platform-driver-x86/list/?q=multicolor LED&param=-date&order=delegate">Delegate</a>
+
+
+        </th>
+
+        <th>
+
+
+          <a class="colinactive" href="/project/platform-driver-x86/list/?q=multicolor LED&param=-date&order=state">State</a>
+
+
+        </th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr id="patch_row:14628202">
+
+
+        <td>
+          <a href="/project/platform-driver-x86/patch/B3i0fyryR3yLLMsNVCrg3Q@aquinas.su/">
+            [v10] platform/x86: hp-wmi: Add multicolor LED support for HP keyboard backlight
+          </a>
+        </td>
+        <td>
+
+          <a href="?series=1111285">
+            [v10] platform/x86: hp-wmi: Add multicolor LED support for HP keyboard backlight
+          </a>
+
+        </td>
+        <td class="text-nowrap"><span title="0 Acked-by / 0 Reviewed-by / 0 Tested-by">- - -</span></td>
+        <td class="text-nowrap"><span title="Success / Warning / Fail"><span class="patchlistchecks ">-</span><span class="patchlistchecks ">-</span><span class="patchlistchecks ">-</span></span></td>
+        <td class="text-nowrap">2026-06-14</td>
+        <td><a href="/project/platform-driver-x86/list/?submitter=217855">Коненко Андрей Викторович</a></td>
+        <td></td>
+        <td>New</td>
+       </tr>
+
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+  <div class="patchforms" id="patchforms">
+
+
+
+
+    <div style="clear: both;">
+    </div>
+  </div>
+
+</form>
+
+
+
+    </div>
+    <div id="footer">
+      <a href="http://jk.ozlabs.org/projects/patchwork/">patchwork</a> patch tracking system |
+      version v3.1.3 |
+      <a href="/about/">about patchwork</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=OMEN RGB
+Name[zh_CN]=OMEN RGB 键盘控制器
+GenericName=Keyboard Lighting
+GenericName[zh_CN]=键盘灯效
+Comment=Control HP OMEN keyboard RGB lighting
+Comment[zh_CN]=控制 HP OMEN 键盘 RGB 灯效
+Exec=/usr/local/bin/omenrgb-gui
+Icon=omenrgb
+Terminal=false
+Categories=Utility;
+Keywords=RGB;Keyboard;OMEN;HP;Lighting;
+StartupNotify=false

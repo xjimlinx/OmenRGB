@@ -1,0 +1,168 @@
+
+//Format: [X, Y, Width, Height, Name]
+  // you'll only input the Name for the button, then the converter will take over the image fill in.
+// Note that you should list them by byte order, thus could be added in the same order as byte defined in spec.
+// and can then control them (HW & UI) easily in following steps.
+{
+
+  "KeysBasicInfo": [
+    [ 193, 114, 34, 35, "KeyEsc" ], // byte 0 [section1, row1]
+    [ 227, 114, 34, 35, "KeyF1" ],
+    [ 261, 114, 34, 35, "KeyF2" ],
+    [ 295, 114, 34, 35, "KeyF3" ],
+    [ 329, 114, 34, 35, "KeyF4" ],
+    [ 363, 114, 34, 35, "KeyF5" ],
+    [ 397, 114, 34, 35, "KeyF6" ],
+    [ 431, 114, 34, 35, "KeyF7" ],
+
+    [ 193, 157, 34, 35, "KeyTilde" ], // [section1, row2]
+    [ 227, 157, 34, 35, "Key1" ], // byte 9
+    [ 261, 157, 34, 35, "Key2" ],
+    [ 295, 157, 34, 35, "Key3" ],
+    [ 329, 157, 34, 35, "Key4" ],
+    [ 363, 157, 34, 35, "Key5" ],
+    [ 397, 157, 34, 35, "Key6" ],
+    [ 431, 157, 34, 35, "Key7" ], // byte 15
+
+    [ 193, 192, 52, 34, "KeyTab" ], // [section1, row 3]
+    [ 245, 192, 34, 34, "KeyQ" ],
+    [ 279, 192, 34, 34, "KeyW" ],
+    [ 313, 192, 34, 34, "KeyE" ],
+    [ 347, 192, 34, 34, "KeyR" ],
+    [ 381, 192, 34, 34, "KeyT" ],
+    [ 415, 192, 34, 34, "KeyY" ],
+    [ 449, 192, 34, 34, "KeyU" ], // byte 23
+
+    [ 193, 226, 60, 34, "KeyCaps" ], // [section1, row 4]
+    [ 253, 226, 34, 34, "KeyA" ],
+    [ 287, 226, 34, 34, "KeyS" ],
+    [ 321, 226, 34, 34, "KeyD" ],
+    [ 355, 226, 34, 34, "KeyF" ],
+    [ 389, 226, 34, 34, "KeyG" ],
+    [ 423, 226, 34, 34, "KeyH" ],
+    [ 457, 226, 34, 34, "KeyJ" ], // byte 31
+
+    [ 193, 260, 75, 34, "KeyShiftL" ], // byte 32 //[section1 row5]
+    [ 193, 260, 75, 34, "KeyShiftL" ], // Left Shift takes 2 bytes so same info as above
+    [ 268, 260, 34, 34, "KeyZ" ],
+    [ 302, 260, 34, 34, "KeyX" ],
+    [ 336, 260, 34, 34, "KeyC" ],
+    [ 370, 260, 34, 34, "KeyV" ],
+    [ 404, 260, 34, 34, "KeyB" ],
+    [ 438, 260, 34, 34, "KeyN" ], // byte 39
+
+    [ 193, 294, 41, 34, "KeyCtrlL" ], //[section1 row6]
+    [ 234, 294, 34, 34, "KeyFN" ],
+    [ 268, 294, 34, 34, "KeyWin" ],
+    [ 302, 294, 34, 34, "KeyAltL" ],
+    [ 336, 294, 34, 34, "KeyAltL" ],
+    [ 336, 294, 204, 42, "KeySpace" ], // space takes 3 bytes
+    [ 336, 294, 204, 42, "KeySpace" ],
+    [ 336, 294, 204, 42, "KeySpace" ], // byte 47
+
+    [ 465, 114, 34, 35, "KeyF8" ], // [section2 row1]
+    [ 499, 114, 34, 35, "KeyF9" ],
+    [ 533, 114, 34, 35, "KeyF10" ],
+    [ 567, 114, 34, 35, "KeyF11" ],
+    [ 601, 114, 34, 35, "KeyF12" ],
+    [ 635, 114, 34, 35, "KeyIns" ],
+    [ 669, 114, 34, 35, "KeyDel" ],
+    [ 713, 114, 34, 35, "KeyOmen" ], // byte 55
+
+    [ 465, 157, 34, 35, "Key8" ], // [section2 row2]
+    [ 499, 157, 34, 35, "Key9" ],
+    [ 533, 157, 34, 35, "Key0" ],
+    [ 567, 157, 34, 35, "KeyHyphen" ],
+    [ 601, 157, 34, 35, "KeyEqual" ],
+    [ 635, 157, 68, 35, "KeyBack" ], // backspace take 2
+    [ 635, 157, 68, 35, "KeyBack" ], // byte 62
+    [ 713, 157, 34, 35, "KeyNumLock" ],
+
+    [ 483, 192, 34, 34, "KeyI" ], // [section2 row3]
+    [ 517, 192, 34, 34, "KeyO" ],
+    [ 551, 192, 34, 34, "KeyP" ],
+    [ 585, 192, 34, 34, "KeyBracketsL" ],
+    [ 619, 192, 34, 34, "KeyBracketsR" ], // byte68
+    [ 653, 192, 51, 34, "KeyBackslash" ],
+    [ 653, 192, 51, 34, "KeyBackslash" ],
+    [ 713, 192, 34, 35, "KeyPad7" ], //byte 71
+
+    [ 491, 226, 34, 34, "KeyK" ], // [section2 row4]
+    [ 525, 226, 34, 34, "KeyL" ],
+    [ 559, 226, 34, 34, "KeyColon" ],
+    [ 593, 226, 34, 34, "KeyQuote" ], //75
+    [ 627, 226, 77, 34, "KeyEnter" ],
+    [ 627, 226, 77, 34, "KeyEnter" ],
+    [ 608, 260, 96, 34, "KeyShiftR" ], // first byte of right shift   // in row5 but it takes byte78 so init here as well
+    [ 713, 226, 34, 34, "KeyPad4" ], //79
+
+    [ 472, 260, 34, 34, "KeyM" ], // [section2 row5]
+    [ 506, 260, 34, 34, "KeyComma" ],
+    [ 540, 260, 34, 34, "KeyDot" ],
+    [ 574, 260, 34, 34, "KeySlash" ],
+    [ 608, 260, 96, 34, "KeyShiftR" ], // 2nd byte of ShiftR  //84
+    [ 608, 260, 96, 34, "KeyShiftR" ], // 85
+    [ 692, 305, 34, 34, "KeyArrUP" ],
+    [ 713, 260, 34, 34, "KeyPad1" ], //87
+
+    [ 540, 294, 34, 34, "KeyAltR" ], // [section2 row6]   //88
+    [ 574, 294, 96, 34, "KeyCtrlR" ],
+    [ 574, 294, 96, 34, "KeyCtrlR" ],
+    [ 574, 294, 96, 34, "KeyCtrlR" ],
+    [ 574, 294, 96, 34, "KeyCtrlR" ], //92
+
+    [ 658, 339, 34, 34, "KeyArrLeft" ],
+    [ 692, 339, 34, 34, "KeyArrDown" ],
+    [ 726, 339, 34, 34, "KeyArrRight" ], //95
+
+    [ 747, 114, 34, 35, "KeyPrtSC" ], //[section3 row1]
+    [ 781, 114, 34, 35, "KeyPageUp" ],
+    [ 815, 114, 34, 35, "KeyPageDn" ],
+    [ 148, 114, 35, 35, "KeyP1" ], //99
+    [ 148, 114, 35, 35, "KeyP1" ],
+    [ 148, 114, 35, 35, "KeyP1" ],
+    [ 148, 114, 35, 35, "KeyP1" ],
+    [ 148, 114, 35, 35, "KeyP1" ], // some of the bytes are empty but fill it up here for easy control to UI
+
+    [ 747, 157, 34, 35, "KeyPadSlash" ], //[section3 row2]
+    [ 781, 157, 34, 35, "KeyPadStar" ], //105
+    [ 815, 157, 34, 35, "KeyPadHyphen" ],
+    [ 148, 157, 35, 35, "KeyP2" ],
+    [ 148, 157, 35, 35, "KeyP2" ],
+    [ 148, 157, 35, 35, "KeyP2" ],
+    [ 148, 157, 35, 35, "KeyP2" ], //110
+    [ 148, 157, 35, 35, "KeyP2" ], // some of the bytes are empty but fill it up here for easy control to UI
+
+    [ 747, 192, 34, 35, "KeyPad8" ], //[section3 row3]
+    [ 781, 192, 34, 35, "KeyPad9" ],
+    [ 815, 192.5, 34, 68, "KeyPadPlus" ], //114 // 1st byte of plus
+    [ 148, 192, 35, 35, "KeyP3" ],
+    [ 148, 192, 35, 35, "KeyP3" ],
+    [ 148, 192, 35, 35, "KeyP3" ],
+    [ 148, 192, 35, 35, "KeyP3" ],
+    [ 148, 192, 35, 35, "KeyP3" ], // some of the bytes are empty but fill it up here for easy control to UI
+
+    [ 747, 226, 34, 35, "KeyPad5" ], //[section3 row4]  //120
+    [ 781, 226, 34, 35, "KeyPad6" ],
+    [ 815, 192.5, 34, 68, "KeyPadPlus" ], //122 // 2nd byte of plus
+    [ 148, 226, 35, 35, "KeyP4" ],
+    [ 148, 226, 35, 35, "KeyP4" ],
+    [ 148, 226, 35, 35, "KeyP4" ],
+    [ 148, 226, 35, 35, "KeyP4" ], //126
+    [ 148, 226, 35, 35, "KeyP4" ], // some of the bytes are empty but fill it up here for easy control to UI
+
+    [ 747, 260, 34, 35, "KeyPad2" ], //[section3 row5]
+    [ 781, 260, 34, 35, "KeyPad3" ], //
+    [ 815, 260.5, 34, 68, "KeyPadEnter" ], //1st byte of pad enter //130
+    [ 148, 260, 35, 35, "KeyP5" ],
+    [ 148, 260, 35, 35, "KeyP5" ],
+    [ 148, 260, 35, 35, "KeyP5" ],
+    [ 148, 260, 35, 35, "KeyP5" ], // some of the bytes are empty but fill it up here for easy control to UI
+    [ 148, 260, 35, 35, "KeyP5" ], // 135
+
+    [ 747, 294, 34, 35, "KeyPad0" ], //[section3 row6]
+    [ 781, 294, 34, 35, "KeyPadDot" ], //
+    [ 815, 260.5, 34, 68, "KeyPadEnter" ], //2nd byte of pad enter //138
+    [ 148, 294, 35, 35, "KeyP6" ] 
+  ]
+}

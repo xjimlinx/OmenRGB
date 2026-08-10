@@ -1,0 +1,137 @@
+<!-- MHonArc v2.6.19 -->
+<!--X-Subject:  [PATCH v7] platform/x86: hp&#45;wmi: Add multicolor LED support for HP keyboard backlight -->
+<!--X-From-R13:  =?GFT&#45;8?P?0XeCigQ90ZJCiqQ60Z4t0XRCiqQ00KRCgqQ5W@QE0ZwChgUQ0Z7Dt@Q+0ZZCh@UV?= &#60;nqzvaNndhvanf.fh> -->
+<!--X-Date: Fri, 15 May 2026 08:12:04 &#45;0400 (EDT) -->
+<!--X-Message-Id: Yum2UkOKSk&#45;F7vHbhPXMxA@aquinas.su -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 9VMMQwZjRUOGJGZr&#45;0_YbA@aquinas.su -->
+<!--X-Reference: 4a6fcfa9&#45;a93f&#45;4064&#45;ab07&#45;0c61f3fad076@kernel.org -->
+<!--X-Head-End-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linux-Kernel Archive:  [PATCH v7] platform/x86: hp-wmi: Add multicolor LED support for HP keyboard backlight</title>
+<meta name="author" content=" &#x41A;&#x43E;&#x43D;&#x435;&#x43D;&#x43A;&#x43E; &#x410;&#x43D;&#x434;&#x440;&#x435;&#x439; &#x412;&#x438;&#x43A;&#x442;&#x43E;&#x440;&#x43E;&#x432;&#x438;&#x447; &lt;admin@xxxxxxxxxx&gt;">
+<meta name="description" content=" [PATCH v7] platform/x86: hp-wmi: Add multicolor LED support for HP keyboard backlight">
+<style>
+  body { background-color: #fff; color: #000; }
+  h1 { text-align: center; }
+  hr { border: none; border-top: 1px solid #ccc; }
+  .skip-link { position: absolute; left: -9999px; }
+  .skip-link:focus { left: 0; background: #fff; padding: 0.5em; z-index: 1; }
+  nav { margin: 1em 0; }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<main id="main-content">
+<h1> [PATCH v7] platform/x86: hp-wmi: Add multicolor LED support for HP keyboard backlight</h1>
+<p><strong>From: </strong>&#x41A;&#x43E;&#x43D;&#x435;&#x43D;&#x43A;&#x43E; &#x410;&#x43D;&#x434;&#x440;&#x435;&#x439; &#x412;&#x438;&#x43A;&#x442;&#x43E;&#x440;&#x43E;&#x432;&#x438;&#x447;</p>
+<p><strong>Date: </strong> Fri May 15 2026 - 08:12:04 EST</p>
+<nav aria-label="Message navigation">
+<ul>
+<li><strong>Next message: </strong> <a href="14910.html"> Mathieu Dubois-Briand: "[PATCH v2 0/2] nvmem: layouts: Add fixed-layout driver"</a>
+
+<li><strong>Previous message: </strong> <a href="14907.html"> Dmitry Baryshkov: "[PATCH v3 10/16] media: iris: add minimal GET_PROPERTY implementation"</a>
+
+<li><strong>In reply to: </strong> <a href="14321.html"> Hans de Goede: "Re: [PATCH v6] platform/x86: hp-wmi: Add multicolor LED support for HP keyboard backlight"</a>
+
+
+
+<li><strong>Messages sorted by: </strong><a href="date.html#14908" aria-label="Sort by date">[ date ]</a> <a href="index.html#14908" aria-label="Sort by thread">[ thread ]</a> <a href="subject.html#14908" aria-label="Sort by subject">[ subject ]</a> <a href="author.html#14908" aria-label="Sort by author">[ author ]</a>
+</ul>
+</nav>
+
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+From: Edip Hazuri &lt;edip@xxxxxxxxx&gt;<br>
+<br>
+Add support for the HP keyboard RGB backlight found on HP OMEN and<br>
+HP Victus laptops. These keyboards expose per-zone RGB control through<br>
+WMI commands.<br>
+<br>
+Register multicolor LED class devices for each keyboard zone (up to 4<br>
+zones, depending on the keyboard type). Each zone exposes individual<br>
+red, green, and blue channels via the multicolor LED subsystem.<br>
+<br>
+Also hardware-initiated brightness changes (e.g. via the keyboard<br>
+backlight hotkey, mostly fn+f4) are reported.<br>
+<br>
+The color data is stored in a 128-byte color table managed by the<br>
+firmware, with RGB values starting at offset 25, packed sequentially<br>
+per zone.<br>
+<br>
+Signed-off-by: Konenko Andrey Viktorovich &lt;admin@xxxxxxxxxx&gt;<br>
+<br>
+---<br>
+Changes since v6:<br>
+ - The LED class device names have been made consistent with the <br>
+documentation, in accordance with patch <a  rel="nofollow" href="https://lore.kernel.org/linux-leds/">https://lore.kernel.org/linux-leds/</a><br>
+20260504145434.12746-1-johannes.goede@xxxxxxxxxxxxxxxx/<br>
+underscores have been replaced with dashes where indicated.<br>
+<br>
+Changes since v5:<br>
+ - LED class device names changed from a number to using a descriptive name <br>
+for each zone.<br>
+<br>
+v4: <a  rel="nofollow" href="https://lore.kernel.org/all/20260303084022.7223-3-edip@xxxxxxxxx/">https://lore.kernel.org/all/20260303084022.7223-3-edip@xxxxxxxxx/</a><br>
+<br>
+Changes since v4:<br>
+ - Fix circular dependencies<br>
+<br>
+Changes since v3:<br>
+ - Merge the changes into a single commit<br>
+<br>
+Changes since v1:<br>
+ - Fix mentioned style errors<br>
+ - Add Kconfig dependencies<br>
+<br>
+---<br>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+
+
+
+<!--X-References-End-->
+<!--X-BotPNI-->
+<nav aria-label="Message navigation">
+<ul>
+<li><strong>Next message: </strong> <a href="14910.html"> Mathieu Dubois-Briand: "[PATCH v2 0/2] nvmem: layouts: Add fixed-layout driver"</a>
+
+<li><strong>Previous message: </strong> <a href="14907.html"> Dmitry Baryshkov: "[PATCH v3 10/16] media: iris: add minimal GET_PROPERTY implementation"</a>
+
+<li><strong>In reply to: </strong> <a href="14321.html"> Hans de Goede: "Re: [PATCH v6] platform/x86: hp-wmi: Add multicolor LED support for HP keyboard backlight"</a>
+
+
+
+<li><strong>Messages sorted by: </strong><a href="date.html#14908" aria-label="Sort by date">[ date ]</a> <a href="index.html#14908" aria-label="Sort by thread">[ thread ]</a> <a href="subject.html#14908" aria-label="Sort by subject">[ subject ]</a> <a href="author.html#14908" aria-label="Sort by author">[ author ]</a>
+</ul>
+</nav>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

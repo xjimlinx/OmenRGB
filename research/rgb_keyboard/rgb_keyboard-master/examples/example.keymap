@@ -1,0 +1,30 @@
+###########################################################
+## Keymapping is broken on ISO boards and the Ajazz AK33 ##
+###########################################################
+# Example for remapping the keys
+# Note: the file format has changed from previous versions
+#
+# "rgb_keyboard --list-keys map" to see all physical keys that can be mapped
+# "rgb_keyboard --list-keys option" to see all keymap options
+
+# for remapping the keys a keymap section is needed
+# physical_key=key_function
+[keymap]
+Fn=Int_Key
+ScrLk=Fn
+
+
+#################################
+## Macros are currently broken ##
+#################################
+# define macro 1
+# all macro names have to start with "macro" and end with a number
+# each event is as follows: action=key=delay
+# the action is either "up" or "down", the key s can be listed with "rgb_keyboard -L option"
+# the delay specifies how long to wait after the event (delay*10ms)
+# the repeat=number line is optional and specifes how many times the macro gets repeated
+[macro1]
+down=y=5
+up=y=5
+down=z=5
+up=z=0

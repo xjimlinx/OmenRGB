@@ -1,0 +1,1570 @@
+[
+  {
+    "name": "Kconfig",
+    "path": "drivers/acpi/Kconfig",
+    "sha": "f165d14cf61a3a6f9fe1b6859cc60dde0bcc5fad",
+    "size": 19989,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/Kconfig?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/Kconfig",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f165d14cf61a3a6f9fe1b6859cc60dde0bcc5fad",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/Kconfig",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/Kconfig?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f165d14cf61a3a6f9fe1b6859cc60dde0bcc5fad",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/Kconfig"
+    }
+  },
+  {
+    "name": "Makefile",
+    "path": "drivers/acpi/Makefile",
+    "sha": "d1b0affb844f05a9d3f12d7f8af51cd2c3fe7317",
+    "size": 3915,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/Makefile?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/Makefile",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d1b0affb844f05a9d3f12d7f8af51cd2c3fe7317",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/Makefile",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/Makefile?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d1b0affb844f05a9d3f12d7f8af51cd2c3fe7317",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/Makefile"
+    }
+  },
+  {
+    "name": "ac.c",
+    "path": "drivers/acpi/ac.c",
+    "sha": "f19d6dd43473a2d97ca2a4a68813fcb4336d1e4c",
+    "size": 7057,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ac.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ac.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f19d6dd43473a2d97ca2a4a68813fcb4336d1e4c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/ac.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ac.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f19d6dd43473a2d97ca2a4a68813fcb4336d1e4c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ac.c"
+    }
+  },
+  {
+    "name": "acpi_adxl.c",
+    "path": "drivers/acpi/acpi_adxl.c",
+    "sha": "13c8f7b50c463abc8b30a47299193f93eb2a3df5",
+    "size": 4827,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_adxl.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_adxl.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/13c8f7b50c463abc8b30a47299193f93eb2a3df5",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_adxl.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_adxl.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/13c8f7b50c463abc8b30a47299193f93eb2a3df5",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_adxl.c"
+    }
+  },
+  {
+    "name": "acpi_apd.c",
+    "path": "drivers/acpi/acpi_apd.c",
+    "sha": "008bd0552cb78565d51b27dd139629337f7ebe23",
+    "size": 7099,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_apd.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_apd.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/008bd0552cb78565d51b27dd139629337f7ebe23",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_apd.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_apd.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/008bd0552cb78565d51b27dd139629337f7ebe23",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_apd.c"
+    }
+  },
+  {
+    "name": "acpi_configfs.c",
+    "path": "drivers/acpi/acpi_configfs.c",
+    "sha": "12ffec79580311f7a4d7765dc8a1fde577c06581",
+    "size": 6663,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_configfs.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_configfs.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/12ffec79580311f7a4d7765dc8a1fde577c06581",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_configfs.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_configfs.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/12ffec79580311f7a4d7765dc8a1fde577c06581",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_configfs.c"
+    }
+  },
+  {
+    "name": "acpi_dbg.c",
+    "path": "drivers/acpi/acpi_dbg.c",
+    "sha": "515b20d0b698a49eb68599471999f1b5aa8cd3f7",
+    "size": 18283,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_dbg.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_dbg.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/515b20d0b698a49eb68599471999f1b5aa8cd3f7",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_dbg.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_dbg.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/515b20d0b698a49eb68599471999f1b5aa8cd3f7",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_dbg.c"
+    }
+  },
+  {
+    "name": "acpi_extlog.c",
+    "path": "drivers/acpi/acpi_extlog.c",
+    "sha": "7ad3b36013cc6134651247b426d7ee457340af2e",
+    "size": 10708,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_extlog.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_extlog.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/7ad3b36013cc6134651247b426d7ee457340af2e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_extlog.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_extlog.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/7ad3b36013cc6134651247b426d7ee457340af2e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_extlog.c"
+    }
+  },
+  {
+    "name": "acpi_ffh.c",
+    "path": "drivers/acpi/acpi_ffh.c",
+    "sha": "8d5126963dc790ef96b5d0e40efce706d0312a13",
+    "size": 1389,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_ffh.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_ffh.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8d5126963dc790ef96b5d0e40efce706d0312a13",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_ffh.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_ffh.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8d5126963dc790ef96b5d0e40efce706d0312a13",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_ffh.c"
+    }
+  },
+  {
+    "name": "acpi_fpdt.c",
+    "path": "drivers/acpi/acpi_fpdt.c",
+    "sha": "e75dd28d31a93a6d6e89390938d487ff0ee649f3",
+    "size": 8532,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_fpdt.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_fpdt.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e75dd28d31a93a6d6e89390938d487ff0ee649f3",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_fpdt.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_fpdt.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e75dd28d31a93a6d6e89390938d487ff0ee649f3",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_fpdt.c"
+    }
+  },
+  {
+    "name": "acpi_ipmi.c",
+    "path": "drivers/acpi/acpi_ipmi.c",
+    "sha": "2dbed92d54b30d551051f0156386d715192341cd",
+    "size": 17348,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_ipmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_ipmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/2dbed92d54b30d551051f0156386d715192341cd",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_ipmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_ipmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/2dbed92d54b30d551051f0156386d715192341cd",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_ipmi.c"
+    }
+  },
+  {
+    "name": "acpi_lpat.c",
+    "path": "drivers/acpi/acpi_lpat.c",
+    "sha": "6141c9070eca2586af421802cc17688c01586382",
+    "size": 4108,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_lpat.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_lpat.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/6141c9070eca2586af421802cc17688c01586382",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_lpat.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_lpat.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/6141c9070eca2586af421802cc17688c01586382",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_lpat.c"
+    }
+  },
+  {
+    "name": "acpi_lpit.c",
+    "path": "drivers/acpi/acpi_lpit.c",
+    "sha": "b8d98b1b48aea90f8918fb68d3ee7747b0f7916d",
+    "size": 4279,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_lpit.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_lpit.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/b8d98b1b48aea90f8918fb68d3ee7747b0f7916d",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_lpit.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_lpit.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/b8d98b1b48aea90f8918fb68d3ee7747b0f7916d",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_lpit.c"
+    }
+  },
+  {
+    "name": "acpi_memhotplug.c",
+    "path": "drivers/acpi/acpi_memhotplug.c",
+    "sha": "1d7dfe4ee9a6160c4338d91cb054216095be5c0a",
+    "size": 9467,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_memhotplug.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_memhotplug.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/1d7dfe4ee9a6160c4338d91cb054216095be5c0a",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_memhotplug.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_memhotplug.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/1d7dfe4ee9a6160c4338d91cb054216095be5c0a",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_memhotplug.c"
+    }
+  },
+  {
+    "name": "acpi_mrrm.c",
+    "path": "drivers/acpi/acpi_mrrm.c",
+    "sha": "e99cbda834521182fe0f03eaca545f827d1779c3",
+    "size": 4699,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_mrrm.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_mrrm.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e99cbda834521182fe0f03eaca545f827d1779c3",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_mrrm.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_mrrm.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e99cbda834521182fe0f03eaca545f827d1779c3",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_mrrm.c"
+    }
+  },
+  {
+    "name": "acpi_pad.c",
+    "path": "drivers/acpi/acpi_pad.c",
+    "sha": "dc6d0091d17ccd3e4150393cf1d366aab0c461a7",
+    "size": 11451,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_pad.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_pad.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/dc6d0091d17ccd3e4150393cf1d366aab0c461a7",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_pad.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_pad.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/dc6d0091d17ccd3e4150393cf1d366aab0c461a7",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_pad.c"
+    }
+  },
+  {
+    "name": "acpi_pcc.c",
+    "path": "drivers/acpi/acpi_pcc.c",
+    "sha": "438c67189511285477b1574184e945ada989739c",
+    "size": 3886,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_pcc.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_pcc.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/438c67189511285477b1574184e945ada989739c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_pcc.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_pcc.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/438c67189511285477b1574184e945ada989739c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_pcc.c"
+    }
+  },
+  {
+    "name": "acpi_platform.c",
+    "path": "drivers/acpi/acpi_platform.c",
+    "sha": "a09636a4168ec5e2f66a1e6ec11b708f420211c0",
+    "size": 5576,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_platform.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_platform.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/a09636a4168ec5e2f66a1e6ec11b708f420211c0",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_platform.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_platform.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/a09636a4168ec5e2f66a1e6ec11b708f420211c0",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_platform.c"
+    }
+  },
+  {
+    "name": "acpi_pnp.c",
+    "path": "drivers/acpi/acpi_pnp.c",
+    "sha": "da886923b0082d3d1bc92904e16ee32781326bf6",
+    "size": 13171,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_pnp.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_pnp.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/da886923b0082d3d1bc92904e16ee32781326bf6",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_pnp.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_pnp.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/da886923b0082d3d1bc92904e16ee32781326bf6",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_pnp.c"
+    }
+  },
+  {
+    "name": "acpi_processor.c",
+    "path": "drivers/acpi/acpi_processor.c",
+    "sha": "00775b91bd4184d07140b6a90e3c497af243b0ba",
+    "size": 25862,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_processor.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_processor.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/00775b91bd4184d07140b6a90e3c497af243b0ba",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_processor.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_processor.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/00775b91bd4184d07140b6a90e3c497af243b0ba",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_processor.c"
+    }
+  },
+  {
+    "name": "acpi_tad.c",
+    "path": "drivers/acpi/acpi_tad.c",
+    "sha": "fc43df083738c40543839c9975364acf9a8a9f37",
+    "size": 21590,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_tad.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_tad.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/fc43df083738c40543839c9975364acf9a8a9f37",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_tad.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_tad.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/fc43df083738c40543839c9975364acf9a8a9f37",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_tad.c"
+    }
+  },
+  {
+    "name": "acpi_video.c",
+    "path": "drivers/acpi/acpi_video.c",
+    "sha": "f93e877f87f6a3a2ad2a1bc53380b99e386a187b",
+    "size": 59330,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_video.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_video.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f93e877f87f6a3a2ad2a1bc53380b99e386a187b",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_video.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_video.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f93e877f87f6a3a2ad2a1bc53380b99e386a187b",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_video.c"
+    }
+  },
+  {
+    "name": "acpi_watchdog.c",
+    "path": "drivers/acpi/acpi_watchdog.c",
+    "sha": "c04f242a6aa294054f954753fac9082d44b968a4",
+    "size": 4587,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_watchdog.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_watchdog.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c04f242a6aa294054f954753fac9082d44b968a4",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/acpi_watchdog.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpi_watchdog.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c04f242a6aa294054f954753fac9082d44b968a4",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/acpi_watchdog.c"
+    }
+  },
+  {
+    "name": "acpica",
+    "path": "drivers/acpi/acpica",
+    "sha": "93e4ae05ce865189915a00b5db7836082ec61562",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpica?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/acpica",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/93e4ae05ce865189915a00b5db7836082ec61562",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/acpica?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/93e4ae05ce865189915a00b5db7836082ec61562",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/acpica"
+    }
+  },
+  {
+    "name": "apei",
+    "path": "drivers/acpi/apei",
+    "sha": "beac016507b415c7bd68c16608f2a13e563f438c",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/apei?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/apei",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/beac016507b415c7bd68c16608f2a13e563f438c",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/apei?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/beac016507b415c7bd68c16608f2a13e563f438c",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/apei"
+    }
+  },
+  {
+    "name": "arm64",
+    "path": "drivers/acpi/arm64",
+    "sha": "f689b8e357182d0244fb667d66513a27beb1b414",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/arm64?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/arm64",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/f689b8e357182d0244fb667d66513a27beb1b414",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/arm64?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/f689b8e357182d0244fb667d66513a27beb1b414",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/arm64"
+    }
+  },
+  {
+    "name": "battery.c",
+    "path": "drivers/acpi/battery.c",
+    "sha": "f5e0eb299610b9a6f33fb93f325cb0b878b2e080",
+    "size": 38660,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/battery.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/battery.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f5e0eb299610b9a6f33fb93f325cb0b878b2e080",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/battery.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/battery.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f5e0eb299610b9a6f33fb93f325cb0b878b2e080",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/battery.c"
+    }
+  },
+  {
+    "name": "bgrt.c",
+    "path": "drivers/acpi/bgrt.c",
+    "sha": "0fdd581ef96fb6aedf2a881527a01142de3dfccf",
+    "size": 2123,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/bgrt.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/bgrt.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/0fdd581ef96fb6aedf2a881527a01142de3dfccf",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/bgrt.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/bgrt.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/0fdd581ef96fb6aedf2a881527a01142de3dfccf",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/bgrt.c"
+    }
+  },
+  {
+    "name": "bus.c",
+    "path": "drivers/acpi/bus.c",
+    "sha": "a30a904f6535f4025790a83457aff92d8f0c60be",
+    "size": 44746,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/bus.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/bus.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/a30a904f6535f4025790a83457aff92d8f0c60be",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/bus.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/bus.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/a30a904f6535f4025790a83457aff92d8f0c60be",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/bus.c"
+    }
+  },
+  {
+    "name": "button.c",
+    "path": "drivers/acpi/button.c",
+    "sha": "3836ee75dd66e81ed5cf5eb3ad42803872bdb663",
+    "size": 21764,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/button.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/button.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/3836ee75dd66e81ed5cf5eb3ad42803872bdb663",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/button.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/button.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/3836ee75dd66e81ed5cf5eb3ad42803872bdb663",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/button.c"
+    }
+  },
+  {
+    "name": "container.c",
+    "path": "drivers/acpi/container.c",
+    "sha": "f138a433554ac26d0298be2d323573996c7798a7",
+    "size": 2666,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/container.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/container.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f138a433554ac26d0298be2d323573996c7798a7",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/container.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/container.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f138a433554ac26d0298be2d323573996c7798a7",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/container.c"
+    }
+  },
+  {
+    "name": "cppc_acpi.c",
+    "path": "drivers/acpi/cppc_acpi.c",
+    "sha": "53d09ca98f06683f3a33949d5dcf815b57b73a10",
+    "size": 66786,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/cppc_acpi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/cppc_acpi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/53d09ca98f06683f3a33949d5dcf815b57b73a10",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/cppc_acpi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/cppc_acpi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/53d09ca98f06683f3a33949d5dcf815b57b73a10",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/cppc_acpi.c"
+    }
+  },
+  {
+    "name": "debugfs.c",
+    "path": "drivers/acpi/debugfs.c",
+    "sha": "074eb98d213ecfb457f58291059fed475ebce8ff",
+    "size": 391,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/debugfs.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/debugfs.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/074eb98d213ecfb457f58291059fed475ebce8ff",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/debugfs.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/debugfs.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/074eb98d213ecfb457f58291059fed475ebce8ff",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/debugfs.c"
+    }
+  },
+  {
+    "name": "device_pm.c",
+    "path": "drivers/acpi/device_pm.c",
+    "sha": "aa55ecfc2923cf06b943fd07fb5e6cac60e4673c",
+    "size": 43940,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/device_pm.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/device_pm.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/aa55ecfc2923cf06b943fd07fb5e6cac60e4673c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/device_pm.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/device_pm.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/aa55ecfc2923cf06b943fd07fb5e6cac60e4673c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/device_pm.c"
+    }
+  },
+  {
+    "name": "device_sysfs.c",
+    "path": "drivers/acpi/device_sysfs.c",
+    "sha": "c5434b998604dbe16b6efc1e896407347ca96139",
+    "size": 16402,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/device_sysfs.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/device_sysfs.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c5434b998604dbe16b6efc1e896407347ca96139",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/device_sysfs.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/device_sysfs.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c5434b998604dbe16b6efc1e896407347ca96139",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/device_sysfs.c"
+    }
+  },
+  {
+    "name": "dock.c",
+    "path": "drivers/acpi/dock.c",
+    "sha": "d7f3a8912e6a1656a85cf58a47203fdf6a8062c8",
+    "size": 16559,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/dock.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/dock.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d7f3a8912e6a1656a85cf58a47203fdf6a8062c8",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/dock.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/dock.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d7f3a8912e6a1656a85cf58a47203fdf6a8062c8",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/dock.c"
+    }
+  },
+  {
+    "name": "dptf",
+    "path": "drivers/acpi/dptf",
+    "sha": "1e2341bf81339fa500855c629cd6d7a4c9657700",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/dptf?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/dptf",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/1e2341bf81339fa500855c629cd6d7a4c9657700",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/dptf?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/1e2341bf81339fa500855c629cd6d7a4c9657700",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/dptf"
+    }
+  },
+  {
+    "name": "ec.c",
+    "path": "drivers/acpi/ec.c",
+    "sha": "64ad4cfa6208bd3d1f8f606004ed120170a0638d",
+    "size": 62799,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ec.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ec.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/64ad4cfa6208bd3d1f8f606004ed120170a0638d",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/ec.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ec.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/64ad4cfa6208bd3d1f8f606004ed120170a0638d",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ec.c"
+    }
+  },
+  {
+    "name": "ec_sys.c",
+    "path": "drivers/acpi/ec_sys.c",
+    "sha": "c074a0fae059fa40d12962ca4e85cbe47609fc57",
+    "size": 3227,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ec_sys.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ec_sys.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c074a0fae059fa40d12962ca4e85cbe47609fc57",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/ec_sys.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ec_sys.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c074a0fae059fa40d12962ca4e85cbe47609fc57",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ec_sys.c"
+    }
+  },
+  {
+    "name": "event.c",
+    "path": "drivers/acpi/event.c",
+    "sha": "4d840d2e7b98b7ac9fcd41a5b232683f5f52d9d3",
+    "size": 4340,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/event.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/event.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/4d840d2e7b98b7ac9fcd41a5b232683f5f52d9d3",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/event.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/event.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/4d840d2e7b98b7ac9fcd41a5b232683f5f52d9d3",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/event.c"
+    }
+  },
+  {
+    "name": "evged.c",
+    "path": "drivers/acpi/evged.c",
+    "sha": "5c35cbc7f6ff12f3384fc9877779379e72ff621e",
+    "size": 4653,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/evged.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/evged.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/5c35cbc7f6ff12f3384fc9877779379e72ff621e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/evged.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/evged.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/5c35cbc7f6ff12f3384fc9877779379e72ff621e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/evged.c"
+    }
+  },
+  {
+    "name": "fan.h",
+    "path": "drivers/acpi/fan.h",
+    "sha": "97ce3212edf36c4ce0b019d1c5f89c509077e03f",
+    "size": 3250,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/97ce3212edf36c4ce0b019d1c5f89c509077e03f",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/fan.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/97ce3212edf36c4ce0b019d1c5f89c509077e03f",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan.h"
+    }
+  },
+  {
+    "name": "fan_attr.c",
+    "path": "drivers/acpi/fan_attr.c",
+    "sha": "9b7fa52f3c2a7446d73b60c46b93b363fac09178",
+    "size": 4101,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan_attr.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan_attr.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/9b7fa52f3c2a7446d73b60c46b93b363fac09178",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/fan_attr.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan_attr.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/9b7fa52f3c2a7446d73b60c46b93b363fac09178",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan_attr.c"
+    }
+  },
+  {
+    "name": "fan_core.c",
+    "path": "drivers/acpi/fan_core.c",
+    "sha": "fb08b8549ed74851a9feb45334366d7fa39324ae",
+    "size": 17587,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan_core.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan_core.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/fb08b8549ed74851a9feb45334366d7fa39324ae",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/fan_core.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan_core.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/fb08b8549ed74851a9feb45334366d7fa39324ae",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan_core.c"
+    }
+  },
+  {
+    "name": "fan_hwmon.c",
+    "path": "drivers/acpi/fan_hwmon.c",
+    "sha": "d3374f8f524b72652e4a339cb48255eaed05d595",
+    "size": 3867,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan_hwmon.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan_hwmon.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d3374f8f524b72652e4a339cb48255eaed05d595",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/fan_hwmon.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/fan_hwmon.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d3374f8f524b72652e4a339cb48255eaed05d595",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/fan_hwmon.c"
+    }
+  },
+  {
+    "name": "glue.c",
+    "path": "drivers/acpi/glue.c",
+    "sha": "b1776809279ddbea701475019fd81ece00eb3cc4",
+    "size": 9830,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/glue.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/glue.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/b1776809279ddbea701475019fd81ece00eb3cc4",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/glue.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/glue.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/b1776809279ddbea701475019fd81ece00eb3cc4",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/glue.c"
+    }
+  },
+  {
+    "name": "hed.c",
+    "path": "drivers/acpi/hed.c",
+    "sha": "48562f53d3ab3c2c34d5d669528bd6ac627347ed",
+    "size": 2164,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/hed.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/hed.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/48562f53d3ab3c2c34d5d669528bd6ac627347ed",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/hed.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/hed.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/48562f53d3ab3c2c34d5d669528bd6ac627347ed",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/hed.c"
+    }
+  },
+  {
+    "name": "internal.h",
+    "path": "drivers/acpi/internal.h",
+    "sha": "40f875b265a94232578ba31ad9805c61e5bf0a33",
+    "size": 11895,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/internal.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/internal.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/40f875b265a94232578ba31ad9805c61e5bf0a33",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/internal.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/internal.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/40f875b265a94232578ba31ad9805c61e5bf0a33",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/internal.h"
+    }
+  },
+  {
+    "name": "ioapic.c",
+    "path": "drivers/acpi/ioapic.c",
+    "sha": "533ddd75922bf8a0f409c6afe20e5e70925639bf",
+    "size": 6076,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ioapic.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ioapic.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/533ddd75922bf8a0f409c6afe20e5e70925639bf",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/ioapic.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/ioapic.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/533ddd75922bf8a0f409c6afe20e5e70925639bf",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/ioapic.c"
+    }
+  },
+  {
+    "name": "irq.c",
+    "path": "drivers/acpi/irq.c",
+    "sha": "d1595156c86a420270b9a470c27e70f20ffd850e",
+    "size": 10826,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/irq.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/irq.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d1595156c86a420270b9a470c27e70f20ffd850e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/irq.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/irq.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d1595156c86a420270b9a470c27e70f20ffd850e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/irq.c"
+    }
+  },
+  {
+    "name": "mipi-disco-img.c",
+    "path": "drivers/acpi/mipi-disco-img.c",
+    "sha": "ea4bffe3c02d0548809f0ecd2d735c5fe5c34991",
+    "size": 23465,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/mipi-disco-img.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/mipi-disco-img.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/ea4bffe3c02d0548809f0ecd2d735c5fe5c34991",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/mipi-disco-img.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/mipi-disco-img.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/ea4bffe3c02d0548809f0ecd2d735c5fe5c34991",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/mipi-disco-img.c"
+    }
+  },
+  {
+    "name": "nfit",
+    "path": "drivers/acpi/nfit",
+    "sha": "1161fc8989986b98d4b2d9749121aa777a77f61e",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/nfit?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/nfit",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/1161fc8989986b98d4b2d9749121aa777a77f61e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/nfit?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/1161fc8989986b98d4b2d9749121aa777a77f61e",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/nfit"
+    }
+  },
+  {
+    "name": "nhlt.c",
+    "path": "drivers/acpi/nhlt.c",
+    "sha": "dc1bd0df9228edfd851f42411d948d99cd54f820",
+    "size": 8915,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/nhlt.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/nhlt.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/dc1bd0df9228edfd851f42411d948d99cd54f820",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/nhlt.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/nhlt.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/dc1bd0df9228edfd851f42411d948d99cd54f820",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/nhlt.c"
+    }
+  },
+  {
+    "name": "numa",
+    "path": "drivers/acpi/numa",
+    "sha": "74d9ee0263af376fc8d3665c1cd5110bdf5f6292",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/numa?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/numa",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/74d9ee0263af376fc8d3665c1cd5110bdf5f6292",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/numa?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/74d9ee0263af376fc8d3665c1cd5110bdf5f6292",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/numa"
+    }
+  },
+  {
+    "name": "nvs.c",
+    "path": "drivers/acpi/nvs.c",
+    "sha": "6eaad7dd02414cf1ec87b510aa06884d7a899756",
+    "size": 4637,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/nvs.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/nvs.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/6eaad7dd02414cf1ec87b510aa06884d7a899756",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/nvs.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/nvs.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/6eaad7dd02414cf1ec87b510aa06884d7a899756",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/nvs.c"
+    }
+  },
+  {
+    "name": "osi.c",
+    "path": "drivers/acpi/osi.c",
+    "sha": "9470f1830ff50ff61b0e2929d71d0b94a4ac2920",
+    "size": 12663,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/osi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/osi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/9470f1830ff50ff61b0e2929d71d0b94a4ac2920",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/osi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/osi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/9470f1830ff50ff61b0e2929d71d0b94a4ac2920",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/osi.c"
+    }
+  },
+  {
+    "name": "osl.c",
+    "path": "drivers/acpi/osl.c",
+    "sha": "ed2162a97bd2aa3f7c79706d238092a6b0399332",
+    "size": 42937,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/osl.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/osl.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/ed2162a97bd2aa3f7c79706d238092a6b0399332",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/osl.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/osl.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/ed2162a97bd2aa3f7c79706d238092a6b0399332",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/osl.c"
+    }
+  },
+  {
+    "name": "pci_irq.c",
+    "path": "drivers/acpi/pci_irq.c",
+    "sha": "8558f0ef64e36c9139dcccdaf4a2799cf83ce48a",
+    "size": 13574,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_irq.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_irq.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8558f0ef64e36c9139dcccdaf4a2799cf83ce48a",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pci_irq.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_irq.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8558f0ef64e36c9139dcccdaf4a2799cf83ce48a",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_irq.c"
+    }
+  },
+  {
+    "name": "pci_link.c",
+    "path": "drivers/acpi/pci_link.c",
+    "sha": "e6ed13aee48d0cd2e82286e20fb72de5c7720bab",
+    "size": 23599,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_link.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_link.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e6ed13aee48d0cd2e82286e20fb72de5c7720bab",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pci_link.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_link.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e6ed13aee48d0cd2e82286e20fb72de5c7720bab",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_link.c"
+    }
+  },
+  {
+    "name": "pci_mcfg.c",
+    "path": "drivers/acpi/pci_mcfg.c",
+    "sha": "0782a5d839bf02f8174c32fcb59a9b92f8305eb1",
+    "size": 10014,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_mcfg.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_mcfg.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/0782a5d839bf02f8174c32fcb59a9b92f8305eb1",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pci_mcfg.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_mcfg.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/0782a5d839bf02f8174c32fcb59a9b92f8305eb1",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_mcfg.c"
+    }
+  },
+  {
+    "name": "pci_root.c",
+    "path": "drivers/acpi/pci_root.c",
+    "sha": "4c06c3ffd0cbb54373cf1ba7d47d24251df90772",
+    "size": 30239,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_root.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_root.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/4c06c3ffd0cbb54373cf1ba7d47d24251df90772",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pci_root.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_root.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/4c06c3ffd0cbb54373cf1ba7d47d24251df90772",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_root.c"
+    }
+  },
+  {
+    "name": "pci_slot.c",
+    "path": "drivers/acpi/pci_slot.c",
+    "sha": "33a123074071acb78da273ac8ff809e5abfda322",
+    "size": 4705,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_slot.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_slot.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/33a123074071acb78da273ac8ff809e5abfda322",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pci_slot.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pci_slot.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/33a123074071acb78da273ac8ff809e5abfda322",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pci_slot.c"
+    }
+  },
+  {
+    "name": "pfr_telemetry.c",
+    "path": "drivers/acpi/pfr_telemetry.c",
+    "sha": "2387376832a1b61dc0c270b98a13770dc5258125",
+    "size": 11872,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pfr_telemetry.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pfr_telemetry.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/2387376832a1b61dc0c270b98a13770dc5258125",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pfr_telemetry.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pfr_telemetry.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/2387376832a1b61dc0c270b98a13770dc5258125",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pfr_telemetry.c"
+    }
+  },
+  {
+    "name": "pfr_update.c",
+    "path": "drivers/acpi/pfr_update.c",
+    "sha": "6283105bb0e8b2ae76cf733a28f665eec6d83e52",
+    "size": 17344,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pfr_update.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pfr_update.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/6283105bb0e8b2ae76cf733a28f665eec6d83e52",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pfr_update.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pfr_update.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/6283105bb0e8b2ae76cf733a28f665eec6d83e52",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pfr_update.c"
+    }
+  },
+  {
+    "name": "platform_profile.c",
+    "path": "drivers/acpi/platform_profile.c",
+    "sha": "79d2e92e5c28d771ba5ad292e37f51370806d1dd",
+    "size": 18325,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/platform_profile.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/platform_profile.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/79d2e92e5c28d771ba5ad292e37f51370806d1dd",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/platform_profile.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/platform_profile.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/79d2e92e5c28d771ba5ad292e37f51370806d1dd",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/platform_profile.c"
+    }
+  },
+  {
+    "name": "pmic",
+    "path": "drivers/acpi/pmic",
+    "sha": "a67132b0aa3895a0610e1796d25db9e4d604be16",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pmic?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/pmic",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/a67132b0aa3895a0610e1796d25db9e4d604be16",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pmic?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/a67132b0aa3895a0610e1796d25db9e4d604be16",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/pmic"
+    }
+  },
+  {
+    "name": "power.c",
+    "path": "drivers/acpi/power.c",
+    "sha": "d4131c184be8e64a63c56de544bc8a4195458dbb",
+    "size": 30001,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/power.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/power.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d4131c184be8e64a63c56de544bc8a4195458dbb",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/power.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/power.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d4131c184be8e64a63c56de544bc8a4195458dbb",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/power.c"
+    }
+  },
+  {
+    "name": "pptt.c",
+    "path": "drivers/acpi/pptt.c",
+    "sha": "c01b8648242cd9e093e912c6c9597708787d5d23",
+    "size": 32588,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pptt.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pptt.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c01b8648242cd9e093e912c6c9597708787d5d23",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/pptt.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/pptt.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c01b8648242cd9e093e912c6c9597708787d5d23",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/pptt.c"
+    }
+  },
+  {
+    "name": "prmt.c",
+    "path": "drivers/acpi/prmt.c",
+    "sha": "7f5851371e5faf5dea9692026a4dfde8a810a2c0",
+    "size": 11612,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/prmt.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/prmt.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/7f5851371e5faf5dea9692026a4dfde8a810a2c0",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/prmt.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/prmt.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/7f5851371e5faf5dea9692026a4dfde8a810a2c0",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/prmt.c"
+    }
+  },
+  {
+    "name": "proc.c",
+    "path": "drivers/acpi/proc.c",
+    "sha": "c08ead07252bcb3ba8c3b5620b5edd5d3d013554",
+    "size": 3455,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/proc.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/proc.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c08ead07252bcb3ba8c3b5620b5edd5d3d013554",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/proc.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/proc.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c08ead07252bcb3ba8c3b5620b5edd5d3d013554",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/proc.c"
+    }
+  },
+  {
+    "name": "processor_core.c",
+    "path": "drivers/acpi/processor_core.c",
+    "sha": "a4498357bd165ae8c13623231c109cca6f7fc9f5",
+    "size": 11303,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_core.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_core.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/a4498357bd165ae8c13623231c109cca6f7fc9f5",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/processor_core.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_core.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/a4498357bd165ae8c13623231c109cca6f7fc9f5",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_core.c"
+    }
+  },
+  {
+    "name": "processor_driver.c",
+    "path": "drivers/acpi/processor_driver.c",
+    "sha": "cda8fd7200004fb74f7b5628a6303ec1ee2d5cb8",
+    "size": 7558,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_driver.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_driver.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/cda8fd7200004fb74f7b5628a6303ec1ee2d5cb8",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/processor_driver.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_driver.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/cda8fd7200004fb74f7b5628a6303ec1ee2d5cb8",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_driver.c"
+    }
+  },
+  {
+    "name": "processor_idle.c",
+    "path": "drivers/acpi/processor_idle.c",
+    "sha": "4482cf28f56aeeae6aca4b09b5fd0bd147023523",
+    "size": 37606,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_idle.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_idle.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/4482cf28f56aeeae6aca4b09b5fd0bd147023523",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/processor_idle.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_idle.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/4482cf28f56aeeae6aca4b09b5fd0bd147023523",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_idle.c"
+    }
+  },
+  {
+    "name": "processor_pdc.c",
+    "path": "drivers/acpi/processor_pdc.c",
+    "sha": "a46bd9876b115d2741f22e20a02ea13714e7c66c",
+    "size": 2559,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_pdc.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_pdc.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/a46bd9876b115d2741f22e20a02ea13714e7c66c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/processor_pdc.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_pdc.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/a46bd9876b115d2741f22e20a02ea13714e7c66c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_pdc.c"
+    }
+  },
+  {
+    "name": "processor_perflib.c",
+    "path": "drivers/acpi/processor_perflib.c",
+    "sha": "fdf55c285c9a70b4db1b928616fa90d16e7d4a28",
+    "size": 19723,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_perflib.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_perflib.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/fdf55c285c9a70b4db1b928616fa90d16e7d4a28",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/processor_perflib.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_perflib.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/fdf55c285c9a70b4db1b928616fa90d16e7d4a28",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_perflib.c"
+    }
+  },
+  {
+    "name": "processor_thermal.c",
+    "path": "drivers/acpi/processor_thermal.c",
+    "sha": "c7b1dc5687ecccceb7e3dcbdc861f54701aed58a",
+    "size": 8548,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_thermal.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_thermal.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c7b1dc5687ecccceb7e3dcbdc861f54701aed58a",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/processor_thermal.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_thermal.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c7b1dc5687ecccceb7e3dcbdc861f54701aed58a",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_thermal.c"
+    }
+  },
+  {
+    "name": "processor_throttling.c",
+    "path": "drivers/acpi/processor_throttling.c",
+    "sha": "c0f92b93747da5bde895ac46384759f4ffdee33f",
+    "size": 30930,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_throttling.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_throttling.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c0f92b93747da5bde895ac46384759f4ffdee33f",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/processor_throttling.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/processor_throttling.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c0f92b93747da5bde895ac46384759f4ffdee33f",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/processor_throttling.c"
+    }
+  },
+  {
+    "name": "property.c",
+    "path": "drivers/acpi/property.c",
+    "sha": "8ee5a1f0eb4869114c5d282f5808974687d46f5c",
+    "size": 47834,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/property.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/property.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8ee5a1f0eb4869114c5d282f5808974687d46f5c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/property.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/property.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8ee5a1f0eb4869114c5d282f5808974687d46f5c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/property.c"
+    }
+  },
+  {
+    "name": "reboot.c",
+    "path": "drivers/acpi/reboot.c",
+    "sha": "b79b7c99c237c331a4ca7dbba5f738b9a4b88a61",
+    "size": 2055,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/reboot.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/reboot.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/b79b7c99c237c331a4ca7dbba5f738b9a4b88a61",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/reboot.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/reboot.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/b79b7c99c237c331a4ca7dbba5f738b9a4b88a61",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/reboot.c"
+    }
+  },
+  {
+    "name": "resource.c",
+    "path": "drivers/acpi/resource.c",
+    "sha": "56df4599d3604f720fe6ee6cd83634ff585df48c",
+    "size": 32849,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/resource.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/resource.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/56df4599d3604f720fe6ee6cd83634ff585df48c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/resource.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/resource.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/56df4599d3604f720fe6ee6cd83634ff585df48c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/resource.c"
+    }
+  },
+  {
+    "name": "riscv",
+    "path": "drivers/acpi/riscv",
+    "sha": "561c716541dc61392ab954f5a88cd57e91d8d125",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/riscv?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/riscv",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/561c716541dc61392ab954f5a88cd57e91d8d125",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/riscv?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/561c716541dc61392ab954f5a88cd57e91d8d125",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/riscv"
+    }
+  },
+  {
+    "name": "sbs.c",
+    "path": "drivers/acpi/sbs.c",
+    "sha": "86b7c797585263e3310179eb1bbc48e1bf88aca0",
+    "size": 19309,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sbs.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sbs.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/86b7c797585263e3310179eb1bbc48e1bf88aca0",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/sbs.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sbs.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/86b7c797585263e3310179eb1bbc48e1bf88aca0",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sbs.c"
+    }
+  },
+  {
+    "name": "sbshc.c",
+    "path": "drivers/acpi/sbshc.c",
+    "sha": "c0ffa267f96cd51a68b7f1e8fdfba1ec993085d4",
+    "size": 6805,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sbshc.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sbshc.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c0ffa267f96cd51a68b7f1e8fdfba1ec993085d4",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/sbshc.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sbshc.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c0ffa267f96cd51a68b7f1e8fdfba1ec993085d4",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sbshc.c"
+    }
+  },
+  {
+    "name": "sbshc.h",
+    "path": "drivers/acpi/sbshc.h",
+    "sha": "695c390e28843953b437effeb098f1d72323fefd",
+    "size": 946,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sbshc.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sbshc.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/695c390e28843953b437effeb098f1d72323fefd",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/sbshc.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sbshc.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/695c390e28843953b437effeb098f1d72323fefd",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sbshc.h"
+    }
+  },
+  {
+    "name": "scan.c",
+    "path": "drivers/acpi/scan.c",
+    "sha": "9a7ac2eb9ce0b8475e499e87832b8400d2d8913e",
+    "size": 76352,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/scan.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/scan.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/9a7ac2eb9ce0b8475e499e87832b8400d2d8913e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/scan.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/scan.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/9a7ac2eb9ce0b8475e499e87832b8400d2d8913e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/scan.c"
+    }
+  },
+  {
+    "name": "sleep.c",
+    "path": "drivers/acpi/sleep.c",
+    "sha": "132a9df984713799ef68b265b268dbd146dd5fc7",
+    "size": 28975,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sleep.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sleep.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/132a9df984713799ef68b265b268dbd146dd5fc7",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/sleep.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sleep.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/132a9df984713799ef68b265b268dbd146dd5fc7",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sleep.c"
+    }
+  },
+  {
+    "name": "sleep.h",
+    "path": "drivers/acpi/sleep.h",
+    "sha": "9c3cb109c5d27e87961d133aba8fa0c4cba565c9",
+    "size": 828,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sleep.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sleep.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/9c3cb109c5d27e87961d133aba8fa0c4cba565c9",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/sleep.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sleep.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/9c3cb109c5d27e87961d133aba8fa0c4cba565c9",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sleep.h"
+    }
+  },
+  {
+    "name": "spcr.c",
+    "path": "drivers/acpi/spcr.c",
+    "sha": "73cb933fdc89b224fde101da2e1afadb7ea1f557",
+    "size": 6623,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/spcr.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/spcr.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/73cb933fdc89b224fde101da2e1afadb7ea1f557",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/spcr.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/spcr.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/73cb933fdc89b224fde101da2e1afadb7ea1f557",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/spcr.c"
+    }
+  },
+  {
+    "name": "sysfs.c",
+    "path": "drivers/acpi/sysfs.c",
+    "sha": "908cc5c7e6431b20fc7dff6b1bc766389d77c78d",
+    "size": 27845,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sysfs.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sysfs.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/908cc5c7e6431b20fc7dff6b1bc766389d77c78d",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/sysfs.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/sysfs.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/908cc5c7e6431b20fc7dff6b1bc766389d77c78d",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/sysfs.c"
+    }
+  },
+  {
+    "name": "tables.c",
+    "path": "drivers/acpi/tables.c",
+    "sha": "4286e4af10924a492f6db08ea7aa25614e8887ad",
+    "size": 21731,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/tables.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/tables.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/4286e4af10924a492f6db08ea7aa25614e8887ad",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/tables.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/tables.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/4286e4af10924a492f6db08ea7aa25614e8887ad",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/tables.c"
+    }
+  },
+  {
+    "name": "thermal.c",
+    "path": "drivers/acpi/thermal.c",
+    "sha": "dd7666c176a0575279c9ed22c527f5468888c4d8",
+    "size": 26639,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/thermal.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/thermal.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/dd7666c176a0575279c9ed22c527f5468888c4d8",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/thermal.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/thermal.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/dd7666c176a0575279c9ed22c527f5468888c4d8",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/thermal.c"
+    }
+  },
+  {
+    "name": "thermal_lib.c",
+    "path": "drivers/acpi/thermal_lib.c",
+    "sha": "f81591927e8658f14be242f89a7e6af3be315803",
+    "size": 5129,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/thermal_lib.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/thermal_lib.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f81591927e8658f14be242f89a7e6af3be315803",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/thermal_lib.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/thermal_lib.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f81591927e8658f14be242f89a7e6af3be315803",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/thermal_lib.c"
+    }
+  },
+  {
+    "name": "tiny-power-button.c",
+    "path": "drivers/acpi/tiny-power-button.c",
+    "sha": "92516ef84b021650397d2f0185ddfca81670ca31",
+    "size": 2473,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/tiny-power-button.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/tiny-power-button.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/92516ef84b021650397d2f0185ddfca81670ca31",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/tiny-power-button.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/tiny-power-button.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/92516ef84b021650397d2f0185ddfca81670ca31",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/tiny-power-button.c"
+    }
+  },
+  {
+    "name": "utils.c",
+    "path": "drivers/acpi/utils.c",
+    "sha": "6ab27e4826d15b59fa5d162cc6b9a9481ed1bd44",
+    "size": 28850,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/utils.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/utils.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/6ab27e4826d15b59fa5d162cc6b9a9481ed1bd44",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/utils.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/utils.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/6ab27e4826d15b59fa5d162cc6b9a9481ed1bd44",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/utils.c"
+    }
+  },
+  {
+    "name": "video_detect.c",
+    "path": "drivers/acpi/video_detect.c",
+    "sha": "458efa4fe9d4b06194d2b37d013210129b1e781e",
+    "size": 29974,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/video_detect.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/video_detect.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/458efa4fe9d4b06194d2b37d013210129b1e781e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/video_detect.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/video_detect.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/458efa4fe9d4b06194d2b37d013210129b1e781e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/video_detect.c"
+    }
+  },
+  {
+    "name": "viot.c",
+    "path": "drivers/acpi/viot.c",
+    "sha": "c05fcc060e63ad8cee54219bbb976621cd7e5533",
+    "size": 9054,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/viot.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/viot.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c05fcc060e63ad8cee54219bbb976621cd7e5533",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/viot.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/viot.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c05fcc060e63ad8cee54219bbb976621cd7e5533",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/viot.c"
+    }
+  },
+  {
+    "name": "wakeup.c",
+    "path": "drivers/acpi/wakeup.c",
+    "sha": "0cbee0f06f0de2bc4889d80b1837c560b6d14796",
+    "size": 4702,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/wakeup.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/acpi/wakeup.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/0cbee0f06f0de2bc4889d80b1837c560b6d14796",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/acpi/wakeup.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/wakeup.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/0cbee0f06f0de2bc4889d80b1837c560b6d14796",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/acpi/wakeup.c"
+    }
+  },
+  {
+    "name": "x86",
+    "path": "drivers/acpi/x86",
+    "sha": "369d655c7cc9156ee2a7ce8d5b352d1dc383f45c",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/x86?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/acpi/x86",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/369d655c7cc9156ee2a7ce8d5b352d1dc383f45c",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/acpi/x86?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/369d655c7cc9156ee2a7ce8d5b352d1dc383f45c",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/acpi/x86"
+    }
+  }
+]

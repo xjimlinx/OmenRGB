@@ -1,0 +1,13 @@
+[package]
+name = "omenrgb"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "omenrgb"
+path = "src/main.rs"
+
+[dependencies]
+omenrgb-core = { path = "../omenrgb-core" }
+serde_json = "1"

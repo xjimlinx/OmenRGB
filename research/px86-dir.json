@@ -1,0 +1,1458 @@
+[
+  {
+    "name": "Kconfig",
+    "path": "drivers/platform/x86/Kconfig",
+    "sha": "b54b5212b20473a9980dd716b8d58bf7aac90547",
+    "size": 33544,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/Kconfig?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/Kconfig",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/b54b5212b20473a9980dd716b8d58bf7aac90547",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/Kconfig",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/Kconfig?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/b54b5212b20473a9980dd716b8d58bf7aac90547",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/Kconfig"
+    }
+  },
+  {
+    "name": "Makefile",
+    "path": "drivers/platform/x86/Makefile",
+    "sha": "872ac3842391f762680fc7db03a02fd0386b4991",
+    "size": 4531,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/Makefile?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/Makefile",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/872ac3842391f762680fc7db03a02fd0386b4991",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/Makefile",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/Makefile?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/872ac3842391f762680fc7db03a02fd0386b4991",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/Makefile"
+    }
+  },
+  {
+    "name": "acer-wireless.c",
+    "path": "drivers/platform/x86/acer-wireless.c",
+    "sha": "fae8e5ad0f97c4273961045c301a48e65411e2e6",
+    "size": 2217,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/acer-wireless.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/acer-wireless.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/fae8e5ad0f97c4273961045c301a48e65411e2e6",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/acer-wireless.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/acer-wireless.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/fae8e5ad0f97c4273961045c301a48e65411e2e6",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/acer-wireless.c"
+    }
+  },
+  {
+    "name": "acer-wmi.c",
+    "path": "drivers/platform/x86/acer-wmi.c",
+    "sha": "e0eaaefb13d04c45a0b6f264d0278281a6119282",
+    "size": 80900,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/acer-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/acer-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e0eaaefb13d04c45a0b6f264d0278281a6119282",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/acer-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/acer-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e0eaaefb13d04c45a0b6f264d0278281a6119282",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/acer-wmi.c"
+    }
+  },
+  {
+    "name": "acerhdf.c",
+    "path": "drivers/platform/x86/acerhdf.c",
+    "sha": "5ce5ad3efe69442793f2e5f5ada7d400c053d862",
+    "size": 23284,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/acerhdf.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/acerhdf.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/5ce5ad3efe69442793f2e5f5ada7d400c053d862",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/acerhdf.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/acerhdf.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/5ce5ad3efe69442793f2e5f5ada7d400c053d862",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/acerhdf.c"
+    }
+  },
+  {
+    "name": "adv_swbutton.c",
+    "path": "drivers/platform/x86/adv_swbutton.c",
+    "sha": "8f7a26e6de81dd930e4eeb70fa3959ef967cf54c",
+    "size": 3131,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/adv_swbutton.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/adv_swbutton.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8f7a26e6de81dd930e4eeb70fa3959ef967cf54c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/adv_swbutton.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/adv_swbutton.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8f7a26e6de81dd930e4eeb70fa3959ef967cf54c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/adv_swbutton.c"
+    }
+  },
+  {
+    "name": "amd",
+    "path": "drivers/platform/x86/amd",
+    "sha": "5cf372aba37262e8c60c078f65181eafe7f53456",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/amd?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/amd",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/5cf372aba37262e8c60c078f65181eafe7f53456",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/amd?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/5cf372aba37262e8c60c078f65181eafe7f53456",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/amd"
+    }
+  },
+  {
+    "name": "amilo-rfkill.c",
+    "path": "drivers/platform/x86/amilo-rfkill.c",
+    "sha": "18397c527eab355ef30431fe026e5492ecbc6cf5",
+    "size": 4242,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/amilo-rfkill.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/amilo-rfkill.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/18397c527eab355ef30431fe026e5492ecbc6cf5",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/amilo-rfkill.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/amilo-rfkill.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/18397c527eab355ef30431fe026e5492ecbc6cf5",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/amilo-rfkill.c"
+    }
+  },
+  {
+    "name": "apple-gmux.c",
+    "path": "drivers/platform/x86/apple-gmux.c",
+    "sha": "9c728ac4e045a7436960b449de62edd68fc42d82",
+    "size": 32202,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/apple-gmux.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/apple-gmux.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/9c728ac4e045a7436960b449de62edd68fc42d82",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/apple-gmux.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/apple-gmux.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/9c728ac4e045a7436960b449de62edd68fc42d82",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/apple-gmux.c"
+    }
+  },
+  {
+    "name": "asus-armoury.c",
+    "path": "drivers/platform/x86/asus-armoury.c",
+    "sha": "495dc1e31d40e5d317a27267ce53803834309aef",
+    "size": 34198,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-armoury.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-armoury.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/495dc1e31d40e5d317a27267ce53803834309aef",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-armoury.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-armoury.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/495dc1e31d40e5d317a27267ce53803834309aef",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-armoury.c"
+    }
+  },
+  {
+    "name": "asus-armoury.h",
+    "path": "drivers/platform/x86/asus-armoury.h",
+    "sha": "322bfa647c2dc2735b9b4e77d5d46cad1a35c8aa",
+    "size": 63345,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-armoury.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-armoury.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/322bfa647c2dc2735b9b4e77d5d46cad1a35c8aa",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-armoury.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-armoury.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/322bfa647c2dc2735b9b4e77d5d46cad1a35c8aa",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-armoury.h"
+    }
+  },
+  {
+    "name": "asus-laptop.c",
+    "path": "drivers/platform/x86/asus-laptop.c",
+    "sha": "140ac8a105372927fbdfda1321d426998ae4839c",
+    "size": 52582,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/140ac8a105372927fbdfda1321d426998ae4839c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/140ac8a105372927fbdfda1321d426998ae4839c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-laptop.c"
+    }
+  },
+  {
+    "name": "asus-nb-wmi.c",
+    "path": "drivers/platform/x86/asus-nb-wmi.c",
+    "sha": "8005c088e9eeedbea843f93f87abc1bd6d238546",
+    "size": 20461,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-nb-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-nb-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8005c088e9eeedbea843f93f87abc1bd6d238546",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-nb-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-nb-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8005c088e9eeedbea843f93f87abc1bd6d238546",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-nb-wmi.c"
+    }
+  },
+  {
+    "name": "asus-tf103c-dock.c",
+    "path": "drivers/platform/x86/asus-tf103c-dock.c",
+    "sha": "92466477de9a0192451b74d66449eb479931c4d0",
+    "size": 27591,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-tf103c-dock.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-tf103c-dock.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/92466477de9a0192451b74d66449eb479931c4d0",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-tf103c-dock.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-tf103c-dock.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/92466477de9a0192451b74d66449eb479931c4d0",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-tf103c-dock.c"
+    }
+  },
+  {
+    "name": "asus-wireless.c",
+    "path": "drivers/platform/x86/asus-wireless.c",
+    "sha": "2b494bf3cba8c9b3ec92e3a054dd504bf13e8c25",
+    "size": 5489,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-wireless.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-wireless.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/2b494bf3cba8c9b3ec92e3a054dd504bf13e8c25",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-wireless.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-wireless.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/2b494bf3cba8c9b3ec92e3a054dd504bf13e8c25",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-wireless.c"
+    }
+  },
+  {
+    "name": "asus-wmi.c",
+    "path": "drivers/platform/x86/asus-wmi.c",
+    "sha": "e835779b6f5f1a807b21a765a701ccd2b308f121",
+    "size": 145108,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e835779b6f5f1a807b21a765a701ccd2b308f121",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e835779b6f5f1a807b21a765a701ccd2b308f121",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-wmi.c"
+    }
+  },
+  {
+    "name": "asus-wmi.h",
+    "path": "drivers/platform/x86/asus-wmi.h",
+    "sha": "5cd4392b964eb816def80c84e396f41cd9cb926d",
+    "size": 2436,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-wmi.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-wmi.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/5cd4392b964eb816def80c84e396f41cd9cb926d",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/asus-wmi.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/asus-wmi.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/5cd4392b964eb816def80c84e396f41cd9cb926d",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/asus-wmi.h"
+    }
+  },
+  {
+    "name": "ayaneo-ec.c",
+    "path": "drivers/platform/x86/ayaneo-ec.c",
+    "sha": "41a24e091248694f098cbfd69140abc79060f878",
+    "size": 13705,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/ayaneo-ec.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/ayaneo-ec.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/41a24e091248694f098cbfd69140abc79060f878",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/ayaneo-ec.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/ayaneo-ec.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/41a24e091248694f098cbfd69140abc79060f878",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/ayaneo-ec.c"
+    }
+  },
+  {
+    "name": "barco-p50-gpio.c",
+    "path": "drivers/platform/x86/barco-p50-gpio.c",
+    "sha": "e1400382465dc478f4078185d5be192f17c5e17d",
+    "size": 10258,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/barco-p50-gpio.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/barco-p50-gpio.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e1400382465dc478f4078185d5be192f17c5e17d",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/barco-p50-gpio.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/barco-p50-gpio.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e1400382465dc478f4078185d5be192f17c5e17d",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/barco-p50-gpio.c"
+    }
+  },
+  {
+    "name": "bitland-mifs-wmi.c",
+    "path": "drivers/platform/x86/bitland-mifs-wmi.c",
+    "sha": "3a373184519da40fa308a3bb5ffd6ec60cd9e839",
+    "size": 21237,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/bitland-mifs-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/bitland-mifs-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/3a373184519da40fa308a3bb5ffd6ec60cd9e839",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/bitland-mifs-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/bitland-mifs-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/3a373184519da40fa308a3bb5ffd6ec60cd9e839",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/bitland-mifs-wmi.c"
+    }
+  },
+  {
+    "name": "classmate-laptop.c",
+    "path": "drivers/platform/x86/classmate-laptop.c",
+    "sha": "05890815795d5633a0f57e5f9eb65b00627aa795",
+    "size": 29133,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/classmate-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/classmate-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/05890815795d5633a0f57e5f9eb65b00627aa795",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/classmate-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/classmate-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/05890815795d5633a0f57e5f9eb65b00627aa795",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/classmate-laptop.c"
+    }
+  },
+  {
+    "name": "compal-laptop.c",
+    "path": "drivers/platform/x86/compal-laptop.c",
+    "sha": "abbebd4bfb151a82ca844300d8169faf29b01f60",
+    "size": 29896,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/compal-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/compal-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/abbebd4bfb151a82ca844300d8169faf29b01f60",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/compal-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/compal-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/abbebd4bfb151a82ca844300d8169faf29b01f60",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/compal-laptop.c"
+    }
+  },
+  {
+    "name": "dasharo-acpi.c",
+    "path": "drivers/platform/x86/dasharo-acpi.c",
+    "sha": "f0c5136af29d415d0fe0a83bfe1560ce28f1ddda",
+    "size": 9038,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/dasharo-acpi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/dasharo-acpi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f0c5136af29d415d0fe0a83bfe1560ce28f1ddda",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/dasharo-acpi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/dasharo-acpi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f0c5136af29d415d0fe0a83bfe1560ce28f1ddda",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/dasharo-acpi.c"
+    }
+  },
+  {
+    "name": "dell",
+    "path": "drivers/platform/x86/dell",
+    "sha": "7980cc4dfb75e97561ae84bc9616c382f48aed01",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/dell?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/dell",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/7980cc4dfb75e97561ae84bc9616c382f48aed01",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/dell?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/7980cc4dfb75e97561ae84bc9616c382f48aed01",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/dell"
+    }
+  },
+  {
+    "name": "dual_accel_detect.h",
+    "path": "drivers/platform/x86/dual_accel_detect.h",
+    "sha": "72e9624331c8a8b99b5e6d819d87d443a80b3f3e",
+    "size": 1729,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/dual_accel_detect.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/dual_accel_detect.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/72e9624331c8a8b99b5e6d819d87d443a80b3f3e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/dual_accel_detect.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/dual_accel_detect.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/72e9624331c8a8b99b5e6d819d87d443a80b3f3e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/dual_accel_detect.h"
+    }
+  },
+  {
+    "name": "eeepc-laptop.c",
+    "path": "drivers/platform/x86/eeepc-laptop.c",
+    "sha": "d18a80907611edd0ca3402bd0de0c4d1b97cf376",
+    "size": 36424,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/eeepc-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/eeepc-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d18a80907611edd0ca3402bd0de0c4d1b97cf376",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/eeepc-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/eeepc-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d18a80907611edd0ca3402bd0de0c4d1b97cf376",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/eeepc-laptop.c"
+    }
+  },
+  {
+    "name": "eeepc-wmi.c",
+    "path": "drivers/platform/x86/eeepc-wmi.c",
+    "sha": "37edb9ae67b852369f445f38a8334d3154d623b7",
+    "size": 5846,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/eeepc-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/eeepc-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/37edb9ae67b852369f445f38a8334d3154d623b7",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/eeepc-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/eeepc-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/37edb9ae67b852369f445f38a8334d3154d623b7",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/eeepc-wmi.c"
+    }
+  },
+  {
+    "name": "firmware_attributes_class.c",
+    "path": "drivers/platform/x86/firmware_attributes_class.c",
+    "sha": "736e96c186d9dc6d945517f090e9af903e93bbf4",
+    "size": 718,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/firmware_attributes_class.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/firmware_attributes_class.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/736e96c186d9dc6d945517f090e9af903e93bbf4",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/firmware_attributes_class.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/firmware_attributes_class.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/736e96c186d9dc6d945517f090e9af903e93bbf4",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/firmware_attributes_class.c"
+    }
+  },
+  {
+    "name": "firmware_attributes_class.h",
+    "path": "drivers/platform/x86/firmware_attributes_class.h",
+    "sha": "d27abe54fcf9812a2f0868eec5426bbc8e7eb21c",
+    "size": 252,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/firmware_attributes_class.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/firmware_attributes_class.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d27abe54fcf9812a2f0868eec5426bbc8e7eb21c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/firmware_attributes_class.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/firmware_attributes_class.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d27abe54fcf9812a2f0868eec5426bbc8e7eb21c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/firmware_attributes_class.h"
+    }
+  },
+  {
+    "name": "fujitsu-laptop.c",
+    "path": "drivers/platform/x86/fujitsu-laptop.c",
+    "sha": "54d0b9cec4d3c67a2807669064a3b6a738ef7451",
+    "size": 32425,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/fujitsu-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/fujitsu-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/54d0b9cec4d3c67a2807669064a3b6a738ef7451",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/fujitsu-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/fujitsu-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/54d0b9cec4d3c67a2807669064a3b6a738ef7451",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/fujitsu-laptop.c"
+    }
+  },
+  {
+    "name": "fujitsu-tablet.c",
+    "path": "drivers/platform/x86/fujitsu-tablet.c",
+    "sha": "2f8c1b89cbca17b213d8e576f579884b5ac1cbd1",
+    "size": 11573,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/fujitsu-tablet.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/fujitsu-tablet.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/2f8c1b89cbca17b213d8e576f579884b5ac1cbd1",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/fujitsu-tablet.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/fujitsu-tablet.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/2f8c1b89cbca17b213d8e576f579884b5ac1cbd1",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/fujitsu-tablet.c"
+    }
+  },
+  {
+    "name": "gigabyte-wmi.c",
+    "path": "drivers/platform/x86/gigabyte-wmi.c",
+    "sha": "f42c85607a6bc8a751ec215b1818edf160acf644",
+    "size": 4113,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/gigabyte-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/gigabyte-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f42c85607a6bc8a751ec215b1818edf160acf644",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/gigabyte-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/gigabyte-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f42c85607a6bc8a751ec215b1818edf160acf644",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/gigabyte-wmi.c"
+    }
+  },
+  {
+    "name": "gpd-pocket-fan.c",
+    "path": "drivers/platform/x86/gpd-pocket-fan.c",
+    "sha": "c9236738f8960746ba7b07be1abc701152bb7566",
+    "size": 5816,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/gpd-pocket-fan.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/gpd-pocket-fan.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/c9236738f8960746ba7b07be1abc701152bb7566",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/gpd-pocket-fan.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/gpd-pocket-fan.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/c9236738f8960746ba7b07be1abc701152bb7566",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/gpd-pocket-fan.c"
+    }
+  },
+  {
+    "name": "hdaps.c",
+    "path": "drivers/platform/x86/hdaps.c",
+    "sha": "f11f726d20629b7ddab4e9f0845a36ad2ae301ac",
+    "size": 16433,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/hdaps.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/hdaps.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f11f726d20629b7ddab4e9f0845a36ad2ae301ac",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/hdaps.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/hdaps.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f11f726d20629b7ddab4e9f0845a36ad2ae301ac",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/hdaps.c"
+    }
+  },
+  {
+    "name": "hp",
+    "path": "drivers/platform/x86/hp",
+    "sha": "fe386390eeb6e53d7db2192378c2b0e47f60ca5e",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/hp?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/hp",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/fe386390eeb6e53d7db2192378c2b0e47f60ca5e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/hp?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/fe386390eeb6e53d7db2192378c2b0e47f60ca5e",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/hp"
+    }
+  },
+  {
+    "name": "huawei-wmi.c",
+    "path": "drivers/platform/x86/huawei-wmi.c",
+    "sha": "93cca17fdf58687fc9c9b21b8154262770294d28",
+    "size": 20852,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/huawei-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/huawei-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/93cca17fdf58687fc9c9b21b8154262770294d28",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/huawei-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/huawei-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/93cca17fdf58687fc9c9b21b8154262770294d28",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/huawei-wmi.c"
+    }
+  },
+  {
+    "name": "ibm_rtl.c",
+    "path": "drivers/platform/x86/ibm_rtl.c",
+    "sha": "139956168cf94738a9f61cb467dc1cdc0231ebb0",
+    "size": 7877,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/ibm_rtl.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/ibm_rtl.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/139956168cf94738a9f61cb467dc1cdc0231ebb0",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/ibm_rtl.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/ibm_rtl.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/139956168cf94738a9f61cb467dc1cdc0231ebb0",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/ibm_rtl.c"
+    }
+  },
+  {
+    "name": "inspur_platform_profile.c",
+    "path": "drivers/platform/x86/inspur_platform_profile.c",
+    "sha": "e02f5a55a6c5d3d61f6e3847d8777c0e5942b9f9",
+    "size": 5206,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/inspur_platform_profile.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/inspur_platform_profile.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e02f5a55a6c5d3d61f6e3847d8777c0e5942b9f9",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/inspur_platform_profile.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/inspur_platform_profile.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e02f5a55a6c5d3d61f6e3847d8777c0e5942b9f9",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/inspur_platform_profile.c"
+    }
+  },
+  {
+    "name": "intel",
+    "path": "drivers/platform/x86/intel",
+    "sha": "8a1efd3231f7e8f3a5ee2e72bc3b26defd227172",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/intel",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/8a1efd3231f7e8f3a5ee2e72bc3b26defd227172",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/8a1efd3231f7e8f3a5ee2e72bc3b26defd227172",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/intel"
+    }
+  },
+  {
+    "name": "intel_ips.c",
+    "path": "drivers/platform/x86/intel_ips.c",
+    "sha": "b1b2d9caba7b384647f61402769d6aed26c55e25",
+    "size": 42806,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_ips.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_ips.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/b1b2d9caba7b384647f61402769d6aed26c55e25",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/intel_ips.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_ips.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/b1b2d9caba7b384647f61402769d6aed26c55e25",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_ips.c"
+    }
+  },
+  {
+    "name": "intel_ips.h",
+    "path": "drivers/platform/x86/intel_ips.h",
+    "sha": "35ed9711c7b97d3554dceb135432ceaa1729de66",
+    "size": 123,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_ips.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_ips.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/35ed9711c7b97d3554dceb135432ceaa1729de66",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/intel_ips.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_ips.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/35ed9711c7b97d3554dceb135432ceaa1729de66",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_ips.h"
+    }
+  },
+  {
+    "name": "intel_scu_ipc.c",
+    "path": "drivers/platform/x86/intel_scu_ipc.c",
+    "sha": "a2472ad10f379f69828614ceca0ae04984e14613",
+    "size": 19246,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_ipc.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_ipc.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/a2472ad10f379f69828614ceca0ae04984e14613",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/intel_scu_ipc.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_ipc.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/a2472ad10f379f69828614ceca0ae04984e14613",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_ipc.c"
+    }
+  },
+  {
+    "name": "intel_scu_ipcutil.c",
+    "path": "drivers/platform/x86/intel_scu_ipcutil.c",
+    "sha": "69b36ce41fa2103e88fff14f12e9f63c5c726b43",
+    "size": 3475,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_ipcutil.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_ipcutil.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/69b36ce41fa2103e88fff14f12e9f63c5c726b43",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/intel_scu_ipcutil.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_ipcutil.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/69b36ce41fa2103e88fff14f12e9f63c5c726b43",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_ipcutil.c"
+    }
+  },
+  {
+    "name": "intel_scu_pcidrv.c",
+    "path": "drivers/platform/x86/intel_scu_pcidrv.c",
+    "sha": "d7f72d6deb44b431872a74c1f54317bddc7acc53",
+    "size": 1265,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_pcidrv.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_pcidrv.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d7f72d6deb44b431872a74c1f54317bddc7acc53",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/intel_scu_pcidrv.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_pcidrv.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d7f72d6deb44b431872a74c1f54317bddc7acc53",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_pcidrv.c"
+    }
+  },
+  {
+    "name": "intel_scu_pltdrv.c",
+    "path": "drivers/platform/x86/intel_scu_pltdrv.c",
+    "sha": "d5ab62cbf5cc93cd0a3c7340f637003cad7fb897",
+    "size": 1590,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_pltdrv.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_pltdrv.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d5ab62cbf5cc93cd0a3c7340f637003cad7fb897",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/intel_scu_pltdrv.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_pltdrv.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d5ab62cbf5cc93cd0a3c7340f637003cad7fb897",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_pltdrv.c"
+    }
+  },
+  {
+    "name": "intel_scu_wdt.c",
+    "path": "drivers/platform/x86/intel_scu_wdt.c",
+    "sha": "746d47d334061ae923c5658019679563708b39a5",
+    "size": 1732,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_wdt.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_wdt.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/746d47d334061ae923c5658019679563708b39a5",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/intel_scu_wdt.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/intel_scu_wdt.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/746d47d334061ae923c5658019679563708b39a5",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/intel_scu_wdt.c"
+    }
+  },
+  {
+    "name": "lenovo",
+    "path": "drivers/platform/x86/lenovo",
+    "sha": "e68a392af7afd5b6b5246bc3db54f0f3a54fe23a",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/lenovo?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/lenovo",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/e68a392af7afd5b6b5246bc3db54f0f3a54fe23a",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/lenovo?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/e68a392af7afd5b6b5246bc3db54f0f3a54fe23a",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/lenovo"
+    }
+  },
+  {
+    "name": "lg-laptop.c",
+    "path": "drivers/platform/x86/lg-laptop.c",
+    "sha": "a8f2f465ef3f9642f4792079afb4cea3b9d7eba8",
+    "size": 21178,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/lg-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/lg-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/a8f2f465ef3f9642f4792079afb4cea3b9d7eba8",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/lg-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/lg-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/a8f2f465ef3f9642f4792079afb4cea3b9d7eba8",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/lg-laptop.c"
+    }
+  },
+  {
+    "name": "meegopad_anx7428.c",
+    "path": "drivers/platform/x86/meegopad_anx7428.c",
+    "sha": "b2c4d4f526c4dc44be70d9d658fc5f6f4f1a62dc",
+    "size": 4787,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/meegopad_anx7428.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/meegopad_anx7428.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/b2c4d4f526c4dc44be70d9d658fc5f6f4f1a62dc",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/meegopad_anx7428.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/meegopad_anx7428.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/b2c4d4f526c4dc44be70d9d658fc5f6f4f1a62dc",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/meegopad_anx7428.c"
+    }
+  },
+  {
+    "name": "meraki-mx100.c",
+    "path": "drivers/platform/x86/meraki-mx100.c",
+    "sha": "9f4caa1f3a923164eeaf31765a4e83c874cff181",
+    "size": 9773,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/meraki-mx100.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/meraki-mx100.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/9f4caa1f3a923164eeaf31765a4e83c874cff181",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/meraki-mx100.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/meraki-mx100.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/9f4caa1f3a923164eeaf31765a4e83c874cff181",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/meraki-mx100.c"
+    }
+  },
+  {
+    "name": "msi-ec.c",
+    "path": "drivers/platform/x86/msi-ec.c",
+    "sha": "dfe4532ebe561eef2f2b88db453dcc09ed229511",
+    "size": 29517,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-ec.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-ec.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/dfe4532ebe561eef2f2b88db453dcc09ed229511",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/msi-ec.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-ec.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/dfe4532ebe561eef2f2b88db453dcc09ed229511",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-ec.c"
+    }
+  },
+  {
+    "name": "msi-ec.h",
+    "path": "drivers/platform/x86/msi-ec.h",
+    "sha": "08635121750596ce1355ae2b3232bda370c44247",
+    "size": 2668,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-ec.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-ec.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/08635121750596ce1355ae2b3232bda370c44247",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/msi-ec.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-ec.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/08635121750596ce1355ae2b3232bda370c44247",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-ec.h"
+    }
+  },
+  {
+    "name": "msi-laptop.c",
+    "path": "drivers/platform/x86/msi-laptop.c",
+    "sha": "ddef6b78d2fa9f1ce0eaeaf3f5744cd7166a1609",
+    "size": 26909,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/ddef6b78d2fa9f1ce0eaeaf3f5744cd7166a1609",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/msi-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/ddef6b78d2fa9f1ce0eaeaf3f5744cd7166a1609",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-laptop.c"
+    }
+  },
+  {
+    "name": "msi-wmi-platform.c",
+    "path": "drivers/platform/x86/msi-wmi-platform.c",
+    "sha": "e912fcc12d124390476051ed2071ee9e38f8fb8e",
+    "size": 12289,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-wmi-platform.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-wmi-platform.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e912fcc12d124390476051ed2071ee9e38f8fb8e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/msi-wmi-platform.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-wmi-platform.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e912fcc12d124390476051ed2071ee9e38f8fb8e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-wmi-platform.c"
+    }
+  },
+  {
+    "name": "msi-wmi.c",
+    "path": "drivers/platform/x86/msi-wmi.c",
+    "sha": "4a7ac85c4db48f3a7b3d65c5dc8c3ae3350dcc8f",
+    "size": 8360,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/4a7ac85c4db48f3a7b3d65c5dc8c3ae3350dcc8f",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/msi-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/msi-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/4a7ac85c4db48f3a7b3d65c5dc8c3ae3350dcc8f",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/msi-wmi.c"
+    }
+  },
+  {
+    "name": "mxm-wmi.c",
+    "path": "drivers/platform/x86/mxm-wmi.c",
+    "sha": "dbc5e35ec38b67f395da2d656760878430b067ea",
+    "size": 1690,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/mxm-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/mxm-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/dbc5e35ec38b67f395da2d656760878430b067ea",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/mxm-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/mxm-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/dbc5e35ec38b67f395da2d656760878430b067ea",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/mxm-wmi.c"
+    }
+  },
+  {
+    "name": "nvidia-wmi-ec-backlight.c",
+    "path": "drivers/platform/x86/nvidia-wmi-ec-backlight.c",
+    "sha": "b4eebfb96fe5fe1831eb87e2ec9109200bf5e3b4",
+    "size": 4420,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/nvidia-wmi-ec-backlight.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/nvidia-wmi-ec-backlight.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/b4eebfb96fe5fe1831eb87e2ec9109200bf5e3b4",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/nvidia-wmi-ec-backlight.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/nvidia-wmi-ec-backlight.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/b4eebfb96fe5fe1831eb87e2ec9109200bf5e3b4",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/nvidia-wmi-ec-backlight.c"
+    }
+  },
+  {
+    "name": "oxpec.c",
+    "path": "drivers/platform/x86/oxpec.c",
+    "sha": "99c0dfcf393b77001d2868ee14bcaa06289d22d2",
+    "size": 22607,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/oxpec.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/oxpec.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/99c0dfcf393b77001d2868ee14bcaa06289d22d2",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/oxpec.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/oxpec.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/99c0dfcf393b77001d2868ee14bcaa06289d22d2",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/oxpec.c"
+    }
+  },
+  {
+    "name": "p2sb.c",
+    "path": "drivers/platform/x86/p2sb.c",
+    "sha": "cbbb0f809704eaa0210e6488b6a4f65bba4b9842",
+    "size": 6647,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/p2sb.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/p2sb.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/cbbb0f809704eaa0210e6488b6a4f65bba4b9842",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/p2sb.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/p2sb.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/cbbb0f809704eaa0210e6488b6a4f65bba4b9842",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/p2sb.c"
+    }
+  },
+  {
+    "name": "panasonic-laptop.c",
+    "path": "drivers/platform/x86/panasonic-laptop.c",
+    "sha": "719add753cb3da5d13a2ad46bad17d9566fbc06c",
+    "size": 30157,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/panasonic-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/panasonic-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/719add753cb3da5d13a2ad46bad17d9566fbc06c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/panasonic-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/panasonic-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/719add753cb3da5d13a2ad46bad17d9566fbc06c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/panasonic-laptop.c"
+    }
+  },
+  {
+    "name": "pcengines-apuv2.c",
+    "path": "drivers/platform/x86/pcengines-apuv2.c",
+    "sha": "8ac5f719c5a39b3511d7f4e4d752adc9d99eabfc",
+    "size": 8955,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/pcengines-apuv2.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/pcengines-apuv2.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8ac5f719c5a39b3511d7f4e4d752adc9d99eabfc",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/pcengines-apuv2.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/pcengines-apuv2.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8ac5f719c5a39b3511d7f4e4d752adc9d99eabfc",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/pcengines-apuv2.c"
+    }
+  },
+  {
+    "name": "pmc_atom.c",
+    "path": "drivers/platform/x86/pmc_atom.c",
+    "sha": "046933f6d1b6f3153b81d11b98d1b78a3ba3b253",
+    "size": 15684,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/pmc_atom.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/pmc_atom.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/046933f6d1b6f3153b81d11b98d1b78a3ba3b253",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/pmc_atom.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/pmc_atom.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/046933f6d1b6f3153b81d11b98d1b78a3ba3b253",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/pmc_atom.c"
+    }
+  },
+  {
+    "name": "portwell-ec.c",
+    "path": "drivers/platform/x86/portwell-ec.c",
+    "sha": "ac506ea40efff65ec883c30d0834ac9bca57cc73",
+    "size": 11423,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/portwell-ec.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/portwell-ec.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/ac506ea40efff65ec883c30d0834ac9bca57cc73",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/portwell-ec.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/portwell-ec.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/ac506ea40efff65ec883c30d0834ac9bca57cc73",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/portwell-ec.c"
+    }
+  },
+  {
+    "name": "quickstart.c",
+    "path": "drivers/platform/x86/quickstart.c",
+    "sha": "186a243a012da032f449884ea2dd7293e2623a18",
+    "size": 6179,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/quickstart.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/quickstart.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/186a243a012da032f449884ea2dd7293e2623a18",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/quickstart.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/quickstart.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/186a243a012da032f449884ea2dd7293e2623a18",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/quickstart.c"
+    }
+  },
+  {
+    "name": "redmi-wmi.c",
+    "path": "drivers/platform/x86/redmi-wmi.c",
+    "sha": "58898630eda606828b982ec6fa37c9c95fd68d21",
+    "size": 3852,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/redmi-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/redmi-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/58898630eda606828b982ec6fa37c9c95fd68d21",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/redmi-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/redmi-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/58898630eda606828b982ec6fa37c9c95fd68d21",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/redmi-wmi.c"
+    }
+  },
+  {
+    "name": "samsung-galaxybook.c",
+    "path": "drivers/platform/x86/samsung-galaxybook.c",
+    "sha": "6382af0b106c06d6e890e6d0571a4777ea9db865",
+    "size": 40686,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/samsung-galaxybook.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/samsung-galaxybook.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/6382af0b106c06d6e890e6d0571a4777ea9db865",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/samsung-galaxybook.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/samsung-galaxybook.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/6382af0b106c06d6e890e6d0571a4777ea9db865",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/samsung-galaxybook.c"
+    }
+  },
+  {
+    "name": "samsung-laptop.c",
+    "path": "drivers/platform/x86/samsung-laptop.c",
+    "sha": "710f3d5bf84c1b32b4708ee44c05294fcd63e8c2",
+    "size": 43594,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/samsung-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/samsung-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/710f3d5bf84c1b32b4708ee44c05294fcd63e8c2",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/samsung-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/samsung-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/710f3d5bf84c1b32b4708ee44c05294fcd63e8c2",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/samsung-laptop.c"
+    }
+  },
+  {
+    "name": "samsung-q10.c",
+    "path": "drivers/platform/x86/samsung-q10.c",
+    "sha": "8160d45f8a2391b4b46ed53a5c98a73bef9b808e",
+    "size": 3658,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/samsung-q10.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/samsung-q10.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8160d45f8a2391b4b46ed53a5c98a73bef9b808e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/samsung-q10.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/samsung-q10.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8160d45f8a2391b4b46ed53a5c98a73bef9b808e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/samsung-q10.c"
+    }
+  },
+  {
+    "name": "sel3350-platform.c",
+    "path": "drivers/platform/x86/sel3350-platform.c",
+    "sha": "f3a31423563251f8331ecb71d0d9f23f8fcde57e",
+    "size": 9118,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/sel3350-platform.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/sel3350-platform.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/f3a31423563251f8331ecb71d0d9f23f8fcde57e",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/sel3350-platform.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/sel3350-platform.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/f3a31423563251f8331ecb71d0d9f23f8fcde57e",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/sel3350-platform.c"
+    }
+  },
+  {
+    "name": "serdev_helpers.h",
+    "path": "drivers/platform/x86/serdev_helpers.h",
+    "sha": "57eac75805e22322ee84652b64ff07675d69713d",
+    "size": 2628,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/serdev_helpers.h?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/serdev_helpers.h",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/57eac75805e22322ee84652b64ff07675d69713d",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/serdev_helpers.h",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/serdev_helpers.h?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/57eac75805e22322ee84652b64ff07675d69713d",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/serdev_helpers.h"
+    }
+  },
+  {
+    "name": "serial-multi-instantiate.c",
+    "path": "drivers/platform/x86/serial-multi-instantiate.c",
+    "sha": "1a369334f9cb602407174c5c78da736e5bc79958",
+    "size": 10906,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/serial-multi-instantiate.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/serial-multi-instantiate.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/1a369334f9cb602407174c5c78da736e5bc79958",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/serial-multi-instantiate.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/serial-multi-instantiate.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/1a369334f9cb602407174c5c78da736e5bc79958",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/serial-multi-instantiate.c"
+    }
+  },
+  {
+    "name": "siemens",
+    "path": "drivers/platform/x86/siemens",
+    "sha": "747d84a59613b539d332dc2a9087cc12d48b5740",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/siemens?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/siemens",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/747d84a59613b539d332dc2a9087cc12d48b5740",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/siemens?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/747d84a59613b539d332dc2a9087cc12d48b5740",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/siemens"
+    }
+  },
+  {
+    "name": "silicom-platform.c",
+    "path": "drivers/platform/x86/silicom-platform.c",
+    "sha": "266f7bc5e416bd29542bbc35eecaa8b9d549246c",
+    "size": 24919,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/silicom-platform.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/silicom-platform.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/266f7bc5e416bd29542bbc35eecaa8b9d549246c",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/silicom-platform.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/silicom-platform.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/266f7bc5e416bd29542bbc35eecaa8b9d549246c",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/silicom-platform.c"
+    }
+  },
+  {
+    "name": "sony-laptop.c",
+    "path": "drivers/platform/x86/sony-laptop.c",
+    "sha": "67370967df6f5141df1b41b7d1a36726c544138d",
+    "size": 117871,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/sony-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/sony-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/67370967df6f5141df1b41b7d1a36726c544138d",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/sony-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/sony-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/67370967df6f5141df1b41b7d1a36726c544138d",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/sony-laptop.c"
+    }
+  },
+  {
+    "name": "system76_acpi.c",
+    "path": "drivers/platform/x86/system76_acpi.c",
+    "sha": "dd7b1b07c3165939d182f9c2401c2d4055f118d0",
+    "size": 19479,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/system76_acpi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/system76_acpi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/dd7b1b07c3165939d182f9c2401c2d4055f118d0",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/system76_acpi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/system76_acpi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/dd7b1b07c3165939d182f9c2401c2d4055f118d0",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/system76_acpi.c"
+    }
+  },
+  {
+    "name": "topstar-laptop.c",
+    "path": "drivers/platform/x86/topstar-laptop.c",
+    "sha": "e09d7f8ce45f971c66406c2047a9ace669742110",
+    "size": 9258,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/topstar-laptop.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/topstar-laptop.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e09d7f8ce45f971c66406c2047a9ace669742110",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/topstar-laptop.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/topstar-laptop.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e09d7f8ce45f971c66406c2047a9ace669742110",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/topstar-laptop.c"
+    }
+  },
+  {
+    "name": "toshiba-wmi.c",
+    "path": "drivers/platform/x86/toshiba-wmi.c",
+    "sha": "12c46455e8dcd5a3510a60493f42e1050b36b1ea",
+    "size": 2706,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/12c46455e8dcd5a3510a60493f42e1050b36b1ea",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/toshiba-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/12c46455e8dcd5a3510a60493f42e1050b36b1ea",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba-wmi.c"
+    }
+  },
+  {
+    "name": "toshiba_acpi.c",
+    "path": "drivers/platform/x86/toshiba_acpi.c",
+    "sha": "7cecb3a70b9c35f946426393dacfe34457754610",
+    "size": 92143,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba_acpi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba_acpi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/7cecb3a70b9c35f946426393dacfe34457754610",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/toshiba_acpi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba_acpi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/7cecb3a70b9c35f946426393dacfe34457754610",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba_acpi.c"
+    }
+  },
+  {
+    "name": "toshiba_bluetooth.c",
+    "path": "drivers/platform/x86/toshiba_bluetooth.c",
+    "sha": "e00abba58c7c013e27d438041d572b0c5bfd8bb2",
+    "size": 7460,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba_bluetooth.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba_bluetooth.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e00abba58c7c013e27d438041d572b0c5bfd8bb2",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/toshiba_bluetooth.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba_bluetooth.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e00abba58c7c013e27d438041d572b0c5bfd8bb2",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba_bluetooth.c"
+    }
+  },
+  {
+    "name": "toshiba_haps.c",
+    "path": "drivers/platform/x86/toshiba_haps.c",
+    "sha": "8d12241924df3d3bca6d64fdcf065cbc8522ff39",
+    "size": 6336,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba_haps.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba_haps.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/8d12241924df3d3bca6d64fdcf065cbc8522ff39",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/toshiba_haps.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/toshiba_haps.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/8d12241924df3d3bca6d64fdcf065cbc8522ff39",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/toshiba_haps.c"
+    }
+  },
+  {
+    "name": "touchscreen_dmi.c",
+    "path": "drivers/platform/x86/touchscreen_dmi.c",
+    "sha": "d83c387821ea1cf2cefeb706726727415d441c0b",
+    "size": 62517,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/touchscreen_dmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/touchscreen_dmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/d83c387821ea1cf2cefeb706726727415d441c0b",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/touchscreen_dmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/touchscreen_dmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/d83c387821ea1cf2cefeb706726727415d441c0b",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/touchscreen_dmi.c"
+    }
+  },
+  {
+    "name": "tuxedo",
+    "path": "drivers/platform/x86/tuxedo",
+    "sha": "f4004bee75e58cafad1f4a13e2c9e8d31c9531b1",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/tuxedo?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/tuxedo",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/f4004bee75e58cafad1f4a13e2c9e8d31c9531b1",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/tuxedo?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/f4004bee75e58cafad1f4a13e2c9e8d31c9531b1",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/tuxedo"
+    }
+  },
+  {
+    "name": "uniwill",
+    "path": "drivers/platform/x86/uniwill",
+    "sha": "29c4fe849bbee158c9488ea557ce543c618f10ae",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/uniwill?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/uniwill",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/29c4fe849bbee158c9488ea557ce543c618f10ae",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/uniwill?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/29c4fe849bbee158c9488ea557ce543c618f10ae",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/uniwill"
+    }
+  },
+  {
+    "name": "uv_sysfs.c",
+    "path": "drivers/platform/x86/uv_sysfs.c",
+    "sha": "a8c50b323a9e6f3c5d2f3d5a84752f09639a9fd2",
+    "size": 22214,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/uv_sysfs.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/uv_sysfs.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/a8c50b323a9e6f3c5d2f3d5a84752f09639a9fd2",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/uv_sysfs.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/uv_sysfs.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/a8c50b323a9e6f3c5d2f3d5a84752f09639a9fd2",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/uv_sysfs.c"
+    }
+  },
+  {
+    "name": "winmate-fm07-keys.c",
+    "path": "drivers/platform/x86/winmate-fm07-keys.c",
+    "sha": "465ffad81a65b1d4da05900c5d5b0bfcffc379e9",
+    "size": 4028,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/winmate-fm07-keys.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/winmate-fm07-keys.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/465ffad81a65b1d4da05900c5d5b0bfcffc379e9",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/winmate-fm07-keys.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/winmate-fm07-keys.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/465ffad81a65b1d4da05900c5d5b0bfcffc379e9",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/winmate-fm07-keys.c"
+    }
+  },
+  {
+    "name": "wireless-hotkey.c",
+    "path": "drivers/platform/x86/wireless-hotkey.c",
+    "sha": "3151844d1699ddefbd33daf8c0a7de2ebcc6ebd1",
+    "size": 3146,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/wireless-hotkey.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/wireless-hotkey.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/3151844d1699ddefbd33daf8c0a7de2ebcc6ebd1",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/wireless-hotkey.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/wireless-hotkey.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/3151844d1699ddefbd33daf8c0a7de2ebcc6ebd1",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/wireless-hotkey.c"
+    }
+  },
+  {
+    "name": "wmi-bmof.c",
+    "path": "drivers/platform/x86/wmi-bmof.c",
+    "sha": "6623cf60e4b4d7eb951c0d293b9d1f806c354a10",
+    "size": 2359,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/wmi-bmof.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/wmi-bmof.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/6623cf60e4b4d7eb951c0d293b9d1f806c354a10",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/wmi-bmof.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/wmi-bmof.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/6623cf60e4b4d7eb951c0d293b9d1f806c354a10",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/wmi-bmof.c"
+    }
+  },
+  {
+    "name": "x86-android-tablets",
+    "path": "drivers/platform/x86/x86-android-tablets",
+    "sha": "14aa005c4337f5338db398e76e2802a0f69dc6b1",
+    "size": 0,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/x86-android-tablets?ref=master",
+    "html_url": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/x86-android-tablets",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/trees/14aa005c4337f5338db398e76e2802a0f69dc6b1",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/x86-android-tablets?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/trees/14aa005c4337f5338db398e76e2802a0f69dc6b1",
+      "html": "https://github.com/torvalds/linux/tree/master/drivers/platform/x86/x86-android-tablets"
+    }
+  },
+  {
+    "name": "xiaomi-wmi.c",
+    "path": "drivers/platform/x86/xiaomi-wmi.c",
+    "sha": "3874f3336a0dc13785a4ce250f44fb397e0c2310",
+    "size": 2743,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/xiaomi-wmi.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/xiaomi-wmi.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/3874f3336a0dc13785a4ce250f44fb397e0c2310",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/xiaomi-wmi.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/xiaomi-wmi.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/3874f3336a0dc13785a4ce250f44fb397e0c2310",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/xiaomi-wmi.c"
+    }
+  },
+  {
+    "name": "xo1-rfkill.c",
+    "path": "drivers/platform/x86/xo1-rfkill.c",
+    "sha": "5fedb99b9d944cfb670ff3cce1d72e3ada22fe81",
+    "size": 1556,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/xo1-rfkill.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/xo1-rfkill.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/5fedb99b9d944cfb670ff3cce1d72e3ada22fe81",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/xo1-rfkill.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/xo1-rfkill.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/5fedb99b9d944cfb670ff3cce1d72e3ada22fe81",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/xo1-rfkill.c"
+    }
+  },
+  {
+    "name": "xo15-ebook.c",
+    "path": "drivers/platform/x86/xo15-ebook.c",
+    "sha": "e40e385c52bd4bdb9a602665f694ec6ef3d2d962",
+    "size": 4022,
+    "url": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/xo15-ebook.c?ref=master",
+    "html_url": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/xo15-ebook.c",
+    "git_url": "https://api.github.com/repos/torvalds/linux/git/blobs/e40e385c52bd4bdb9a602665f694ec6ef3d2d962",
+    "download_url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/platform/x86/xo15-ebook.c",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/torvalds/linux/contents/drivers/platform/x86/xo15-ebook.c?ref=master",
+      "git": "https://api.github.com/repos/torvalds/linux/git/blobs/e40e385c52bd4bdb9a602665f694ec6ef3d2d962",
+      "html": "https://github.com/torvalds/linux/blob/master/drivers/platform/x86/xo15-ebook.c"
+    }
+  }
+]

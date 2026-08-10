@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# OMEN RGB GUI launcher.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+for CAND in "$SCRIPT_DIR/../lib/omenrgb" "$SCRIPT_DIR/../omenrgb"; do
+  if [ -f "$CAND/__init__.py" ]; then
+    export PYTHONPATH="$CAND${PYTHONPATH:+:$PYTHONPATH}"
+    break
+  fi
+done
+
+exec python3 -m omenrgb.gui "$@"
