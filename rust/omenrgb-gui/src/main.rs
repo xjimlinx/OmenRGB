@@ -5,6 +5,7 @@ use omenrgb_core::client::Client;
 use omenrgb_core::animation_display_name;
 use omenrgb_core::ZONE_NAMES;
 use std::io::{BufReader, Cursor};
+use std::sync::Arc;
 
 const BG: Color32 = Color32::from_rgb(0x0D, 0x11, 0x17);
 const PANEL: Color32 = Color32::from_rgb(0x15, 0x1B, 0x23);
@@ -23,8 +24,8 @@ const PRESETS: [&str; 16] = [
 ];
 
 const ANIMATIONS: [&str; 10] = [
-    "静态", "ghosting", "ripple", "wave", "omenx",
-    "raindrop", "audiopulse", "linestreak", "starlight", "galaxy",
+    "静态", "colorcycle", "starlight", "breathing", "wave",
+    "raindrop", "audiopulse", "confetti", "sun", "swipe",
 ];
 
 fn hex_to_color(s: &str) -> Color32 {
@@ -230,18 +231,21 @@ fn apply_dispose(
     }
 }
 
-/// 动画内部名 → OGH 真实 GIF 资源（pre_1..9.gif，对应 Effect 1..9）。
+/// 动画内部名 → OGH 真实 GIF 资源（pre_1..9.gif 为 Dragon 模块 Effect 1..9 的预览）：
+/// 1=ColorCycle、2=Starlight、3=Breathing、4=Ghosting、5=Ripple、6=Wave、
+/// 7=OMEN X、8=Raindrop、9=Audio。四分区动画中 Confetti/Sun/Swipe 无对应素材，
+/// 暂用形态最接近的预览（彩纸≈雨滴、太阳≈涟漪、滑动≈波浪）。
 fn animation_gif(name: &str) -> Option<&'static [u8]> {
     match name {
-        "ghosting" => Some(include_bytes!("../assets/previews/pre_4.gif")),
-        "ripple" => Some(include_bytes!("../assets/previews/pre_5.gif")),
+        "colorcycle" => Some(include_bytes!("../assets/previews/pre_1.gif")),
+        "starlight" => Some(include_bytes!("../assets/previews/pre_2.gif")),
+        "breathing" => Some(include_bytes!("../assets/previews/pre_3.gif")),
         "wave" => Some(include_bytes!("../assets/previews/pre_6.gif")),
-        "omenx" => Some(include_bytes!("../assets/previews/pre_7.gif")),
         "raindrop" => Some(include_bytes!("../assets/previews/pre_8.gif")),
         "audiopulse" => Some(include_bytes!("../assets/previews/pre_9.gif")),
-        "linestreak" => Some(include_bytes!("../assets/previews/pre_3.gif")),
-        "starlight" => Some(include_bytes!("../assets/previews/pre_2.gif")),
-        "galaxy" => Some(include_bytes!("../assets/previews/pre_1.gif")),
+        "confetti" => Some(include_bytes!("../assets/previews/pre_8.gif")),
+        "sun" => Some(include_bytes!("../assets/previews/pre_5.gif")),
+        "swipe" => Some(include_bytes!("../assets/previews/pre_6.gif")),
         _ => None,
     }
 }
@@ -736,12 +740,25 @@ fn setup_fonts(ctx: &egui::Context) {
     ctx.set_fonts(fonts);
 }
 
+/// 窗口图标：使用自绘的 OMEN RGB 图标（黑底圆角 + 红橙渐变 O 环）。
+fn window_icon() -> Option<Arc<egui::IconData>> {
+    let bytes = include_bytes!("../../../icons/omenrgb-512.png");
+    let img = image::load_from_memory(bytes).ok()?.to_rgba8();
+    let (w, h) = img.dimensions();
+    Some(Arc::new(egui::IconData {
+        rgba: img.into_raw(),
+        width: w,
+        height: h,
+    }))
+}
+
 fn main() -> eframe::Result {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size([960.0, 640.0])
             .with_min_inner_size([820.0, 560.0])
-            .with_title("OMEN RGB 键盘控制器"),
+            .with_title("OMEN RGB 键盘控制器")
+            .with_icon(window_icon().expect("内置图标缺失")),
         ..Default::default()
     };
     eframe::run_native(

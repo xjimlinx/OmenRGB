@@ -15,8 +15,8 @@ fn usage() -> ! {
   omenrgb set-all RRGGBB             全部区域设为同一颜色\n\
   omenrgb set-zone N RRGGBB          设置单个区域 (0-3)\n\
   omenrgb brightness 0-100           亮度\n\
-  omenrgb animate NAME               动画 (ghosting/ripple/wave/omenx/\n\
-                                      raindrop/audiopulse/linestreak/starlight/galaxy)\n\
+  omenrgb animate NAME               动画 (colorcycle/starlight/breathing/wave/\n\
+                                      raindrop/audiopulse/confetti/sun/swipe)\n\
   omenrgb kbam                       读取键盘模式寄存器\n\
   omenrgb zones                      显示分区名\n"
     );

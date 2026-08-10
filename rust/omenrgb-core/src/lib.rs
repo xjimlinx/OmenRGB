@@ -21,19 +21,21 @@ pub const DEVICE_KEYBOARD: u8 = 1; // TargetDevice::FourZoneAni
 pub const MODE_STATIC: u8 = 0;
 
 /// 动画模式：内部名、载荷 mode 字节、英文显示名、中文显示名。
-/// mode 字节来自 DojoLightingBg `_effectMapping`（4→2 … 12→11）；
-/// 显示名对照 OMEN CC（DragonLightingModule / McuSDK2）的枚举与文案。
-/// 注意：mode 与具体动画的对应关系待实机逐项确认（见 README）。
+/// 逆向自 HP.Omen.Core.Model.DataStructure 的 FourZoneAni.AnimationEffect 枚举
+/// 与 DojoLightingBg DojoLightingWmiHelperV2._effectMapping：
+///   ColorCycle=0→4→2、Starlight=1→5→3、Breathing=2→6→4、Wave=3→7→6、
+///   Raindrop=4→8→7、AudioPulse=5→9→8、Confetti=6→10→9、Sun=7→11→10、
+///   Swipe=8→12→11。
 pub const ANIMATION_MODES: &[(&str, u8, &str, &str)] = &[
-    ("ghosting", 2, "Ghosting", "幽灵"),
-    ("ripple", 3, "Ripple", "涟漪"),
-    ("wave", 4, "Wave", "波浪"),
-    ("omenx", 6, "OMEN X", "OMEN X"),
+    ("colorcycle", 2, "Color Cycle", "颜色循环"),
+    ("starlight", 3, "Starlight", "星光"),
+    ("breathing", 4, "Breathing", "呼吸"),
+    ("wave", 6, "Wave", "波浪"),
     ("raindrop", 7, "Raindrop", "雨滴"),
     ("audiopulse", 8, "Audio Pulse", "声波律动"),
-    ("linestreak", 9, "Line Streak", "线条"),
-    ("starlight", 10, "Starlight", "星光"),
-    ("galaxy", 11, "Galaxy", "银河"),
+    ("confetti", 9, "Confetti", "彩纸"),
+    ("sun", 10, "Sun", "太阳"),
+    ("swipe", 11, "Swipe", "滑动"),
 ];
 
 pub fn animation_mode_byte(name: &str) -> Option<u8> {
