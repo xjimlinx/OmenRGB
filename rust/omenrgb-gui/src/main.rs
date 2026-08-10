@@ -195,6 +195,7 @@ struct App {
     pick_bright: f32,
     tray_rx: mpsc::Receiver<TrayMsg>,
     quitting: bool,
+    tray_hidden: bool,
 }
 
 /// dojo-zones.json 中的分区定义：4 个分区，每个分区若干 [X, Y, Width, Height] 光区
@@ -415,6 +416,7 @@ fn default() -> Self {
             pick_bright: 50.0,
             tray_rx,
             quitting: false,
+            tray_hidden: false,
         }
     }
 }
@@ -700,6 +702,8 @@ impl eframe::App for App {
         while let Ok(msg) = self.tray_rx.try_recv() {
             match msg {
                 TrayMsg::Show => {
+                    self.tray_hidden = false;
+                    ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(false));
                     ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
                 }
                 TrayMsg::Quit => {
@@ -711,7 +715,13 @@ impl eframe::App for App {
         // 点窗口关闭按钮 → 隐藏到托盘（托盘"退出"才真正退出）
         if ctx.input(|i| i.viewport().close_requested()) && !self.quitting {
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
-            ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
+            self.tray_hidden = true;
+            ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(true));
+        }
+        // Wayland 不支持真正隐藏窗口，用最小化代替；
+        // 最小化期间保持定时重绘，确保托盘菜单消息仍能被轮询到
+        if self.tray_hidden {
+            ctx.request_repaint_after(std::time::Duration::from_millis(500));
         }
         if self.keyboard.is_none() {
             self.load_keyboard(ctx);
@@ -752,7 +762,8 @@ impl eframe::App for App {
                 ui.label(RichText::new("HP OMEN 16 · 四分区键盘灯控").size(11.0).color(MUTED));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                     if ui.button(RichText::new("▁ 隐藏到托盘").color(Color32::WHITE)).clicked() {
-                        ctx.send_viewport_cmd(egui::ViewportCommand::Visible(false));
+                        self.tray_hidden = true;
+                        ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(true));
                     }
                     if ui.button(RichText::new("↻ 刷新").color(Color32::WHITE)).clicked() {
                         self.refresh();
