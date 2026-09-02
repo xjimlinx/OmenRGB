@@ -11,6 +11,7 @@ use std::os::unix::io::AsRawFd;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc;
 use std::sync::{Arc, Mutex};
+use std::time::{Duration, Instant};
 
 // OMEN 风格深色主题：暖黑背景 + 图标同款红粉主色（#FF2C74 → #FF6A3D 渐变系）
 const BG: Color32 = Color32::from_rgb(0x10, 0x11, 0x16);
@@ -21,6 +22,17 @@ const MUTED: Color32 = Color32::from_rgb(0x9C, 0x9D, 0xA8);
 const ACCENT: Color32 = Color32::from_rgb(0xFF, 0x2C, 0x74);
 const OK: Color32 = Color32::from_rgb(0x4C, 0xC3, 0x8A);
 const ERR: Color32 = Color32::from_rgb(0xFF, 0x4D, 0x4F);
+
+/// 从本机 OGH「键盘灯-无色」截图量出的键帽面几何，坐标相对 884×316 外框。
+/// 仅记录几何事实；实际外框和每个键帽都在运行时自行绘制。
+const OMEN16_KEY_RECTS: &[[f32; 4]] = &[
+    [33.0, 29.0, 35.0, 27.0], [76.0, 29.0, 34.0, 27.0], [120.0, 29.0, 34.0, 27.0], [164.0, 29.0, 34.0, 27.0], [208.0, 29.0, 34.0, 27.0], [252.0, 29.0, 34.0, 27.0], [294.0, 29.0, 35.0, 27.0], [337.0, 29.0, 35.0, 27.0], [380.0, 29.0, 34.0, 27.0], [422.0, 29.0, 35.0, 27.0], [465.0, 29.0, 35.0, 27.0], [508.0, 29.0, 34.0, 27.0], [551.0, 29.0, 34.0, 27.0], [595.0, 29.0, 34.0, 27.0], [636.0, 29.0, 34.0, 27.0], [677.0, 29.0, 37.0, 27.0], [723.0, 29.0, 37.0, 27.0], [768.0, 29.0, 37.0, 27.0], [813.0, 29.0, 37.0, 27.0],
+    [34.0, 63.0, 31.0, 37.0], [73.0, 63.0, 37.0, 37.0], [118.0, 63.0, 38.0, 37.0], [164.0, 63.0, 37.0, 37.0], [209.0, 63.0, 37.0, 37.0], [254.0, 63.0, 38.0, 37.0], [300.0, 63.0, 37.0, 37.0], [345.0, 63.0, 37.0, 37.0], [390.0, 63.0, 38.0, 37.0], [436.0, 63.0, 37.0, 37.0], [481.0, 63.0, 37.0, 37.0], [527.0, 63.0, 37.0, 37.0], [572.0, 63.0, 37.0, 37.0], [617.0, 63.0, 53.0, 37.0], [677.0, 63.0, 37.0, 37.0], [723.0, 63.0, 37.0, 37.0], [768.0, 63.0, 37.0, 37.0], [813.0, 63.0, 37.0, 37.0],
+    [34.0, 107.0, 54.0, 37.0], [96.0, 107.0, 37.0, 37.0], [141.0, 107.0, 37.0, 37.0], [186.0, 107.0, 38.0, 37.0], [232.0, 107.0, 37.0, 37.0], [277.0, 107.0, 37.0, 37.0], [322.0, 107.0, 38.0, 37.0], [368.0, 107.0, 37.0, 37.0], [413.0, 107.0, 37.0, 37.0], [458.0, 107.0, 38.0, 37.0], [504.0, 107.0, 37.0, 37.0], [549.0, 107.0, 37.0, 37.0], [593.0, 107.0, 36.0, 37.0], [636.0, 107.0, 34.0, 37.0], [677.0, 107.0, 37.0, 37.0], [723.0, 107.0, 37.0, 37.0], [768.0, 107.0, 37.0, 37.0], [813.0, 107.0, 37.0, 82.0],
+    [34.0, 151.0, 60.0, 37.0], [102.0, 151.0, 38.0, 37.0], [148.0, 151.0, 37.0, 37.0], [193.0, 151.0, 37.0, 37.0], [238.0, 151.0, 38.0, 37.0], [284.0, 151.0, 37.0, 37.0], [329.0, 151.0, 37.0, 37.0], [374.0, 151.0, 38.0, 37.0], [420.0, 151.0, 37.0, 37.0], [465.0, 151.0, 37.0, 37.0], [511.0, 151.0, 37.0, 37.0], [556.0, 151.0, 37.0, 37.0], [601.0, 151.0, 69.0, 37.0], [677.0, 151.0, 37.0, 37.0], [723.0, 151.0, 37.0, 37.0], [768.0, 151.0, 37.0, 37.0],
+    [34.0, 195.0, 84.0, 37.0], [126.0, 195.0, 38.0, 37.0], [172.0, 195.0, 37.0, 37.0], [217.0, 195.0, 37.0, 37.0], [262.0, 195.0, 38.0, 37.0], [308.0, 195.0, 37.0, 37.0], [353.0, 195.0, 37.0, 37.0], [398.0, 195.0, 38.0, 37.0], [444.0, 195.0, 37.0, 37.0], [489.0, 195.0, 37.0, 37.0], [535.0, 195.0, 37.0, 37.0], [580.0, 195.0, 44.0, 37.0], [632.0, 195.0, 37.0, 37.0], [677.0, 195.0, 37.0, 37.0], [723.0, 195.0, 37.0, 37.0], [768.0, 195.0, 37.0, 37.0], [813.0, 195.0, 37.0, 82.0],
+    [34.0, 239.0, 38.0, 37.0], [80.0, 239.0, 37.0, 37.0], [125.0, 239.0, 37.0, 37.0], [170.0, 239.0, 38.0, 37.0], [216.0, 240.0, 220.0, 37.0], [444.0, 240.0, 37.0, 37.0], [489.0, 240.0, 37.0, 37.0], [535.0, 240.0, 43.0, 37.0], [587.0, 240.0, 37.0, 37.0], [632.0, 240.0, 37.0, 37.0], [677.0, 240.0, 37.0, 37.0], [723.0, 240.0, 37.0, 37.0], [768.0, 240.0, 37.0, 37.0],
+];
 
 /// 预选颜色（按色系分组）。含从 Windows OGH 逆向提取的原生色
 /// （FourZoneModule.dll / 配置 JSON：#FF0F36 红、#FF710F 橙、#FFFF00/#FFF935 黄、
@@ -275,9 +287,8 @@ fn gradient_slider(
 
 struct App {
     client: Client,
-    keyboard: Option<TextureHandle>,
-    keyboard_size: [usize; 2],
-    // DojoUS.json 解析出的四个分区的逐键光区（OGH FourZone 模块原始数据）
+    page: Page,
+    // 四个分区的逐键光区；键盘外框和键帽均由本程序绘制。
     dojo_zones: Vec<Vec<[f32; 4]>>,
     zones: [String; 4],
     brightness: u8,
@@ -298,6 +309,37 @@ struct App {
     custom_speed: f32,
     hide_requested: bool,
     last_vid: Option<egui::ViewportId>,
+    system: SystemStats,
+    last_cpu_sample: Option<(u64, u64)>,
+    last_net_sample: Option<(Instant, u64, u64)>,
+    last_system_refresh: Instant,
+}
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Page {
+    System,
+    Lighting,
+}
+
+#[derive(Default)]
+struct SystemStats {
+    cpu_usage: f32,
+    cpu_temp: Option<f32>,
+    gpu_usage: Option<f32>,
+    gpu_temp: Option<f32>,
+    mem_used: u64,
+    mem_total: u64,
+    load: f32,
+    process_count: usize,
+    rx_rate: f64,
+    tx_rate: f64,
+    disks: Vec<DiskStat>,
+}
+
+struct DiskStat {
+    mount: String,
+    used: u64,
+    total: u64,
 }
 
 /// dojo-zones.json 中的分区定义：4 个分区，每个分区若干 [X, Y, Width, Height] 光区
@@ -499,8 +541,7 @@ impl Default for App {
 fn default() -> Self {
         Self {
             client: Client::new(),
-            keyboard: None,
-            keyboard_size: [0, 0],
+            page: Page::System,
             dojo_zones: Vec::new(),
             zones: std::array::from_fn(|_| "FFFFFF".into()),
             brightness: 100,
@@ -520,28 +561,18 @@ fn default() -> Self {
             custom_speed: 1.0,
             hide_requested: false,
             last_vid: None,
+            system: SystemStats::default(),
+            last_cpu_sample: None,
+            last_net_sample: None,
+            last_system_refresh: Instant::now() - Duration::from_secs(10),
         }
     }
 }
 
 impl App {
-    fn load_keyboard(&mut self, ctx: &egui::Context) {
-        // OGH 灯光页 Dojo 机型的真实键盘底图（keyboard-blank-gamora.png，无键帽字体）
-        let bytes = include_bytes!("../assets/keyboard-gamora.png");
-        let img = image::load_from_memory(bytes).unwrap().to_rgba8();
-        let (w, h) = img.dimensions();
-        let color_image = egui::ColorImage::from_rgba_unmultiplied(
-            [w as usize, h as usize],
-            img.as_raw(),
-        );
-        self.keyboard = Some(ctx.load_texture(
-            "omenrgb-keyboard",
-            color_image,
-            egui::TextureOptions::LINEAR,
-        ));
-        self.keyboard_size = [w as usize, h as usize];
-
-        // 解析 OGH FourZone 的 DojoUS.json：4 个分区的逐键光区（原始坐标 260..872 × 111..297）
+    fn load_keyboard_layout(&mut self) {
+        // Dojo 逐键光区只用于区域归属。将其按行对应到从本机截图量出的自有键帽几何，
+        // 因此灯色、点击命中和可视键帽使用同一套矩形。
         let zones_json = include_str!("../assets/dojo-zones.json");
         let cleaned: String = zones_json
             .lines()
@@ -549,20 +580,57 @@ impl App {
             .collect::<Vec<_>>()
             .join("\n");
         if let Ok(zf) = serde_json::from_str::<DojoZonesFile>(&cleaned) {
-            self.dojo_zones = zf
-                .zones
-                .into_iter()
-                .map(|zone| {
-                    zone.into_iter()
-                        .filter_map(|r| {
-                            if r.len() < 4 {
-                                return None;
-                            }
-                            Some([r[0], r[1], r[2], r[3]])
-                        })
-                        .collect::<Vec<_>>()
-                })
-                .collect();
+            let mut target_rows = vec![Vec::<[f32; 4]>::new(); 6];
+            for key in OMEN16_KEY_RECTS {
+                let row = if key[1] >= 239.0 {
+                    5
+                } else {
+                    ((key[1] - 29.0) / 44.0).round() as usize
+                };
+                target_rows[row].push(*key);
+            }
+            for row in &mut target_rows {
+                row.sort_by(|a, b| a[0].total_cmp(&b[0]));
+            }
+
+            let mut source_rows = vec![Vec::<(usize, f32)>::new(); 6];
+            for (area, zone) in zf.zones.into_iter().enumerate() {
+                for part in zone.into_iter().filter(|r| r.len() >= 4) {
+                    let row = if part[1] >= 268.0 {
+                        5
+                    } else {
+                        ((part[1] - 111.0) / 33.0).round() as usize
+                    };
+                    source_rows[row].push((area, part[0]));
+                }
+            }
+
+            let mut mapped = vec![Vec::<[f32; 4]>::new(); 4];
+            for row in 0..6 {
+                source_rows[row].sort_by(|a, b| a.1.total_cmp(&b.1));
+                for ((area, _), key) in source_rows[row].iter().zip(&target_rows[row]) {
+                    mapped[*area].push(*key);
+                }
+                // 原灯区数据未列出右上角键和右下角数字区 Enter；两者实际随右侧/小键盘变色。
+                for key in target_rows[row].iter().skip(source_rows[row].len()) {
+                    mapped[0].push(*key);
+                }
+            }
+            // 实机校准：T/G/V/B/Space 随硬件 zone 1（左侧、用户测试时为蓝色）变色。
+            // mapped 的索引是 OGH area，area 2 才对应硬件 zone 1（hw = 3 - area）。
+            for (x, y) in [(277.0, 107.0), (284.0, 151.0), (262.0, 195.0), (308.0, 195.0), (216.0, 240.0)] {
+                for area in 0..4 {
+                    if let Some(pos) = mapped[area]
+                        .iter()
+                        .position(|key| key[0] == x && key[1] == y)
+                    {
+                        let key = mapped[area].remove(pos);
+                        mapped[2].push(key);
+                        break;
+                    }
+                }
+            }
+            self.dojo_zones = mapped;
         }
     }
 
@@ -600,6 +668,56 @@ impl App {
                 self.status_color = ERR;
             }
         }
+    }
+
+    /// 读取 Linux 系统状态。所有来源均为 /proc、/sys 或 nvidia-smi，只读且失败可降级。
+    fn refresh_system(&mut self) {
+        let now = Instant::now();
+        let (total, idle) = cpu_totals().unwrap_or((0, 0));
+        if let Some((last_total, last_idle)) = self.last_cpu_sample {
+            let dt = total.saturating_sub(last_total);
+            let di = idle.saturating_sub(last_idle);
+            if dt > 0 {
+                self.system.cpu_usage = ((dt.saturating_sub(di)) as f32 / dt as f32 * 100.0)
+                    .clamp(0.0, 100.0);
+            }
+        }
+        self.last_cpu_sample = Some((total, idle));
+
+        if let Some((used, total)) = memory_usage() {
+            self.system.mem_used = used;
+            self.system.mem_total = total;
+        }
+        self.system.cpu_temp = hwmon_temp(&["k10temp", "coretemp", "zenpower"])
+            .or_else(|| thermal_temp("acpitz"));
+        let (gpu_usage, gpu_temp) = nvidia_stats();
+        self.system.gpu_usage = gpu_usage;
+        self.system.gpu_temp = gpu_temp.or_else(|| hwmon_temp(&["amdgpu"]));
+        self.system.load = std::fs::read_to_string("/proc/loadavg")
+            .ok()
+            .and_then(|s| s.split_whitespace().next()?.parse().ok())
+            .unwrap_or(0.0);
+        self.system.process_count = std::fs::read_dir("/proc")
+            .ok()
+            .map(|entries| {
+                entries
+                    .flatten()
+                    .filter(|entry| entry.file_name().to_string_lossy().chars().all(|c| c.is_ascii_digit()))
+                    .count()
+            })
+            .unwrap_or(0);
+
+        let (rx, tx) = network_totals();
+        if let Some((last_at, last_rx, last_tx)) = self.last_net_sample {
+            let seconds = now.duration_since(last_at).as_secs_f64();
+            if seconds > 0.0 {
+                self.system.rx_rate = rx.saturating_sub(last_rx) as f64 / seconds;
+                self.system.tx_rate = tx.saturating_sub(last_tx) as f64 / seconds;
+            }
+        }
+        self.last_net_sample = Some((now, rx, tx));
+        self.system.disks = disk_usage();
+        self.last_system_refresh = now;
     }
 
     fn refresh(&mut self) {
@@ -705,64 +823,58 @@ impl App {
         let (rect, response) = ui.allocate_exact_size(size, egui::Sense::click());
         let painter = ui.painter_at(rect);
 
-        // 键盘图片（OGH Dojo 底图 keyboard-blank-gamora.png，保持宽高比）
-        let (kw, kh) = (self.keyboard_size[0] as f32, self.keyboard_size[1] as f32);
-        let scale = if kw > 0.0 && kh > 0.0 {
-            (size.x / kw).min(size.y / kh)
-        } else {
-            1.0
-        };
+        // 参考本机 OGH 截图重绘的 16 英寸全尺寸键盘：六排、右侧导航区和数字小键盘。
+        // 884×316 是 omengh/键盘灯-无色.png 中外框的实测尺寸，不使用 OGH 图片素材。
+        const REF_W: f32 = 884.0;
+        const REF_H: f32 = 316.0;
+        let scale = (size.x / REF_W).min(size.y / REF_H);
         let body = Rect::from_center_size(
             rect.center(),
-            Vec2::new(kw * scale, kh * scale),
+            Vec2::new(REF_W * scale, REF_H * scale),
         );
-        if let Some(tex) = &self.keyboard {
-            painter.image(
-                tex.id(),
-                body,
-                Rect::from_min_max(Pos2::new(0.0, 0.0), Pos2::new(1.0, 1.0)),
-                Color32::WHITE,
-            );
-        }
+        let outer_radius = 17.0 * scale;
+        painter.rect_filled(body, outer_radius, Color32::from_rgb(0x32, 0x32, 0x32));
+        painter.rect_stroke(
+            body,
+            outer_radius,
+            Stroke::new((2.0 * scale).max(1.0), Color32::from_rgb(0x5A, 0x5A, 0x5A)),
+            StrokeKind::Inside,
+        );
+        let well = body.shrink(16.0 * scale);
+        painter.rect_filled(well, 12.0 * scale, Color32::from_rgb(0x0E, 0x0E, 0x0E));
+        painter.rect_stroke(
+            well,
+            12.0 * scale,
+            Stroke::new(scale.max(1.0), Color32::from_rgb(0x19, 0x19, 0x19)),
+            StrokeKind::Inside,
+        );
 
-        // DojoUS 四分区逐键光区：OGH 原始坐标(260..872, 111..297)
-        // → 底图 keyboard-blank-gamora.png(684×272) 的内边框键盘面板
-        //   (8..664 × 20..240，y 242 以下是掌托)，等比缩放并垂直居中。
-        let jx0 = 260.0_f32;
-        let jy0 = 111.0_f32;
-        let jw = 872.0_f32 - jx0; // 612
-        let jh = 297.0_f32 - jy0; // 186
-        let ix0 = 8.0_f32;
-        let iy0 = 20.0_f32;
-        let iw = 656.0_f32;
-        let ih = 220.0_f32;
-        // 稍缩小一点并在面板内右偏（相对外框），视觉上更贴近 OGH 的布局。
-        let s = (iw / jw).min(ih / jh) * 0.96;
-        let kw = jw * s;
-        let center_x = (ix0 + iw / 2.0) + 8.0;
-        let left_x = center_x - kw / 2.0;
-        let ox = body.min.x + (left_x - jx0 * s) * scale;
-        let oy = body.min.y + (iy0 + (ih - jh * s) / 2.0 - jy0 * s) * scale;
+        // 先画出截图中的全部 101 个键帽；其中两个没有可控灯区，保持中性灰。
+        for key in OMEN16_KEY_RECTS {
+            let krect = Rect::from_min_size(
+                Pos2::new(body.min.x + key[0] * scale, body.min.y + key[1] * scale),
+                Vec2::new(key[2] * scale, key[3] * scale),
+            );
+            painter.rect_filled(krect, 3.5 * scale, Color32::from_rgb(0x3E, 0x3E, 0x3E));
+        }
         let mut hit_rects: Vec<(Rect, usize)> = Vec::new();
-        // 注意：OGH DojoUS 的 JSON 分区顺序(0=右,1=中,2=左,3=核心)与硬件实际顺序
+        // 光区数据顺序(0=右,1=中,2=左,3=核心)与硬件实际顺序
         // (0=核心 QWER/ASDF, 1=左, 2=中, 3=右)相反，这里做映射：area → 硬件 zone = 3 - area。
         for (area, rects) in self.dojo_zones.iter().enumerate() {
             let hw_zone = 3 - area;
             let visible = self.selected == 4 || self.selected == hw_zone;
             let zone_color = hex_to_color(&self.zones[hw_zone]);
             for r in rects {
-                let kx = ox + r[0] * s * scale;
-                let ky = oy + r[1] * s * scale;
                 let krect = Rect::from_min_size(
-                    Pos2::new(kx, ky),
-                    Vec2::new(r[2] * s * scale, r[3] * s * scale),
+                    Pos2::new(body.min.x + r[0] * scale, body.min.y + r[1] * scale),
+                    Vec2::new(r[2] * scale, r[3] * scale),
                 );
                 let fill = if visible {
                     Color32::from_rgba_unmultiplied(
                         zone_color.r(),
                         zone_color.g(),
                         zone_color.b(),
-                        110,
+                        132,
                     )
                 } else {
                     // 未选中也显示淡淡的本区颜色，保证整体可见
@@ -770,22 +882,22 @@ impl App {
                         zone_color.r(),
                         zone_color.g(),
                         zone_color.b(),
-                        42,
+                        48,
                     )
                 };
-                painter.rect_filled(krect, 2.0, fill);
+                painter.rect_filled(krect, 3.5 * scale, fill);
                 if visible {
                     painter.rect_stroke(
                         krect,
-                        2.0,
-                        Stroke::new(1.0_f32, zone_color.gamma_multiply(0.75)),
+                        3.5 * scale,
+                        Stroke::new(scale.max(1.0), zone_color.gamma_multiply(0.75)),
                         StrokeKind::Inside,
                     );
                 } else {
                     painter.rect_stroke(
                         krect,
-                        2.0,
-                        Stroke::new(0.5_f32, zone_color.gamma_multiply(0.3)),
+                        3.5 * scale,
+                        Stroke::new((0.5 * scale).max(0.5), zone_color.gamma_multiply(0.3)),
                         StrokeKind::Inside,
                     );
                 }
@@ -824,6 +936,97 @@ impl App {
 }
 
 impl App {
+    fn draw_system_dashboard(&mut self, ui: &mut egui::Ui) {
+        ui.horizontal(|ui| {
+            ui.heading(RichText::new("系统核心").color(TEXT));
+            ui.label(RichText::new("实时读取本机 Linux 状态").size(11.0).color(MUTED));
+            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                if ui.button("↻ 刷新监控").clicked() {
+                    self.refresh_system();
+                }
+            });
+        });
+        let stats = &self.system;
+        ui.add_space(10.0);
+        ui.columns(3, |columns| {
+            gauge_card(
+                &mut columns[0],
+                "CPU",
+                stats.cpu_usage,
+                format!("{:.0}%", stats.cpu_usage),
+                stats
+                    .cpu_temp
+                    .map(|temp| format!("{temp:.0} °C"))
+                    .unwrap_or_else(|| "温度不可用".into()),
+                ACCENT,
+            );
+            let gpu_usage = stats.gpu_usage.unwrap_or(0.0);
+            gauge_card(
+                &mut columns[1],
+                "GPU",
+                gpu_usage,
+                stats
+                    .gpu_usage
+                    .map(|usage| format!("{usage:.0}%"))
+                    .unwrap_or_else(|| "--".into()),
+                stats
+                    .gpu_temp
+                    .map(|temp| format!("{temp:.0} °C"))
+                    .unwrap_or_else(|| "温度不可用".into()),
+                Color32::from_rgb(0x8A, 0x5C, 0xFF),
+            );
+            let mem_pct = if stats.mem_total > 0 {
+                stats.mem_used as f32 / stats.mem_total as f32 * 100.0
+            } else {
+                0.0
+            };
+            gauge_card(
+                &mut columns[2],
+                "内存",
+                mem_pct,
+                format!("{mem_pct:.0}%"),
+                format!("{} / {}", human_bytes(stats.mem_used), human_bytes(stats.mem_total)),
+                Color32::from_rgb(0x2E, 0xB9, 0xD8),
+            );
+        });
+
+        ui.add_space(12.0);
+        ui.columns(3, |columns| {
+            dashboard_section(&mut columns[0], "网络", Color32::from_rgb(0x31, 0xC4, 0xE8), |ui| {
+                ui.horizontal(|ui| {
+                    ui.vertical(|ui| {
+                        ui.label(RichText::new("↓ 下载").size(12.0).color(TEXT));
+                        ui.label(RichText::new(human_rate(stats.rx_rate)).size(19.0).strong().color(TEXT));
+                    });
+                    ui.add_space(12.0);
+                    ui.vertical(|ui| {
+                        ui.label(RichText::new("↑ 上传").size(12.0).color(TEXT));
+                        ui.label(RichText::new(human_rate(stats.tx_rate)).size(19.0).strong().color(TEXT));
+                    });
+                });
+            });
+            dashboard_section(&mut columns[1], "存储空间", Color32::from_rgb(0xFF, 0xA5, 0x2D), |ui| {
+                if stats.disks.is_empty() {
+                    ui.label(RichText::new("未读取到磁盘").color(TEXT));
+                }
+                for disk in stats.disks.iter().take(2) {
+                    let usage = if disk.total > 0 { disk.used as f32 / disk.total as f32 } else { 0.0 };
+                    ui.label(RichText::new(&disk.mount).monospace().size(12.0).color(TEXT));
+                    ui.add(
+                        egui::ProgressBar::new(usage)
+                            .desired_width(ui.available_width())
+                            .text(format!("{} / {}", human_bytes(disk.used), human_bytes(disk.total))),
+                    );
+                }
+            });
+            dashboard_section(&mut columns[2], "系统状态", OK, |ui| {
+                ui.label(RichText::new(format!("负载（1 分钟）  {:.2}", stats.load)).color(TEXT));
+                ui.label(RichText::new(format!("运行进程          {}", stats.process_count)).color(TEXT));
+                ui.label(RichText::new("数据每秒刷新一次").size(11.0).color(TEXT));
+            });
+        });
+    }
+
     /// 请求隐藏主窗口：置标志 + 立即唤醒根视口执行隐藏，
     /// 避免等到根视口 500ms 轮询才生效造成点击延迟。
     fn request_hide(&mut self, ctx: &egui::Context) {
@@ -841,12 +1044,11 @@ impl App {
         // 视口重建（隐藏→显示）后 Context 会变：重建纹理与字体
         if self.last_vid != Some(ctx.viewport_id()) {
             self.last_vid = Some(ctx.viewport_id());
-            self.keyboard = None;
             self.anim = None;
             setup_fonts(ctx);
         }
-        if self.keyboard.is_none() {
-            self.load_keyboard(ctx);
+        if self.dojo_zones.is_empty() {
+            self.load_keyboard_layout();
         }
         let mut style = (*ctx.style()).clone();
         style.visuals = egui::Visuals::dark();
@@ -871,6 +1073,12 @@ impl App {
             self.refresh();
             self.refresh_profiles();
         }
+        if self.page == Page::System {
+            if self.last_system_refresh.elapsed() >= Duration::from_secs(1) {
+                self.refresh_system();
+            }
+            ctx.request_repaint_after(Duration::from_secs(1));
+        }
         // 驱动 GIF 预览播放
         if let Some(anim) = &mut self.anim {
             let now = ctx.input(|i| i.time);
@@ -882,6 +1090,12 @@ impl App {
             ui.horizontal(|ui| {
                 ui.label(RichText::new("OMEN RGB").size(22.0).strong().color(ACCENT));
                 ui.label(RichText::new("HP OMEN 16 · 四分区键盘灯控").size(11.0).color(MUTED));
+                ui.add_space(10.0);
+                for (page, label) in [(Page::System, "系统核心"), (Page::Lighting, "灯光")] {
+                    if ui.selectable_label(self.page == page, RichText::new(label).size(13.0)).clicked() {
+                        self.page = page;
+                    }
+                }
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                     if ui.button(RichText::new("▁ 隐藏到托盘").color(Color32::WHITE)).clicked() {
                         self.request_hide(ctx);
@@ -902,6 +1116,7 @@ impl App {
             });
         });
 
+        if self.page == Page::Lighting {
         egui::SidePanel::right("side")
             .resizable(true)
             .default_width(300.0)
@@ -1242,8 +1457,13 @@ impl App {
                 });
             });
         });
+        }
 
         egui::CentralPanel::default().frame(egui::Frame::NONE.fill(BG).inner_margin(12.0)).show(ctx, |ui| {
+            if self.page == Page::System {
+                self.draw_system_dashboard(ui);
+                return;
+            }
             ui.horizontal(|ui| {
                 ui.label(RichText::new("点击分区选择颜色").color(MUTED).size(11.0));
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
@@ -1271,6 +1491,217 @@ impl App {
             });
         });
     }
+}
+
+fn cpu_totals() -> Option<(u64, u64)> {
+    let line = std::fs::read_to_string("/proc/stat").ok()?;
+    let values: Vec<u64> = line
+        .lines()
+        .next()?
+        .split_whitespace()
+        .skip(1)
+        .filter_map(|v| v.parse().ok())
+        .collect();
+    let total = values.iter().sum();
+    let idle = values.get(3).copied().unwrap_or(0) + values.get(4).copied().unwrap_or(0);
+    Some((total, idle))
+}
+
+fn memory_usage() -> Option<(u64, u64)> {
+    let text = std::fs::read_to_string("/proc/meminfo").ok()?;
+    let value = |name: &str| {
+        text.lines()
+            .find_map(|line| line.strip_prefix(name))?
+            .split_whitespace()
+            .next()?
+            .parse::<u64>()
+            .ok()
+            .map(|kb| kb * 1024)
+    };
+    let total = value("MemTotal:")?;
+    let available = value("MemAvailable:")?;
+    Some((total.saturating_sub(available), total))
+}
+
+fn hwmon_temp(names: &[&str]) -> Option<f32> {
+    let entries = std::fs::read_dir("/sys/class/hwmon").ok()?;
+    for entry in entries.flatten() {
+        let path = entry.path();
+        let name = std::fs::read_to_string(path.join("name")).ok()?;
+        if !names.iter().any(|wanted| name.trim() == *wanted) {
+            continue;
+        }
+        for index in 1..=8 {
+            let input = path.join(format!("temp{index}_input"));
+            if let Ok(raw) = std::fs::read_to_string(input) {
+                if let Ok(milli) = raw.trim().parse::<f32>() {
+                    return Some(milli / 1000.0);
+                }
+            }
+        }
+    }
+    None
+}
+
+fn thermal_temp(kind: &str) -> Option<f32> {
+    for entry in std::fs::read_dir("/sys/class/thermal").ok()?.flatten() {
+        let path = entry.path();
+        if std::fs::read_to_string(path.join("type")).ok()?.trim() != kind {
+            continue;
+        }
+        if let Ok(raw) = std::fs::read_to_string(path.join("temp")) {
+            if let Ok(milli) = raw.trim().parse::<f32>() {
+                return Some(milli / 1000.0);
+            }
+        }
+    }
+    None
+}
+
+fn nvidia_stats() -> (Option<f32>, Option<f32>) {
+    let output = std::process::Command::new("nvidia-smi")
+        .args([
+            "--query-gpu=utilization.gpu,temperature.gpu",
+            "--format=csv,noheader,nounits",
+        ])
+        .output();
+    let Ok(output) = output else { return (None, None) };
+    let text = String::from_utf8_lossy(&output.stdout);
+    let Some(line) = text.lines().next() else { return (None, None) };
+    let mut values = line.split(',').map(|v| v.trim().parse::<f32>().ok());
+    (values.next().flatten(), values.next().flatten())
+}
+
+fn network_totals() -> (u64, u64) {
+    let mut rx = 0;
+    let mut tx = 0;
+    if let Ok(text) = std::fs::read_to_string("/proc/net/dev") {
+        for line in text.lines().skip(2) {
+            let Some((name, values)) = line.split_once(':') else { continue };
+            if name.trim() == "lo" {
+                continue;
+            }
+            let values: Vec<u64> = values
+                .split_whitespace()
+                .filter_map(|v| v.parse().ok())
+                .collect();
+            rx += values.first().copied().unwrap_or(0);
+            tx += values.get(8).copied().unwrap_or(0);
+        }
+    }
+    (rx, tx)
+}
+
+fn disk_usage() -> Vec<DiskStat> {
+    let Ok(output) = std::process::Command::new("df")
+        .args(["-B1", "--output=source,size,avail,target"])
+        .output()
+    else {
+        return Vec::new();
+    };
+    String::from_utf8_lossy(&output.stdout)
+        .lines()
+        .skip(1)
+        .filter_map(|line| {
+            let parts: Vec<_> = line.split_whitespace().collect();
+            if parts.len() < 4
+                || !parts[0].starts_with("/dev/")
+                || parts[3].starts_with("/run")
+                || parts[3].starts_with("/tmp")
+            {
+                return None;
+            }
+            let total = parts[1].parse::<u64>().ok()?;
+            let available = parts[2].parse::<u64>().ok()?;
+            (total > 0).then(|| DiskStat {
+                mount: parts[3].to_string(),
+                used: total.saturating_sub(available),
+                total,
+            })
+        })
+        .take(4)
+        .collect()
+}
+
+fn human_rate(value: f64) -> String {
+    if value >= 1_000_000.0 {
+        format!("{:.1} MB/s", value / 1_000_000.0)
+    } else if value >= 1_000.0 {
+        format!("{:.1} KB/s", value / 1_000.0)
+    } else {
+        format!("{value:.0} B/s")
+    }
+}
+
+fn human_bytes(value: u64) -> String {
+    if value >= 1 << 30 {
+        format!("{:.1} GB", value as f64 / (1 << 30) as f64)
+    } else {
+        format!("{:.0} MB", value as f64 / (1 << 20) as f64)
+    }
+}
+
+fn gauge_card(
+    ui: &mut egui::Ui,
+    title: &str,
+    percent: f32,
+    value: String,
+    detail: String,
+    accent: Color32,
+) {
+    egui::Frame::NONE
+        .fill(Color32::from_rgb(0x27, 0x29, 0x35))
+        .corner_radius(10.0)
+        .stroke(Stroke::new(1.0, accent.gamma_multiply(0.70)))
+        .inner_margin(12.0)
+        .show(ui, |ui| {
+            ui.set_min_width(ui.available_width());
+            ui.set_min_height(142.0);
+            ui.label(RichText::new(title).size(14.0).strong().color(TEXT));
+            let (rect, _) = ui.allocate_exact_size(Vec2::new(154.0, 92.0), egui::Sense::hover());
+            let center = Pos2::new(rect.center().x, rect.center().y - 2.0);
+            let radius = 32.0;
+            ui.painter().circle_stroke(center, radius, Stroke::new(3.0, Color32::from_gray(84)));
+            let end = -std::f32::consts::FRAC_PI_2
+                + std::f32::consts::TAU * (percent / 100.0).clamp(0.0, 1.0);
+            let points = (0..=32)
+                .map(|i| {
+                    let t = i as f32 / 32.0;
+                    let angle = -std::f32::consts::FRAC_PI_2
+                        + (end + std::f32::consts::FRAC_PI_2) * t;
+                    Pos2::new(center.x + radius * angle.cos(), center.y + radius * angle.sin())
+                })
+                .collect::<Vec<_>>();
+            ui.painter().add(egui::Shape::line(points, Stroke::new(3.0, accent)));
+            ui.painter().text(
+                center,
+                egui::Align2::CENTER_CENTER,
+                value,
+                FontId::proportional(20.0),
+                TEXT,
+            );
+            ui.label(RichText::new(detail).size(12.0).color(TEXT));
+        });
+}
+
+fn dashboard_section(
+    ui: &mut egui::Ui,
+    title: &str,
+    accent: Color32,
+    body: impl FnOnce(&mut egui::Ui),
+) {
+    egui::Frame::NONE
+        .fill(Color32::from_rgb(0x27, 0x29, 0x35))
+        .corner_radius(10.0)
+        .stroke(Stroke::new(1.0, accent.gamma_multiply(0.65)))
+        .inner_margin(12.0)
+        .show(ui, |ui| {
+            ui.set_min_width(ui.available_width());
+            ui.set_min_height(116.0);
+            ui.label(RichText::new(title).size(14.0).strong().color(accent));
+            ui.add_space(8.0);
+            body(ui);
+        });
 }
 
 /// 分区选择按钮：较大尺寸，填充当前分区颜色，选中时高亮。

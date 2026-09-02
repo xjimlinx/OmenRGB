@@ -2213,7 +2213,7 @@ dependencies = [
 
 [[package]]
 name = "omenrgb"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "omenrgb-core",
  "serde_json",
@@ -2221,7 +2221,7 @@ dependencies = [
 
 [[package]]
 name = "omenrgb-core"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "serde",
  "serde_json",
@@ -2229,7 +2229,7 @@ dependencies = [
 
 [[package]]
 name = "omenrgb-gui"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "async-io",
  "eframe",
@@ -2246,7 +2246,7 @@ dependencies = [
 
 [[package]]
 name = "omenrgbd"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "libc",
  "omenrgb-core",
